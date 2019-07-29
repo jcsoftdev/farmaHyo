@@ -4,7 +4,7 @@
     
     
 
-            {{-- <example-component></example-component> --}}
+            <example-component></example-component>
 
             
 
