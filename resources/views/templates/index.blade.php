@@ -1,17 +1,16 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <title>Stexo - Responsive Admin & Dashboard Template | Themesdesign</title>
-    <meta content="Responsive admin theme build on top of Bootstrap 4" name="description" />
+    <title>fARMA HYO</title>
+    <meta content="jcsoftia" name="description" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta content="Themesdesign" name="author" />
-    <link rel="shortcut icon" href="assets/images/favicon.ico">
-
+    <link rel="shortcut icon" href="https://jcsoftia.github.io/jcsoftia/img/logo.png">
     <link rel="stylesheet" href="./assets/css/plantilla.css">
     <script src="./js/plantillahead.js"></script>
 </head>
@@ -27,7 +26,13 @@
                 @include('templates.header')
             </header>
             <!-- End Navigation Bar-->
-            @yield('contenido')
+            <div class="wrapper">
+
+                <div class="container-fluid">
+
+                    @yield('contenido')
+                </div>
+            </div>
         </div>
         
 
@@ -38,7 +43,7 @@
     <!-- App js -->
     <script src="./js/app.js"></script>
     <!-- plantilla  -->
-    
+        {{-- <script>$().DataTable();</script> --}}
     <script src="./js/plantilla.js"></script>
 </body>
 

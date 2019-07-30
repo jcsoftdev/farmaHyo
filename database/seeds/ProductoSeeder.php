@@ -6849,7 +6849,8 @@ class ProductoSeeder extends Seeder
         for ($i=0; $i < count($productos); $i++) { 
             Producto::create([
                 'nombre'=>$productos[$i],
-                'descripcion'=>"descripcion de producto $i"
+                'descripcion'=>"descripcion de producto $i",
+                'condicion' => 1
             ]);
         }
     }

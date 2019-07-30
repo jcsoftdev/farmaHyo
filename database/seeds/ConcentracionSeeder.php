@@ -13,27 +13,33 @@ class ConcentracionSeeder extends Seeder
     {
         Concentracion::create([
             'nombre'	=>  "0.5 mg",
-            'descripcion' => 'descripcion de concentracion '
+            'descripcion' => 'descripcion de concentracion ',
+            'condicion' => 1
         ]);
         Concentracion::create([
             'nombre'	=>  "300 mg",
-            'descripcion' => 'descripcion de concentracion '
+            'descripcion' => 'descripcion de concentracion ',
+            'condicion' => 1
         ]);
         Concentracion::create([
             'nombre'	=>  "600 mg",
-            'descripcion' => 'descripcion de concentracion '
+            'descripcion' => 'descripcion de concentracion ',
+            'condicion' => 1
         ]);
         Concentracion::create([
             'nombre'  =>  "1200 mg",
-            'descripcion' => 'descripcion de concentracion '
+            'descripcion' => 'descripcion de concentracion ',
+            'condicion' => 1
         ]);
         Concentracion::create([
             'nombre'	=>  "1.5 mg",
-            'descripcion' => 'descripcion de concentracion '
+            'descripcion' => 'descripcion de concentracion ',
+            'condicion' => 1
         ]);
         Concentracion::create([
             'nombre'	=>  "10 mg",
-            'descripcion' => 'descripcion de concentracion '
+            'descripcion' => 'descripcion de concentracion ',
+            'condicion' => 1
         ]);
     }
 }

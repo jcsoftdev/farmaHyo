@@ -17,6 +17,7 @@ class CreateLaboratoriosTable extends Migration
             $table->bigIncrements('id');
             $table->string('nombre');
             $table->string('descripcion');
+            $table->boolean('condicion');
             $table->timestamps();
         });
     }

@@ -2,10 +2,14 @@
                 <div class="container-fluid">
 
                     <!-- Logo-->
-                    <div>
-                        <a href="index.html" class="logo">
-                            <span class="logo-light">
-                                    <i class="mdi mdi-camera-control"></i> Stexo
+                    <div class="">
+                        <a href="/" class="logo">
+                            
+                            <span class="d-none d-sm-inline logo-light">
+                                    <i class="mdi mdi-camera-control"></i><span class="">Farmacia Hyo</span>
+                            </span>
+                            <span class="d-sm-none d-inline logo-light">
+                                    <i class="mdi mdi-camera-control"></i><span class="">FH</span>
                             </span>
                         </a>
                     </div>
@@ -98,7 +102,7 @@
                             <li class="dropdown notification-list list-inline-item">
                                 <div class="dropdown notification-list nav-pro-img">
                                     <a class="dropdown-toggle nav-link arrow-none nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                                        <img src="" alt="user" class="rounded-circle">
+                                        <img src="https://jcsoftia.github.io/jcsoftia/img/logo.png" alt="user" class="rounded-circle">
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                                         <!-- item-->

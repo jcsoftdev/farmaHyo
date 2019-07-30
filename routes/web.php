@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('contents.contenido');
 });
+Route::get('/producto', 'ProductoController@index');
+Route::post('/producto/registrar', 'ProductoController@store');
+
