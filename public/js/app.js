@@ -51411,7 +51411,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\jcsoftia\Desktop\farmaHyo\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /mnt/c/Users/jcsoftia/Desktop/farmaHyo/resources/js/app.js */"./resources/js/app.js");
 
 
 /***/ })
