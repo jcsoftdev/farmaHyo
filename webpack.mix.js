@@ -51,6 +51,8 @@ mix.styles([
         'resources/assets/dataTables.responsive.min.js',
         'resources/assets/responsive.bootstrap4.min.js',
         'resources/assets/datatables.init.js',
+        'resources/assets/js/alertify.js',
+        'resources/assets/js/alertify-init.js',
         'resources/assets/js/app.js',
 
     ], 'public/js/plantilla.js')

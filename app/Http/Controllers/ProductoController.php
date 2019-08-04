@@ -13,8 +13,18 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        $productos = Producto::select('id','nombre','descripcion','condicion')->where('id','<=',10)->get();
-        return $productos;
+        $productos = Producto::select('id','nombre','descripcion','condicion')->orderBy('id','desc')->paginate(10);
+        return [
+            'pagination' => [
+                'total'        => $productos->total(),
+                'current_page' => $productos->currentPage(),
+                'per_page'     => $productos->perPage(),
+                'last_page'    => $productos->lastPage(),
+                'from'         => $productos->firstItem(),
+                'to'           => $productos->lastItem(),
+            ],
+            'productos' => $productos
+        ];
     }
 
     
@@ -24,6 +34,7 @@ class ProductoController extends Controller
         $producto = new Producto();
         $producto->nombre = $request->nombre;
         $producto->descripcion = $request->descripcion;
+        $producto->condicion = 1;
         $producto->save();
     }
 
@@ -37,11 +48,15 @@ class ProductoController extends Controller
 
     public function desactivar(Request $request)
     {
-        //
+        $producto = Producto::findOrFail($request->id);
+        $producto->condicion = 0;
+        $producto->save();
     }
     public function activar(Request $request)
     {
-        //
+        $producto = Producto::findOrFail($request->id);
+        $producto->condicion = 1;
+        $producto->save();
     }
     
 }

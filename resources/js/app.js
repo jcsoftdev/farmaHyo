@@ -15,7 +15,9 @@ window.Vue = require('vue');
  *
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
+import VueSweetalert2 from 'vue-sweetalert2';
 
+Vue.use(VueSweetalert2);
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 

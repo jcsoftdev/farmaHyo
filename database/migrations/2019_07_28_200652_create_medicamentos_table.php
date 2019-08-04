@@ -18,7 +18,7 @@ class CreateMedicamentosTable extends Migration
             $table->bigIncrements('id');
             $table->string('codigo');
             $table->double('precio_venta', 3);
-            $table->string('descripcion');
+            $table->string('descripcion')->nullable();
             $table->boolean('condicion');
             $table->bigInteger('producto_id')->unsigned();
             $table->bigInteger('presentacion_id')->unsigned();

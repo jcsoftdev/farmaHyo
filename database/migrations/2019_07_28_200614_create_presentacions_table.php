@@ -16,7 +16,7 @@ class CreatePresentacionsTable extends Migration
         Schema::create('presentaciones', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre');
-            $table->string('descripcion');
+            $table->string('descripcion')->nullable();
             $table->boolean('condicion');
             $table->timestamps();
         });

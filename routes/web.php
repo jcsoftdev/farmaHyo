@@ -16,4 +16,7 @@ Route::get('/', function () {
 });
 Route::get('/producto', 'ProductoController@index');
 Route::post('/producto/registrar', 'ProductoController@store');
+Route::put('/producto/actualizar', 'ProductoController@update');
+Route::put('/producto/activar', 'ProductoController@activar');
+Route::put('/producto/desactivar', 'ProductoController@desactivar');
 
