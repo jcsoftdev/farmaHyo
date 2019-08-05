@@ -20,7 +20,7 @@ class MedicamentoSeeder extends Seeder
                     
                     'codigo'        =>  "00000$i",
                     'precio_venta'  =>  $num,
-                    'descripcion'  =>  "Descripcion $i",
+                    'descripcion'  =>  "DESCRIPCION $i",
                     'condicion'     =>  1,
                     'producto_id'   =>  rand(1, 6833),
                     'presentacion_id'   =>  rand(1, 6),
@@ -34,7 +34,7 @@ class MedicamentoSeeder extends Seeder
                 Medicamento::create([
                     'codigo'    =>  "0000$i",
                     'precio_venta'  =>  $num,
-                    'descripcion'  =>  "Descripcion $i",
+                    'descripcion'  =>  "DESCRIPCION $i",
                     'condicion'     =>  1,
                     'producto_id'   =>  rand(1, 6833),
                     'presentacion_id'   =>  rand(1, 6),
@@ -47,7 +47,7 @@ class MedicamentoSeeder extends Seeder
                 Medicamento::create([
                     'codigo'    =>  "000$i",
                     'precio_venta'  =>  $num,
-                    'descripcion'  =>  "Descripcion $i",
+                    'descripcion'  =>  "DESCRIPCION $i",
                     'condicion'     =>  1,
                     'producto_id'   =>  rand(1, 6833),
                     'presentacion_id'   =>  rand(1, 6),

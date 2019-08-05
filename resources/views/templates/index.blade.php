@@ -15,10 +15,11 @@
     <script src="./js/plantillahead.js"></script>
 </head>
 
-<body>
+<body class="p-0 m-0">
 
     <div id="app">
-        <div class="header-bg">
+    <v-app id="inspire" >
+        <div class="header-bg light-blue darken-4 pb-5 mb-5">
             <!-- Navigation Bar-->
             <header id="topnav">
                 @include('templates.topnav')
@@ -38,6 +39,7 @@
 
 
         @include('templates.footer')
+    </v-app>
     </div>
     
     <!-- App js -->

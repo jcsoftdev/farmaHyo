@@ -27,19 +27,19 @@
                 </li>
 
                 <li class="has-submenu">
-                    <a href="#"><i class="icon-life-buoy"></i> Components <i class="mdi mdi-chevron-down mdi-drop"></i></a>
+                    <a href="#"><i class="icon-life-buoy"></i> Gestion  <i class="mdi mdi-chevron-down mdi-drop"></i></a>
                     <ul class="submenu">
                         <li @click="menu=3">
-                           <a href="#"> Algo </a>
+                           <a href="#"> Presentaciones </a>
                         </li>
 
                         <li @click="menu=4">
-                           <a href="#"> Algo </a>
+                           <a href="#"> Concentraciones </a>
                         </li>
                         
 
                         <li @click="menu=5">
-                           <a href="#"> Algo </a>
+                           <a href="#"> Laboratorio </a>
                         </li>
 
                     </ul>

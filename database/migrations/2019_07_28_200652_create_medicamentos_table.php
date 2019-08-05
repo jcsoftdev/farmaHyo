@@ -16,7 +16,7 @@ class CreateMedicamentosTable extends Migration
         
         Schema::create('medicamentos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('codigo');
+            $table->string('codigo')->unique();
             $table->double('precio_venta', 3);
             $table->string('descripcion')->nullable();
             $table->boolean('condicion');

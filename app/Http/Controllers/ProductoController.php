@@ -11,9 +11,22 @@ class ProductoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $productos = Producto::select('id','nombre','descripcion','condicion')->orderBy('id','desc')->paginate(10);
+        if (!$request->ajax()) {
+            // return redirect('/');
+        }
+        $buscar = strtoupper($request->buscar);
+        $criterio = $request->criterio;
+        
+        if ($buscar == '') {
+             
+            $productos = Producto::orderBy('id','desc')->paginate(10);
+        }else {
+            $productos = Producto::where($criterio, 'like', '%'.$buscar.'%')->orderBy('id','desc')->paginate(10);
+            
+        }
+
         return [
             'pagination' => [
                 'total'        => $productos->total(),
@@ -25,6 +38,7 @@ class ProductoController extends Controller
             ],
             'productos' => $productos
         ];
+        // return $productos;
     }
 
     
@@ -32,8 +46,8 @@ class ProductoController extends Controller
     public function store(Request $request)
     {
         $producto = new Producto();
-        $producto->nombre = $request->nombre;
-        $producto->descripcion = $request->descripcion;
+        $producto->nombre = strtoupper($request->nombre);
+        $producto->descripcion = strtoupper($request->descripcion);
         $producto->condicion = 1;
         $producto->save();
     }
@@ -41,8 +55,8 @@ class ProductoController extends Controller
     public function update(Request $request)
     {
         $producto = Producto::findOrFail($request->id);
-        $producto->nombre = $request->nombre;
-        $producto->descripcion = $request->descripcion;
+        $producto->nombre = strtoupper($request->nombre);
+        $producto->descripcion = strtoupper($request->descripcion);
         $producto->save();
     }
 
@@ -58,5 +72,8 @@ class ProductoController extends Controller
         $producto->condicion = 1;
         $producto->save();
     }
-    
+    public function getAll()
+    {
+        return Producto::all();
+    }
 }

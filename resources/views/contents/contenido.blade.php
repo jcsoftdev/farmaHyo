@@ -8,16 +8,16 @@
         <producto-component></producto-component>
     </template>
     <template v-if="menu==2">
-        <h1>Contenido 2</h1>
+        <medicamento-component></medicamento-component>
     </template>
     <template v-if="menu==3">
-        <h1>Contenido 3</h1>
+        <presentacion-component></presentacion-component>
     </template>
     <template v-if="menu==4">
-        <h1>Contenido 4</h1>
+        <concentracion-component></concentracion-component>
     </template>
     <template v-if="menu==5">
-        <h1>Contenido 5</h1>
+        <laboratorio-component></laboratorio-component>
     </template>
     <template v-if="menu==6">
         <h1>Contenido 6</h1>

@@ -6,8 +6,8 @@
                 <div class="pagina-titulo">
                     <div class="row align-items-center">
                         <div class="col-sm-6">
-                            <h4 class="container"> Productos
-                            <button type="button" class="btn btn-primary waves-effect waves-light" @click="abrirModal('producto','registrar')"><i class="icon-plus mr-2"></i>Nuevo</button>
+                            <h4 class="container"> Presentaciones
+                            <button type="button" class="btn btn-primary waves-effect waves-light" @click="abrirModal('presentacion','registrar')"><i class="icon-plus mr-2"></i>Nuevo</button>
                             
                             </h4>
                             
@@ -15,7 +15,7 @@
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-right">
                                 <li class="breadcrumb-item"><a href="javascript:void(0);">Almacen</a></li>
-                                <li class="breadcrumb-item active">Productos</li>
+                                <li class="breadcrumb-item active">Presentaciones</li>
                             </ol>
                         </div>
                     </div>
@@ -27,14 +27,14 @@
                     <div class="col-12">
                         <div class="card m-b-30">
                             <div class="card-body">
-                                <div class="form-group row container-fluid">
-                                    <div class="input-group">
+                                <div class="form-group  container-fluid">
+                                    <div class="input-group ">
                                         <select class="form-control border border-info" v-model="criterio">
                                             <option value="nombre">nombre</option>
                                             <option value="descripcion">descripcion</option>
                                         </select>
                                         <input type="text" @keyup="listarProducto(1,buscar,criterio)" class="form-control border border-info" placeholder="Buscar..." v-model="buscar">
-                                        <button type="submit" @click="listarProducto(1,buscar,criterio)" class=" btn-success    waves-effect waves-light rounded-right"><i class="fa fa-search ml-1   "> Buscar</i></button>
+                                        <button type="submit" @click="listarProducto(1,buscar,criterio)" class=" btn-success    waves-effect waves-light rounded-right"><i class="fa fa-search mx-1   "> Buscar</i></button>
                                     </div>
                                 </div>
                                 
@@ -53,11 +53,11 @@
 
                                         <tbody>
                                         
-                                            <tr class="table-dar" v-for="producto in arrayProducto" :key="producto.id">
-                                                <td v-text="producto.nombre"></td>
-                                                <td v-text="producto.descripcion"></td>
+                                            <tr class="table-dar" v-for="presentacion in arrayProducto" :key="presentacion.id">
+                                                <td v-text="presentacion.nombre"></td>
+                                                <td v-text="presentacion.descripcion"></td>
                                                 <td class="text-center">
-                                                    <div v-if="producto.condicion == 1">
+                                                    <div v-if="presentacion.condicion == 1">
                                                         <span class="badge badge-success">Activo</span>
                                                     </div>
                                                     <div v-else>
@@ -67,14 +67,14 @@
                                                 </td>
                                                 <td class="btn-block">
                                                     
-                                                    <button @click="abrirModal('producto','actualizar',producto)" type="button" class="btn btn-warning waves-effect waves-light"><i class="icon-pencil "></i></button>
-                                                    <template v-if="producto.condicion">
-                                                        <button type="button" class="btn btn-danger waves-effect waves-light" @click="alertaConfirm('Desactivar','¿Seguro que desea Desactivar?','Desactivado', 'desactivar',producto.id)">
+                                                    <button @click="abrirModal('presentacion','actualizar',presentacion)" type="button" class="btn btn-warning waves-effect waves-light"><i class="icon-pencil "></i></button>
+                                                    <template v-if="presentacion.condicion">
+                                                        <button type="button" class="btn btn-danger waves-effect waves-light" @click="alertaConfirm('Desactivar','¿Seguro que desea Desactivar?','Desactivado', 'desactivar',presentacion.id)">
                                                             <i class="icon-trash-bin"></i>
                                                         </button>
                                                     </template>
                                                     <template v-else>
-                                                        <button type="button" class="btn btn-primary waves-effect waves-light" @click="alertaConfirm('Activar','¿Seguro que desea Activar?','Activado', 'activar',producto.id)">
+                                                        <button type="button" class="btn btn-primary waves-effect waves-light" @click="alertaConfirm('Activar','¿Seguro que desea Activar?','Activado', 'activar',presentacion.id)">
                                                             <i class="icon-check"></i>
                                                         </button>
                                                     </template>
@@ -126,7 +126,7 @@
                                     <!-- Cuerpo de mdal -->
                                     <form action="#">
                                         <div class="form-group">
-                                            <label>Producto</label>
+                                            <label>Presentacion</label>
                                             <div>
                                                 <input v-model="nombre" class="form-control"
                                                     required placeholder="Nombre de propducto"/>
@@ -137,7 +137,7 @@
                                             <div>
                                                 <input v-model="descripcion" 
                                                     class="form-control" required
-                                                    placeholder="Descripcion del producto"/>
+                                                    placeholder="Descripcion del presentacion"/>
                                             </div>
                                         </div>
                                         <div v-show="errorProducto" class="form-group row div-error">
@@ -220,11 +220,11 @@
             listarProducto(page, buscar, criterio){
                 
                 let me = this;
-                var url = '/producto?page='+page+'&buscar='+buscar+'&criterio='+criterio;
+                var url = '/presentacion?page='+page+'&buscar='+buscar+'&criterio='+criterio;
                 axios.get(url)
                 .then(function (response) {
                     var respuesta = response.data;
-                    me.arrayProducto=respuesta.productos.data;
+                    me.arrayProducto=respuesta.presentaciones.data;
                     me.pagination=respuesta.pagination
                     console.log(me.arrayProducto);
                 })
@@ -247,7 +247,7 @@
                 if (me.validarProducto()) {
                     return
                 }else{
-                    axios.post('/producto/registrar', {
+                    axios.post('/presentacion/registrar', {
                         nombre: me.nombre,
                         descripcion: me.descripcion
                     })
@@ -271,7 +271,7 @@
                 if (me.validarProducto()) {
                     return
                 }else{
-                    axios.put('/producto/actualizar', {
+                    axios.put('/presentacion/actualizar', {
                         id:me.producto_id,
                         nombre: me.nombre,
                         descripcion: me.descripcion
@@ -292,12 +292,12 @@
             },
             abrirModal(modelo, accion, data=[]){
                 switch(modelo){
-                    case "producto":{
+                    case "presentacion":{
                         switch (accion) {
                             case "registrar":
                                 {
                                     this.modal = 1;
-                                    this.tituloModal =  'Registrar Producto'
+                                    this.tituloModal =  'Registrar Presentacion'
                                     this.nombre = '';
                                     this.descripcion = '';
                                     this.tipoAccion = 1;
@@ -306,7 +306,7 @@
                             case "actualizar":
                                 {
                                     this.modal = 1;
-                                    this.tituloModal =  'Actualziar Producto';
+                                    this.tituloModal =  'Actualziar Presentacion';
                                     this.producto_id = data.id;
                                     this.nombre = data.nombre;
                                     this.tipoAccion = 2;
@@ -355,7 +355,7 @@
                         if (result.value) {
                             switch (accion) {
                                 case 'activar':
-                                    axios.put('/producto/activar', {
+                                    axios.put('/presentacion/activar', {
                                         'id' : id
                                     })
                                     .then(function (response) {
@@ -364,12 +364,12 @@
                                     })
                                     .catch(function (error) {
                                         console.log(error);
-                                        me.alerta('error','Falla al activar el producto');
+                                        me.alerta('error','Falla al activar el presentacion');
                                     });
                                     break;
                             
                                 case 'desactivar':
-                                    axios.put('/producto/desactivar', {
+                                    axios.put('/presentacion/desactivar', {
                                         'id' : id
                                     })
                                     .then(function (response) {
@@ -378,7 +378,7 @@
                                     })
                                     .catch(function (error) {
                                         console.log(error);
-                                        me.alerta('error','Falla al desactivar el producto');
+                                        me.alerta('error','Falla al desactivar el presentacion');
                                     });
                                     break;
                             
@@ -393,7 +393,7 @@
             validarProducto(){
                 this.errorProducto = 0;
                 this.errorMostrarMsjProducto = [];
-                if(!this.nombre) this.errorMostrarMsjProducto.push("El nombre del Producto no puede estar vacio");
+                if(!this.nombre) this.errorMostrarMsjProducto.push("El nombre del Presentacion no puede estar vacio");
                 if(this.errorMostrarMsjProducto.length) this.errorProducto = 1;
                 return this.errorProducto;
             }

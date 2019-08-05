@@ -13,33 +13,33 @@ class PresentacionSeeder extends Seeder
     public function run()
     {
         Presentacion::create([
-            'nombre'	=>  "Tableta",
-            'descripcion' => 'descripcion de Presentacion ',
+            'nombre'	=>  strtoupper("Tableta"),
+            'descripcion' => strtoupper('descripcion de Presentacion '),
             'condicion' => 1
         ]);
         Presentacion::create([
-            'nombre'	=>  "Inyectable",
-            'descripcion' => 'descripcion de Presentacion ',
+            'nombre'	=>  strtoupper("Inyectable"),
+            'descripcion' => strtoupper('descripcion de Presentacion '),
             'condicion' => 1
         ]);
         Presentacion::create([
-            'nombre'	=>  "Capsula Blanda",
-            'descripcion' => 'descripcion de Presentacion ',
+            'nombre'	=>  strtoupper("Capsula Blanda"),
+            'descripcion' => strtoupper('descripcion de Presentacion '),
             'condicion' => 1
         ]);
         Presentacion::create([
-            'nombre'  =>  "Suspension Oral",
-            'descripcion' => 'descripcion de Presentacion ',
+            'nombre'  =>  strtoupper("Suspension Oral"),
+            'descripcion' => strtoupper('descripcion de Presentacion '),
             'condicion' => 1
         ]);
         Presentacion::create([
-            'nombre'	=>  "Comprimido Masticable",
-            'descripcion' => 'descripcion de Presentacion ',
+            'nombre'	=>  strtoupper("Comprimido Masticable"),
+            'descripcion' => strtoupper('descripcion de Presentacion '),
             'condicion' => 1
         ]);
         Presentacion::create([
-            'nombre'	=>  "Solución Oftálmica",
-            'descripcion' => 'descripcion de Presentacion ',
+            'nombre'	=>  strtoupper("Solución Oftálmica"),
+            'descripcion' => strtoupper('descripcion de Presentacion '),
             'condicion' => 1
         ]);
     }

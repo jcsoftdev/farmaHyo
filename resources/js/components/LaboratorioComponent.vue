@@ -6,16 +6,16 @@
                 <div class="pagina-titulo">
                     <div class="row align-items-center">
                         <div class="col-sm-6">
-                            <h4 class="container"> Productos
-                            <button type="button" class="btn btn-primary waves-effect waves-light" @click="abrirModal('producto','registrar')"><i class="icon-plus mr-2"></i>Nuevo</button>
+                            <h4 class="container"> Laboratorios
+                            <button type="button" class="btn btn-primary waves-effect waves-light" @click="abrirModal('laboratorio','registrar')"><i class="icon-plus mr-2"></i>Nuevo</button>
                             
                             </h4>
                             
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-right">
-                                <li class="breadcrumb-item"><a href="javascript:void(0);">Almacen</a></li>
-                                <li class="breadcrumb-item active">Productos</li>
+                                <li class="breadcrumb-item"><a href="javascript:void(0);">Gestion</a></li>
+                                <li class="breadcrumb-item active">Laboratorios</li>
                             </ol>
                         </div>
                     </div>
@@ -33,8 +33,8 @@
                                             <option value="nombre">nombre</option>
                                             <option value="descripcion">descripcion</option>
                                         </select>
-                                        <input type="text" @keyup="listarProducto(1,buscar,criterio)" class="form-control border border-info" placeholder="Buscar..." v-model="buscar">
-                                        <button type="submit" @click="listarProducto(1,buscar,criterio)" class=" btn-success    waves-effect waves-light rounded-right"><i class="fa fa-search ml-1   "> Buscar</i></button>
+                                        <input type="text" @keyup="listarLaboratorio(1,buscar,criterio)" class="form-control border border-info" placeholder="Buscar..." v-model="buscar">
+                                        <button type="submit" @click="listarLaboratorio(1,buscar,criterio)" class=" btn-success    waves-effect waves-light rounded-right"><i class="fa fa-search ml-1   "> Buscar</i></button>
                                     </div>
                                 </div>
                                 
@@ -53,11 +53,11 @@
 
                                         <tbody>
                                         
-                                            <tr class="table-dar" v-for="producto in arrayProducto" :key="producto.id">
-                                                <td v-text="producto.nombre"></td>
-                                                <td v-text="producto.descripcion"></td>
+                                            <tr class="table-dar" v-for="laboratorio in arrayLaboratorio" :key="laboratorio.id">
+                                                <td v-text="laboratorio.nombre"></td>
+                                                <td v-text="laboratorio.descripcion"></td>
                                                 <td class="text-center">
-                                                    <div v-if="producto.condicion == 1">
+                                                    <div v-if="laboratorio.condicion == 1">
                                                         <span class="badge badge-success">Activo</span>
                                                     </div>
                                                     <div v-else>
@@ -67,14 +67,14 @@
                                                 </td>
                                                 <td class="btn-block">
                                                     
-                                                    <button @click="abrirModal('producto','actualizar',producto)" type="button" class="btn btn-warning waves-effect waves-light"><i class="icon-pencil "></i></button>
-                                                    <template v-if="producto.condicion">
-                                                        <button type="button" class="btn btn-danger waves-effect waves-light" @click="alertaConfirm('Desactivar','¿Seguro que desea Desactivar?','Desactivado', 'desactivar',producto.id)">
+                                                    <button @click="abrirModal('laboratorio','actualizar',laboratorio)" type="button" class="btn btn-warning waves-effect waves-light"><i class="icon-pencil "></i></button>
+                                                    <template v-if="laboratorio.condicion">
+                                                        <button type="button" class="btn btn-danger waves-effect waves-light" @click="alertaConfirm('Desactivar','¿Seguro que desea Desactivar?','Desactivado', 'desactivar',laboratorio.id)">
                                                             <i class="icon-trash-bin"></i>
                                                         </button>
                                                     </template>
                                                     <template v-else>
-                                                        <button type="button" class="btn btn-primary waves-effect waves-light" @click="alertaConfirm('Activar','¿Seguro que desea Activar?','Activado', 'activar',producto.id)">
+                                                        <button type="button" class="btn btn-primary waves-effect waves-light" @click="alertaConfirm('Activar','¿Seguro que desea Activar?','Activado', 'activar',laboratorio.id)">
                                                             <i class="icon-check"></i>
                                                         </button>
                                                     </template>
@@ -126,7 +126,7 @@
                                     <!-- Cuerpo de mdal -->
                                     <form action="#">
                                         <div class="form-group">
-                                            <label>Producto</label>
+                                            <label>Laboratorio</label>
                                             <div>
                                                 <input v-model="nombre" class="form-control"
                                                     required placeholder="Nombre de propducto"/>
@@ -137,20 +137,20 @@
                                             <div>
                                                 <input v-model="descripcion" 
                                                     class="form-control" required
-                                                    placeholder="Descripcion del producto"/>
+                                                    placeholder="Descripcion del laboratorio"/>
                                             </div>
                                         </div>
-                                        <div v-show="errorProducto" class="form-group row div-error">
+                                        <div v-show="errorLaboratorio" class="form-group row div-error">
                                             <div class="text-center text-error">
-                                                <div class="text-center pt-3" v-for="error in errorMostrarMsjProducto" :key="error" v-text="error">
+                                                <div class="text-center pt-3" v-for="error in errorMostrarMsjLaboratorio" :key="error" v-text="error">
                                                 
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" @click="cerrarModal()">Cerrar</button>
-                                            <button  type="button" v-if="tipoAccion==1" class="btn btn-primary" @click="registrarProducto(); ">Guardar</button>
-                                            <button type="button" v-if="tipoAccion==2" class="btn btn-primary" @click="actualizarProducto()">Actualizar</button>
+                                            <button  type="button" v-if="tipoAccion==1" class="btn btn-primary" @click="registrarLaboratorio(); ">Guardar</button>
+                                            <button type="button" v-if="tipoAccion==2" class="btn btn-primary" @click="actualizarLaboratorio()">Actualizar</button>
                                         </div>
                                     </form>
                                 </div>
@@ -169,15 +169,15 @@
     export default {
         data(){
             return {
-                producto_id : 0,
+                laboratorio_id : 0,
                 nombre: '',
                 descripcion:'',
-                arrayProducto:[],
+                arrayLaboratorio:[],
                 modal:0,
                 tituloModal:0,
                 tipoAccion: 1,
-                errorProducto : 0,
-                errorMostrarMsjProducto : [],
+                errorLaboratorio : 0,
+                errorMostrarMsjLaboratorio : [],
                 pagination: {
                     'total':0,
                     'current_page':0,
@@ -217,16 +217,16 @@
             }
         },
         methods : {
-            listarProducto(page, buscar, criterio){
+            listarLaboratorio(page, buscar, criterio){
                 
                 let me = this;
-                var url = '/producto?page='+page+'&buscar='+buscar+'&criterio='+criterio;
+                var url = '/laboratorio?page='+page+'&buscar='+buscar+'&criterio='+criterio;
                 axios.get(url)
                 .then(function (response) {
                     var respuesta = response.data;
-                    me.arrayProducto=respuesta.productos.data;
+                    me.arrayLaboratorio=respuesta.laboratorios.data;
                     me.pagination=respuesta.pagination
-                    console.log(me.arrayProducto);
+                    console.log(me.arrayLaboratorio);
                 })
                 .catch(function (error) {
                     // handle error
@@ -240,14 +240,14 @@
             cambiarPagina(page, buscar , criterio){
                 let me = this;
                 me.pagination.current_page = page;
-                me.listarProducto(page, buscar , criterio);
+                me.listarLaboratorio(page, buscar , criterio);
             },
-            registrarProducto(){
+            registrarLaboratorio(){
                 let me = this;
-                if (me.validarProducto()) {
+                if (me.validarLaboratorio()) {
                     return
                 }else{
-                    axios.post('/producto/registrar', {
+                    axios.post('/laboratorio/registrar', {
                         nombre: me.nombre,
                         descripcion: me.descripcion
                     })
@@ -256,7 +256,7 @@
                         me.descripcion='';
                         console.log(response);
                         me.modal = 0;
-                        me.listarProducto(1,'','nombre');
+                        me.listarLaboratorio(1,'','nombre');
                         me.alerta('success','Registrado con exito');
                     })
                     .catch(function (error) {
@@ -265,14 +265,14 @@
                     });
                 }
             },
-            actualizarProducto(){
+            actualizarLaboratorio(){
 
                 let me = this;
-                if (me.validarProducto()) {
+                if (me.validarLaboratorio()) {
                     return
                 }else{
-                    axios.put('/producto/actualizar', {
-                        id:me.producto_id,
+                    axios.put('/laboratorio/actualizar', {
+                        id:me.laboratorio_id,
                         nombre: me.nombre,
                         descripcion: me.descripcion
                     })
@@ -281,7 +281,7 @@
                         me.descripcion='';
                         console.log(response);
                         me.modal=0;
-                        me.listarProducto(me.pagination.current_page,me.buscar,'nombre');
+                        me.listarLaboratorio(me.pagination.current_page,me.buscar,'nombre');
                         me.alerta('info','Actualizado con exito');
                     })
                     .catch(function (error) {
@@ -292,12 +292,12 @@
             },
             abrirModal(modelo, accion, data=[]){
                 switch(modelo){
-                    case "producto":{
+                    case "laboratorio":{
                         switch (accion) {
                             case "registrar":
                                 {
                                     this.modal = 1;
-                                    this.tituloModal =  'Registrar Producto'
+                                    this.tituloModal =  'Registrar Laboratorio'
                                     this.nombre = '';
                                     this.descripcion = '';
                                     this.tipoAccion = 1;
@@ -306,8 +306,8 @@
                             case "actualizar":
                                 {
                                     this.modal = 1;
-                                    this.tituloModal =  'Actualziar Producto';
-                                    this.producto_id = data.id;
+                                    this.tituloModal =  'Actualziar Laboratorio';
+                                    this.laboratorio_id = data.id;
                                     this.nombre = data.nombre;
                                     this.tipoAccion = 2;
                                     this.descripcion = data.descripcion;
@@ -355,30 +355,30 @@
                         if (result.value) {
                             switch (accion) {
                                 case 'activar':
-                                    axios.put('/producto/activar', {
+                                    axios.put('/laboratorio/activar', {
                                         'id' : id
                                     })
                                     .then(function (response) {
                                         me.alerta('success',outText);
-                                        me.listarProducto(me.pagination.current_page,me.buscar,'nombre');
+                                        me.listarLaboratorio(me.pagination.current_page,me.buscar,'nombre');
                                     })
                                     .catch(function (error) {
                                         console.log(error);
-                                        me.alerta('error','Falla al activar el producto');
+                                        me.alerta('error','Falla al activar el laboratorio');
                                     });
                                     break;
                             
                                 case 'desactivar':
-                                    axios.put('/producto/desactivar', {
+                                    axios.put('/laboratorio/desactivar', {
                                         'id' : id
                                     })
                                     .then(function (response) {
                                         me.alerta('success',outText);
-                                        me.listarProducto(me.pagination.current_page,me.buscar,'nombre');
+                                        me.listarLaboratorio(me.pagination.current_page,me.buscar,'nombre');
                                     })
                                     .catch(function (error) {
                                         console.log(error);
-                                        me.alerta('error','Falla al desactivar el producto');
+                                        me.alerta('error','Falla al desactivar el laboratorio');
                                     });
                                     break;
                             
@@ -390,16 +390,16 @@
                         
                     })
             },
-            validarProducto(){
-                this.errorProducto = 0;
-                this.errorMostrarMsjProducto = [];
-                if(!this.nombre) this.errorMostrarMsjProducto.push("El nombre del Producto no puede estar vacio");
-                if(this.errorMostrarMsjProducto.length) this.errorProducto = 1;
-                return this.errorProducto;
+            validarLaboratorio(){
+                this.errorLaboratorio = 0;
+                this.errorMostrarMsjLaboratorio = [];
+                if(!this.nombre) this.errorMostrarMsjLaboratorio.push("El nombre del Laboratorio no puede estar vacio");
+                if(this.errorMostrarMsjLaboratorio.length) this.errorLaboratorio = 1;
+                return this.errorLaboratorio;
             }
         },
         mounted() {
-            this.listarProducto(1,this.buscar,this.criterio);
+            this.listarLaboratorio(1,this.buscar,this.criterio);
             // $().DataTable();
         }
     }

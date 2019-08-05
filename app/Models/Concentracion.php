@@ -9,13 +9,16 @@ class Concentracion extends Model
     protected $table = 'concentraciones';
 
     protected $fillable = [
-        'id',
         'nombre',
         'descripcion',
     ];
     // public $timestamps = false;
 
-    protected $hidden = [
-        'id'
-    ];
+    // protected $hidden = [
+    //     'id'
+    // ];
+    public function medicamento()
+    {
+        return $this->belongsTo('App\Models\Medicamento');
+    }
 }
