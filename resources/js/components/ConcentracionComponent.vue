@@ -5,14 +5,20 @@
                 <!-- Page-Title -->
                 <div class="pagina-titulo">
                     <div class="row align-items-center">
-                        <div class="col-sm-6">
-                            <h4 class="container"> Concentraciones
-                            <button type="button" class="btn btn-primary waves-effect waves-light" @click="abrirModal('concentracion','registrar')"><i class="icon-plus mr-2"></i>Nuevo</button>
-                            
-                            </h4>
+                        <div class="col-6">
+                             <v-chip
+                                class="ma-2"
+                                color="light-blue darken-4"
+                                label
+                                text-color="white"
+                                >
+                                <v-icon left >mdi-arrow-right-thick</v-icon>
+                                Concentraciones
+                            </v-chip>
+                            <button type="button" class="btn btn-danger waves-effect waves-light" @click="abrirModal('concentracion','registrar')"><i class="icon-plus mr-2"></i>Nuevo</button>
                             
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-6">
                             <ol class="breadcrumb float-right">
                                 <li class="breadcrumb-item"><a href="javascript:void(0);">Gestion</a></li>
                                 <li class="breadcrumb-item active">Concentraciones</li>
@@ -29,12 +35,29 @@
                             <div class="card-body">
                                 <div class="form-group row container-fluid">
                                     <div class="input-group">
-                                        <select class="form-control border border-info" v-model="criterio">
-                                            <option value="nombre">nombre</option>
-                                            <option value="descripcion">descripcion</option>
-                                        </select>
-                                        <input type="text" @keyup="listarConcentracion(1,buscar,criterio)" class="form-control border border-info" placeholder="Buscar..." v-model="buscar">
-                                        <button type="submit" @click="listarConcentracion(1,buscar,criterio)" class=" btn-success    waves-effect waves-light rounded-right"><i class="fa fa-search ml-1   "> Buscar</i></button>
+                                        <v-container fluid grid-list-xl>
+                                        <v-layout wrap align-center justify-space-around>
+                                            <v-flex xs12 sm2 >
+                                                <v-select
+                                                v-model="criterio"
+                                                :items="busqueda"
+                                                label="Criterio"
+                                                @keyup="listarConcentracion(1,buscar,criterio)"
+                                                ></v-select>
+                                            </v-flex>
+                                            <v-flex xs12 sm8>
+                                                <v-text-field
+                                                    @keyup="listarConcentracion(1,buscar,criterio)"
+                                                    v-model="buscar"
+                                                    label="Buscar"
+                                                    clearable
+                                                ></v-text-field>
+                                            </v-flex>
+                                            <v-flex xs12 sm1 >
+                                                <v-btn @click="listarConcentracion(1,buscar,criterio)" depressed large color="primary"><i class="fa fa-search ml-1"></i></v-btn>
+                                            </v-flex>
+                                        </v-layout>
+                                        </v-container>
                                     </div>
                                 </div>
                                 
@@ -117,14 +140,61 @@
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title mt-0" v-text="tituloModal"></h5>
+                                    <v-chip
+                                        class="ma-2"
+                                        color="light-blue darken-4"
+                                        label
+                                        text-color="white"
+                                        >
+                                        <v-icon left >mdi-arrow-right-thick</v-icon>
+                                        <span v-text="tituloModal"></span>
+                                    </v-chip>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                                 <div class="modal-body">
                                     <!-- Cuerpo de mdal -->
-                                    <form action="#">
+                                    <v-container grid-list-xl>
+                                            <v-layout wrap>
+                                                <v-flex xs12 sm6>
+                                                    <v-text-field
+                                                        v-model="nombre"
+                                                        label="Concentracion"
+                                                        filled
+                                                        rounded
+                                                    ></v-text-field>
+                                                </v-flex>
+                                                <v-flex xs12 sm6>
+                                                    <v-text-field
+                                                        v-model="descripcion"
+                                                        label="Descripcion"
+                                                        filled
+                                                        rounded
+                                                    ></v-text-field>
+                                                </v-flex>
+                                                <v-flex xs12 md-6>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn red accent-3 text-white" @click="cerrarModal()">Cerrar</button>
+                                                        <button  type="button" v-if="tipoAccion==1" class="btn green accent-4 waves-effect waves-light" @click="registrarConcentracion(); ">Guardar</button>
+                                                        <button type="button" v-if="tipoAccion==2" class="btn green accent-4 waves-effect waves-light" @click="actualizarConcentracion()">Actualizar</button>
+                                                    </div>
+                                                </v-flex>
+                                                <v-flex xs12 >
+                                                    <div v-if="errorConcentracion">
+                                                        <v-alert type="error">
+                                                            
+                                                                <div class="text-center py-2" v-for="error in errorMostrarMsjConcentracion" :key="error" v-text="error">
+                                                                    
+                                                                </div>
+                                                            
+                                                        </v-alert>
+                                                    </div>
+                                                    
+                                                </v-flex>
+                                            </v-layout>
+                                    </v-container>
+                                    <!-- <form action="#">
                                         <div class="form-group">
                                             <label>Concentracion</label>
                                             <div>
@@ -148,11 +218,11 @@
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" @click="cerrarModal()">Cerrar</button>
+                                            <button type="button" class="btn red accent-3 text-white" @click="cerrarModal()">Cerrar</button>
                                             <button  type="button" v-if="tipoAccion==1" class="btn btn-primary" @click="registrarConcentracion(); ">Guardar</button>
                                             <button type="button" v-if="tipoAccion==2" class="btn btn-primary" @click="actualizarConcentracion()">Actualizar</button>
                                         </div>
-                                    </form>
+                                    </form> -->
                                 </div>
                             </div><!-- /.modal-content -->
                         </div><!-- /.modal-dialog -->
@@ -172,6 +242,7 @@
                 concentracion_id : 0,
                 nombre: '',
                 descripcion:'',
+                busqueda: ['nombre','descripcion'],
                 arrayConcentracion:[],
                 modal:0,
                 tituloModal:0,

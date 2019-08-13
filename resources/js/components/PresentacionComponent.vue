@@ -5,14 +5,20 @@
                 <!-- Page-Title -->
                 <div class="pagina-titulo">
                     <div class="row align-items-center">
-                        <div class="col-sm-6">
-                            <h4 class="container"> Presentaciones
-                            <button type="button" class="btn btn-primary waves-effect waves-light" @click="abrirModal('presentacion','registrar')"><i class="icon-plus mr-2"></i>Nuevo</button>
-                            
-                            </h4>
+                        <div class="col-6">
+                             <v-chip
+                                class="ma-2"
+                                color="light-blue darken-4"
+                                label
+                                text-color="white"
+                                >
+                                <v-icon left >mdi-arrow-right-thick</v-icon>
+                                Presentaciones
+                            </v-chip>
+                            <button type="button" class="btn btn-danger waves-effect waves-light" @click="abrirModal('presentacion','registrar')"><i class="icon-plus mr-2"></i>Nuevo</button>
                             
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-6">
                             <ol class="breadcrumb float-right">
                                 <li class="breadcrumb-item"><a href="javascript:void(0);">Almacen</a></li>
                                 <li class="breadcrumb-item active">Presentaciones</li>
@@ -29,12 +35,29 @@
                             <div class="card-body">
                                 <div class="form-group  container-fluid">
                                     <div class="input-group ">
-                                        <select class="form-control border border-info" v-model="criterio">
-                                            <option value="nombre">nombre</option>
-                                            <option value="descripcion">descripcion</option>
-                                        </select>
-                                        <input type="text" @keyup="listarProducto(1,buscar,criterio)" class="form-control border border-info" placeholder="Buscar..." v-model="buscar">
-                                        <button type="submit" @click="listarProducto(1,buscar,criterio)" class=" btn-success    waves-effect waves-light rounded-right"><i class="fa fa-search mx-1   "> Buscar</i></button>
+                                        <v-container fluid grid-list-xl>
+                                        <v-layout wrap align-center justify-space-around>
+                                            <v-flex xs12 sm2 >
+                                                <v-select
+                                                v-model="criterio"
+                                                :items="busqueda"
+                                                label="Criterio"
+                                                @keyup="listarPresentacion(1,buscar,criterio)"
+                                                ></v-select>
+                                            </v-flex>
+                                            <v-flex xs12 sm8>
+                                                <v-text-field
+                                                    @keyup="listarPresentacion(1,buscar,criterio)"
+                                                    v-model="buscar"
+                                                    label="Buscar"
+                                                    clearable
+                                                ></v-text-field>
+                                            </v-flex>
+                                            <v-flex xs12 sm1 >
+                                                <v-btn @click="listarPresentacion(1,buscar,criterio)" depressed large color="primary"><i class="fa fa-search ml-1"></i></v-btn>
+                                            </v-flex>
+                                        </v-layout>
+                                        </v-container>
                                     </div>
                                 </div>
                                 
@@ -53,7 +76,7 @@
 
                                         <tbody>
                                         
-                                            <tr class="table-dar" v-for="presentacion in arrayProducto" :key="presentacion.id">
+                                            <tr class="table-dar" v-for="presentacion in arrayPresentacion" :key="presentacion.id">
                                                 <td v-text="presentacion.nombre"></td>
                                                 <td v-text="presentacion.descripcion"></td>
                                                 <td class="text-center">
@@ -117,14 +140,61 @@
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title mt-0" v-text="tituloModal"></h5>
+                                    <v-chip
+                                        class="ma-2"
+                                        color="light-blue darken-4"
+                                        label
+                                        text-color="white"
+                                        >
+                                        <v-icon left >mdi-arrow-right-thick</v-icon>
+                                        <span v-text="tituloModal"></span>
+                                    </v-chip>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                                 <div class="modal-body">
                                     <!-- Cuerpo de mdal -->
-                                    <form action="#">
+                                    <v-container grid-list-xl>
+                                            <v-layout wrap>
+                                                <v-flex xs12 sm6>
+                                                    <v-text-field
+                                                        v-model="nombre"
+                                                        label="Presentacion"
+                                                        filled
+                                                        rounded
+                                                    ></v-text-field>
+                                                </v-flex>
+                                                <v-flex xs12 sm6>
+                                                    <v-text-field
+                                                        v-model="descripcion"
+                                                        label="Descripcion"
+                                                        filled
+                                                        rounded
+                                                    ></v-text-field>
+                                                </v-flex>
+                                                <v-flex xs12 md-6>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn red accent-3 text-white" @click="cerrarModal()">Cerrar</button>
+                                                        <button  type="button" v-if="tipoAccion==1" class="btn green accent-4 waves-effect waves-light" @click="registrarPresentacion(); ">Guardar</button>
+                                                        <button type="button" v-if="tipoAccion==2" class="btn green accent-4 waves-effect waves-light" @click="actualizarPresentacion()">Actualizar</button>
+                                                    </div>
+                                                </v-flex>
+                                                <v-flex xs12 >
+                                                    <div v-if="errorPresentacion">
+                                                        <v-alert type="error">
+                                                            
+                                                                <div class="text-center py-2" v-for="error in errorMostrarMsjPresentacion" :key="error" v-text="error">
+                                                                    
+                                                                </div>
+                                                            
+                                                        </v-alert>
+                                                    </div>
+                                                    
+                                                </v-flex>
+                                            </v-layout>
+                                    </v-container>
+                                    <!-- <form action="#">
                                         <div class="form-group">
                                             <label>Presentacion</label>
                                             <div>
@@ -140,19 +210,19 @@
                                                     placeholder="Descripcion del presentacion"/>
                                             </div>
                                         </div>
-                                        <div v-show="errorProducto" class="form-group row div-error">
+                                        <div v-show="errorPresentacion" class="form-group row div-error">
                                             <div class="text-center text-error">
-                                                <div class="text-center pt-3" v-for="error in errorMostrarMsjProducto" :key="error" v-text="error">
+                                                <div class="text-center pt-3" v-for="error in errorMostrarMsjPresentacion" :key="error" v-text="error">
                                                 
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" @click="cerrarModal()">Cerrar</button>
-                                            <button  type="button" v-if="tipoAccion==1" class="btn btn-primary" @click="registrarProducto(); ">Guardar</button>
-                                            <button type="button" v-if="tipoAccion==2" class="btn btn-primary" @click="actualizarProducto()">Actualizar</button>
+                                            <button type="button" class="btn red accent-3 text-white" @click="cerrarModal()">Cerrar</button>
+                                            <button  type="button" v-if="tipoAccion==1" class="btn btn-primary" @click="registrarPresentacion(); ">Guardar</button>
+                                            <button type="button" v-if="tipoAccion==2" class="btn btn-primary" @click="actualizarPresentacion()">Actualizar</button>
                                         </div>
-                                    </form>
+                                    </form> -->
                                 </div>
                             </div><!-- /.modal-content -->
                         </div><!-- /.modal-dialog -->
@@ -172,12 +242,13 @@
                 producto_id : 0,
                 nombre: '',
                 descripcion:'',
-                arrayProducto:[],
+                busqueda: ['nombre','descripcion'],
+                arrayPresentacion:[],
                 modal:0,
                 tituloModal:0,
                 tipoAccion: 1,
-                errorProducto : 0,
-                errorMostrarMsjProducto : [],
+                errorPresentacion : 0,
+                errorMostrarMsjPresentacion : [],
                 pagination: {
                     'total':0,
                     'current_page':0,
@@ -217,16 +288,16 @@
             }
         },
         methods : {
-            listarProducto(page, buscar, criterio){
+            listarPresentacion(page, buscar, criterio){
                 
                 let me = this;
                 var url = '/presentacion?page='+page+'&buscar='+buscar+'&criterio='+criterio;
                 axios.get(url)
                 .then(function (response) {
                     var respuesta = response.data;
-                    me.arrayProducto=respuesta.presentaciones.data;
+                    me.arrayPresentacion=respuesta.presentaciones.data;
                     me.pagination=respuesta.pagination
-                    console.log(me.arrayProducto);
+                    console.log(me.arrayPresentacion);
                 })
                 .catch(function (error) {
                     // handle error
@@ -240,11 +311,11 @@
             cambiarPagina(page, buscar , criterio){
                 let me = this;
                 me.pagination.current_page = page;
-                me.listarProducto(page, buscar , criterio);
+                me.listarPresentacion(page, buscar , criterio);
             },
-            registrarProducto(){
+            registrarPresentacion(){
                 let me = this;
-                if (me.validarProducto()) {
+                if (me.validarPresentacion()) {
                     return
                 }else{
                     axios.post('/presentacion/registrar', {
@@ -256,7 +327,7 @@
                         me.descripcion='';
                         console.log(response);
                         me.modal = 0;
-                        me.listarProducto(1,'','nombre');
+                        me.listarPresentacion(1,'','nombre');
                         me.alerta('success','Registrado con exito');
                     })
                     .catch(function (error) {
@@ -265,10 +336,10 @@
                     });
                 }
             },
-            actualizarProducto(){
+            actualizarPresentacion(){
 
                 let me = this;
-                if (me.validarProducto()) {
+                if (me.validarPresentacion()) {
                     return
                 }else{
                     axios.put('/presentacion/actualizar', {
@@ -281,7 +352,7 @@
                         me.descripcion='';
                         console.log(response);
                         me.modal=0;
-                        me.listarProducto(me.pagination.current_page,me.buscar,'nombre');
+                        me.listarPresentacion(me.pagination.current_page,me.buscar,'nombre');
                         me.alerta('info','Actualizado con exito');
                     })
                     .catch(function (error) {
@@ -360,7 +431,7 @@
                                     })
                                     .then(function (response) {
                                         me.alerta('success',outText);
-                                        me.listarProducto(me.pagination.current_page,me.buscar,'nombre');
+                                        me.listarPresentacion(me.pagination.current_page,me.buscar,'nombre');
                                     })
                                     .catch(function (error) {
                                         console.log(error);
@@ -374,7 +445,7 @@
                                     })
                                     .then(function (response) {
                                         me.alerta('success',outText);
-                                        me.listarProducto(me.pagination.current_page,me.buscar,'nombre');
+                                        me.listarPresentacion(me.pagination.current_page,me.buscar,'nombre');
                                     })
                                     .catch(function (error) {
                                         console.log(error);
@@ -390,16 +461,16 @@
                         
                     })
             },
-            validarProducto(){
-                this.errorProducto = 0;
-                this.errorMostrarMsjProducto = [];
-                if(!this.nombre) this.errorMostrarMsjProducto.push("El nombre del Presentacion no puede estar vacio");
-                if(this.errorMostrarMsjProducto.length) this.errorProducto = 1;
-                return this.errorProducto;
+            validarPresentacion(){
+                this.errorPresentacion = 0;
+                this.errorMostrarMsjPresentacion = [];
+                if(!this.nombre) this.errorMostrarMsjPresentacion.push("El nombre del Presentacion no puede estar vacio");
+                if(this.errorMostrarMsjPresentacion.length) this.errorPresentacion = 1;
+                return this.errorPresentacion;
             }
         },
         mounted() {
-            this.listarProducto(1,this.buscar,this.criterio);
+            this.listarPresentacion(1,this.buscar,this.criterio);
             // $().DataTable();
         }
     }

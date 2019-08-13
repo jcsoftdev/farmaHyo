@@ -5,14 +5,19 @@
                 <!-- Page-Title -->
                 <div class="pagina-titulo">
                     <div class="row align-items-center">
-                        <div class="col-sm-6">
-                            <h4 class="container"> Medicamentos
-                            <button type="button" class="btn btn-primary waves-effect waves-light" @click="abrirModal('medicamento','registrar')"><i class="icon-plus mr-2"></i>Nuevo medicamento</button>
-                            
-                            </h4>
-                            
+                        <div class="col-6">
+                             <v-chip
+                                class="ma-2"
+                                color="light-blue darken-4"
+                                label
+                                text-color="white"
+                                >
+                                <v-icon left >mdi-arrow-right-thick</v-icon>
+                                Medicamentos
+                            </v-chip>
+                            <button type="button" class="btn btn-danger waves-effect waves-light" @click="abrirModal('medicamento','registrar')"><i class="icon-plus mr-2"></i>Nuevo</button>
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-6">
                             <ol class="breadcrumb float-right">
                                 <li class="breadcrumb-item"><a href="javascript:void(0);">Gestion</a></li>
                                 <li class="breadcrumb-item active">Medicamentos</li>
@@ -146,7 +151,15 @@
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title mt-0" v-text="tituloModal"></h5>
+                                    <v-chip
+                                        class="ma-2"
+                                        color="light-blue darken-4"
+                                        label
+                                        text-color="white"
+                                        >
+                                        <v-icon left >mdi-arrow-right-thick</v-icon>
+                                        <span v-text="tituloModal"></span>
+                                    </v-chip>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -240,18 +253,26 @@
                                                     ></v-autocomplete>
                                                 
                                                 </v-flex>
-                                                <div v-show="errorMedicamento" class="form-group amber lighten-3 text-center ">
-                                                    <div class="text-center text-error">
-                                                        <div class="text-center py-2" v-for="error in errorMostrarMsjMedicamento" :key="error" v-text="error">
-                                                        
-                                                        </div>
+                                                
+                                                <v-flex xs12 md-6>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn red accent-3 text-white" @click="cerrarModal()">Cerrar</button>
+                                                        <button  type="button" v-if="tipoAccion==1" class="btn green accent-4 waves-effect waves-light" @click="registrarMedicamento(); ">Guardar</button>
+                                                        <button type="button" v-if="tipoAccion==2" class="btn green accent-4 waves-effect waves-light" @click="actualizarMedicamento()">Actualizar</button>
                                                     </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" @click="cerrarModal()">Cerrar</button>
-                                                    <button  type="button" v-if="tipoAccion==1" class="btn btn-primary" @click="registrarMedicamento(); ">Guardar</button>
-                                                    <button type="button" v-if="tipoAccion==2" class="btn btn-primary" @click="actualizarMedicamento()">Actualizar</button>
-                                                </div>
+                                                </v-flex>
+                                                <v-flex xs12 >
+                                                    <div v-if="errorMedicamento">
+                                                        <v-alert type="error">
+                                                            
+                                                                <div class="text-center py-2" v-for="error in errorMostrarMsjMedicamento" :key="error" v-text="error">
+                                                                    
+                                                                </div>
+                                                            
+                                                        </v-alert>
+                                                    </div>
+                                                    
+                                                </v-flex>
                                             </v-layout>
 
                                         </v-container>
@@ -297,6 +318,7 @@
                 tipoAccion: 1,
                 errorMedicamento : 0,
                 errorMostrarMsjMedicamento : [],
+                arrayCodigo : [],
                 pagination: {
                     'total':0,
                     'current_page':0,
@@ -350,6 +372,7 @@
                     me.arrayMedicamento=respuesta.medicamentos.data;
                     me.pagination=respuesta.pagination
                     console.log(me.arrayMedicamento);
+                    
                 })
                 .catch(function (error) {
                     // handle error
@@ -430,10 +453,16 @@
             },
             abrirModal(modelo, accion, data=[]){
                 let me = this;
+                me.selectMedic();
                 me.selectProducto();
                 me.selectPresentacion();
                 me.selectConcentracion();
                 me.selectLaboratorio();
+                for (let i = 0; i < me.arrayMedicamento.length; i++) {
+                    // const element = array[i];
+                    
+                    me.arrayCodigo.push(me.arrayMedicamento[i].codigo);
+                }
                 switch(modelo){
                     case "medicamento":{
                         switch (accion) {
@@ -549,7 +578,12 @@
             validarMedicamento(){
                 this.errorMedicamento = 0;
                 this.errorMostrarMsjMedicamento = [];
-                if(!this.nombre) this.errorMostrarMsjMedicamento.push("El nombre del Medicamento no puede estar vacio");
+                if(!this.codigo) this.errorMostrarMsjMedicamento.push("El codigo del Medicamento no puede estar vacio");
+                if(!this.nombre) this.errorMostrarMsjMedicamento.push("El nombre del Producto no puede estar vacio");
+                if(!this.precio_venta) this.errorMostrarMsjMedicamento.push("El precio del Medicamento debe ser mayor a cero");
+                if(!this.presentacion.id) this.errorMostrarMsjMedicamento.push("La presentacion del Medicamento no puede estar vacio");
+                if(!this.laboratorio.id) this.errorMostrarMsjMedicamento.push("El laboratorio del Medicamento no puede estar vacio");
+                if(!this.concentracion.id) this.errorMostrarMsjMedicamento.push("La concentracion del Medicamento no puede estar vacio");
                 if(this.errorMostrarMsjMedicamento.length) this.errorMedicamento = 1;
                 return this.errorMedicamento;
             },
@@ -609,6 +643,18 @@
                     for (let i = 0; i < respuesta.length; i++) {
                         me.arrayLaboratorio.push({'id':respuesta[i].id, 'nombre':respuesta[i].nombre});
                     }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+            },
+            selectMedic(){
+                let me=this;
+                me.arrayMedic = [];
+                var url= '/producto/getAll';
+                axios.get(url).then(function (response) {
+                    var respuesta = response.data;
+                    me.arrayMedic=respuesta.medicamentos.data;
                 })
                 .catch(function (error) {
                     console.log(error);

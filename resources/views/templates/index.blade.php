@@ -10,7 +10,7 @@
     <meta content="jcsoftia" name="description" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta content="Themesdesign" name="author" />
-    <link rel="shortcut icon" href="https://jcsoftia.github.io/jcsoftia/img/logo.png">
+    <link rel="shortcut icon" href="./assets/img/icon.png">
     <link rel="stylesheet" href="./assets/css/plantilla.css">
     <script src="./js/plantillahead.js"></script>
 </head>

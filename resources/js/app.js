@@ -22,7 +22,7 @@ Vue.use(VueSweetalert2);
 window.Vuetify = require('vuetify');
 Vue.use(Vuetify);
 import 'vuetify/dist/vuetify.min.css';
-
+import 'font-awesome/css/font-awesome.min.css'
 
 // colors 
 
