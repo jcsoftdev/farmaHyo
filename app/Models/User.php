@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'id', 'usuario', 'password', 'condicion', 'idrol'
     ];
 
     /**
@@ -28,12 +28,22 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public $timestamps = false;
     /**
      * The attributes that should be cast to native types.
      *
      * @var array
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    // protected $casts = [
+    //     'email_verified_at' => 'datetime',
+    // ];
+    public function rol()
+    {
+        return $this->belongsTo('App\Models\Rol');
+    }
+    public function persona()
+    {
+        return $this->belongsTo('App\Models\Persona');
+    }
 }
+

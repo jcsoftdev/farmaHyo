@@ -51,3 +51,5 @@ Route::put('/laboratorio/activar',    'LaboratorioController@activar');
 Route::put('/laboratorio/desactivar', 'LaboratorioController@desactivar');
 Route::get('/laboratorio/getAll', 'LaboratorioController@getAll');
 
+// Parte de ROL
+Route::get('/rol',            'RolController@index');
