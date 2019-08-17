@@ -53,3 +53,25 @@ Route::get('/laboratorio/getAll', 'LaboratorioController@getAll');
 
 // Parte de ROL
 Route::get('/rol',            'RolController@index');
+Route::get('/rol/selectRol',            'RolController@selectRol');
+
+// Parte de PROVEEDORES
+Route::get('/proveedor',            'ProveedorController@index');
+Route::post('/proveedor/registrar', 'ProveedorController@store');
+Route::put('/proveedor/actualizar', 'ProveedorController@update');
+Route::put('/proveedor/desactivar', 'ProveedorController@desactivar');
+Route::put('/proveedor/activar', 'ProveedorController@activar');
+
+// Parte de USUARIOS    
+Route::get('/user',            'UserController@index');
+Route::post('/user/registrar',  'UserController@store');
+Route::put('/user/actualizar',  'UserController@update');
+Route::put('/user/activar',     'UserController@activar');
+Route::put('/user/desactivar',  'UserController@desactivar');
+
+// Parte de CLIENTES    
+Route::get('/cliente',            'ClienteController@index');
+Route::post('/cliente/registrar',  'ClienteController@store');
+Route::put('/cliente/actualizar', 'ClienteController@update');
+Route::put('/cliente/desactivar', 'ClienteController@desactivar');
+Route::put('/cliente/activar', 'ClienteController@activar');

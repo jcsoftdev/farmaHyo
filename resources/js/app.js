@@ -38,6 +38,9 @@ Vue.component('concentracion-component', require('./components/ConcentracionComp
 Vue.component('medicamento-component', require('./components/MedicamentosComponent.vue').default);
 Vue.component('presentacion-component', require('./components/PresentacionComponent.vue').default);
 Vue.component('laboratorio-component', require('./components/LaboratorioComponent.vue').default);
+Vue.component('user-component', require('./components/UserComponent.vue').default);
+Vue.component('cliente-component', require('./components/ClienteComponent.vue').default);
+Vue.component('proveedor-component', require('./components/ProveedorComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

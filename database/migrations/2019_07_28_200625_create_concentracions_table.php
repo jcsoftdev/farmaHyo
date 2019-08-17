@@ -15,7 +15,7 @@ class CreateConcentracionsTable extends Migration
     {
         Schema::create('concentraciones', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nombre');
+            $table->string('nombre')->unique();
             $table->string('descripcion')->nullable();
             $table->boolean('condicion');
             $table->timestamps();

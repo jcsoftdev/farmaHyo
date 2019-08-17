@@ -13,6 +13,42 @@
     <link rel="shortcut icon" href="./assets/img/icon.png">
     <link rel="stylesheet" href="./assets/css/plantilla.css">
     <script src="./js/plantillahead.js"></script>
+    <style>
+        
+        *::-webkit-scrollbar {
+            width: .75em;     /* Tamaño del scroll en vertical */
+            height: .75em;    /* Tamaño del scroll en horizontal */
+            /* display: none;  Ocultar scroll */
+        }
+        /* Ponemos un color de fondo y redondeamos las esquinas del thumb */
+        *::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+
+        /* Cambiamos el fondo y agregamos una sombra cuando esté en hover */
+        *::-webkit-scrollbar-thumb:hover {
+            background: #444;
+            box-shadow: 0 0 2px 1px rgba(0,0,0,0.8);
+            cursor: pointer;
+        }
+
+        /* Cambiamos el fondo cuando esté en active */
+        *::-webkit-scrollbar-thumb:active {
+            background-color: #333;
+        }
+         *::-webkit-scrollbar-track {
+            background: #bbb;
+            border-radius: 4px;
+        }
+
+        /* Cambiamos el fondo cuando esté en active o hover */
+        *::-webkit-scrollbar-track:hover,
+        *::-webkit-scrollbar-track:active {
+        background: #bbb;
+        cursor: pointer;
+        }
+    </style>
 </head>
 
 <body class="p-0 m-0">

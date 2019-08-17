@@ -20,18 +20,24 @@
         <laboratorio-component></laboratorio-component>
     </template>
     <template v-if="menu==6">
-        <h1>Contenido 6</h1>
+        <user-component></user-component>
     </template>
     <template v-if="menu==7">
         <h1>Contenido 7</h1>
     </template>
     <template v-if="menu==8">
-        <h1>Contenido 8</h1>
+        <h1>C 8</h1>
     </template>
     <template v-if="menu==9">
-        <h1>Contenido 9</h1>
+            <cliente-component></cliente-component>
+        
     </template>
-    
+    <template v-if="menu==10">
+        <h1>C 10</h1>
+    </template>
+    <template v-if="menu==11">
+         <proveedor-component></proveedor-component>
+    </template>
             
             {{-- <example-component></example-component> --}}
             

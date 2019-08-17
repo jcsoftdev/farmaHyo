@@ -46,10 +46,10 @@
                 </li>
 
                 <li class="has-submenu">
-                    <a href="#"><i class="icon-diamond"></i> Advanced UI <i class="mdi mdi-chevron-down mdi-drop"></i></a>
+                    <a href="#"><i class="icon-diamond"></i> Acceso <i class="mdi mdi-chevron-down mdi-drop"></i></a>
                     <ul class="submenu megamenu">
                         <li @click="menu=6" class="deep-purple darken-4">
-                           <a href="#"> Algo </a>
+                           <a href="#"> Usuarios </a>
                         </li>
                         <li @click="menu=7" class="deep-purple darken-4">
                            <a href="#"> Algo </a>
@@ -58,14 +58,26 @@
                 </li>
 
                 <li class="has-submenu">
-                    <a href="#"><i class="icon-paper-sheet"></i> Pages <i class="mdi mdi-chevron-down mdi-drop"></i></a>
+                    <a href="#"><i class="icon-paper-sheet"></i> Ventas <i class="mdi mdi-chevron-down mdi-drop"></i></a>
                     <ul class="submenu">
 
                         <li @click="menu=8" class="deep-purple darken-4">
-                           <a href="#"> Algo </a>
+                           <a href="#"> Venta </a>
                         </li>
                         <li @click="menu=9" class="deep-purple darken-4">
-                           <a href="#"> Algo </a>
+                           <a href="#"> Clientes </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="has-submenu">
+                    <a href="#"><i class="icon-paper-sheet"></i> Ingresos <i class="mdi mdi-chevron-down mdi-drop"></i></a>
+                    <ul class="submenu">
+
+                        <li @click="menu=10" class="deep-purple darken-4">
+                           <a href="#"> Ingreso </a>
+                        </li>
+                        <li @click="menu=11" class="deep-purple darken-4">
+                           <a href="#"> Proveedores </a>
                         </li>
                     </ul>
                 </li>
