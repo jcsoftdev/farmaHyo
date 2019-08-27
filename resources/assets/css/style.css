@@ -3422,7 +3422,7 @@ table.focus-on tbody tr.focused td {
 }
 
 .accountbg {
-  background: url("../images/restaurant.png");
+  background: url("../assets/img/restaurant.png");
   position: absolute;
   background-position: center center;
   height: 100%;
@@ -3509,7 +3509,7 @@ table.focus-on tbody tr.focused td {
 }
 
 .error-bg {
-  background: url("../images/error.png");
+  background: url("../img/error.png");
   position: absolute;
   background-position: center center;
   height: 100%;

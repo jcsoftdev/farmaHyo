@@ -126,111 +126,111 @@
                 
 
                 <!-- El modal  -->
-                <div class="modal fade" :class="{'mostrar':modal}" tabindex="-1"  role="dialog" aria-labelledby="newProductModal" aria-hidden="true">
-                        <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <v-chip
-                                        class="ma-2"
-                                        color="light-blue darken-4"
-                                        label
-                                        text-color="white"
-                                        >
-                                        <v-icon left >mdi-arrow-right-thick</v-icon>
-                                        <span v-text="tituloModal"></span>
-                                    </v-chip>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <!-- Cuerpo de mdal -->
-                                    <v-container grid-list-xl>
-                                            <v-layout wrap>
-                                                <v-flex xs12 sm12 >
-                                                    <v-layout wrap>
-                                                        <v-flex sm4>
-                                                            <v-select 
-                                                                v-model="tipo_documento"
-                                                                :items="tipos_doc"
-                                                                filled
-                                                                rounded
-                                                                label="Tipo de documento"
-                                                            ></v-select>
-                                                        </v-flex>
-                                                        <v-flex sm8>
-                                                            <v-text-field 
-                                                                v-model="num_documento"
-                                                                label="Número de documento"
-                                                                filled
-                                                                rounded
-                                                            ></v-text-field>
-                                                        </v-flex>
-                                                    </v-layout>
-                                                    
-                                                    
-                                                    
-                                                </v-flex>
-                                                <v-flex xs12 sm12>
-                                                    <v-text-field
-                                                        v-model="nombre"
-                                                        label="Nombre Completo(*)"
-                                                        filled
-                                                        rounded
-                                                    ></v-text-field>
-                                                </v-flex>
-                                                <v-flex xs12 sm6>
-                                                    <v-text-field
-                                                        v-model="direccion"
-                                                        label="Dirección"
-                                                        filled
-                                                        rounded
-                                                    ></v-text-field>
-                                                </v-flex>
+                <div class="modal fade" :class="{'mostrar':modal}" tabindex="-1"  role="dialog">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <v-chip
+                                    class="ma-2"
+                                    color="light-blue darken-4"
+                                    label
+                                    text-color="white"
+                                    >
+                                    <v-icon left >mdi-arrow-right-thick</v-icon>
+                                    <span v-text="tituloModal"></span>
+                                </v-chip>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Cuerpo de mdal -->
+                                <v-container grid-list-xl>
+                                        <v-layout wrap>
+                                            <v-flex xs12 sm12 >
+                                                <v-layout wrap>
+                                                    <v-flex sm4>
+                                                        <v-select 
+                                                            v-model="tipo_documento"
+                                                            :items="tipos_doc"
+                                                            filled
+                                                            rounded
+                                                            label="Tipo de documento"
+                                                        ></v-select>
+                                                    </v-flex>
+                                                    <v-flex sm8>
+                                                        <v-text-field 
+                                                            v-model="num_documento"
+                                                            label="Número de documento"
+                                                            filled
+                                                            rounded
+                                                        ></v-text-field>
+                                                    </v-flex>
+                                                </v-layout>
                                                 
-                                                <v-flex xs12 sm6>
-                                                    <v-text-field
-                                                        v-model="email"
-                                                        label="Email"
-                                                        filled
-                                                        rounded
-                                                    ></v-text-field>
-                                                </v-flex>
-                                                <v-flex xs12 sm6>
-                                                    <v-text-field
-                                                        v-model="telefono"
-                                                        label="Teléfono"
-                                                        filled
-                                                        rounded
-                                                        type="number"
-                                                    ></v-text-field>
-                                                </v-flex>
                                                 
-                                                <v-flex xs12 md-6>
-                                                    <div class="modal-footer">
-                                                        <button type="button"  class="btn red accent-3 text-white" @click="cerrarModal()">Cerrar</button>
-                                                        <button  type="button" v-if="tipoAccion==1" class="btn green accent-4 waves-effect waves-light text-white" @click="registrarPersona(); ">Guardar</button>
-                                                        <button type="button" v-if="tipoAccion==2" class="btn green accent-4 waves-effect waves-light text-white" @click="actualizarPersona()">Actualizar</button>
-                                                    </div>
-                                                </v-flex>
-                                                <v-flex xs12 >
-                                                    <div v-if="errorPersona">
-                                                        <v-alert type="error">
-                                                            
-                                                                <div class="text-center py-2" v-for="error in errorMostrarMsjPersona" :key="error" v-text="error">
-                                                                    
-                                                                </div>
-                                                            
-                                                        </v-alert>
-                                                    </div>
-                                                    
-                                                </v-flex>
-                                            </v-layout>
-                                    </v-container>
-                                </div>
-                            </div><!-- /.modal-content -->
-                        </div><!-- /.modal-dialog -->
-                    </div><!-- /.modal -->
+                                                
+                                            </v-flex>
+                                            <v-flex xs12 sm12>
+                                                <v-text-field
+                                                    v-model="nombre"
+                                                    label="Nombre Completo(*)"
+                                                    filled
+                                                    rounded
+                                                ></v-text-field>
+                                            </v-flex>
+                                            <v-flex xs12 sm6>
+                                                <v-text-field
+                                                    v-model="direccion"
+                                                    label="Dirección"
+                                                    filled
+                                                    rounded
+                                                ></v-text-field>
+                                            </v-flex>
+                                            
+                                            <v-flex xs12 sm6>
+                                                <v-text-field
+                                                    v-model="email"
+                                                    label="Email"
+                                                    filled
+                                                    rounded
+                                                ></v-text-field>
+                                            </v-flex>
+                                            <v-flex xs12 sm6>
+                                                <v-text-field
+                                                    v-model="telefono"
+                                                    label="Teléfono"
+                                                    filled
+                                                    rounded
+                                                    type="number"
+                                                ></v-text-field>
+                                            </v-flex>
+                                            
+                                            <v-flex xs12 md-6>
+                                                <div class="modal-footer">
+                                                    <button type="button"  class="btn red accent-3 text-white" @click="cerrarModal()">Cerrar</button>
+                                                    <button  type="button" v-if="tipoAccion==1" class="btn green accent-4 waves-effect waves-light text-white" @click="registrarPersona(); ">Guardar</button>
+                                                    <button type="button" v-if="tipoAccion==2" class="btn green accent-4 waves-effect waves-light text-white" @click="actualizarPersona()">Actualizar</button>
+                                                </div>
+                                            </v-flex>
+                                            <v-flex xs12 >
+                                                <div v-if="errorPersona">
+                                                    <v-alert type="error">
+                                                        
+                                                            <div class="text-center py-2" v-for="error in errorMostrarMsjPersona" :key="error" v-text="error">
+                                                                
+                                                            </div>
+                                                        
+                                                    </v-alert>
+                                                </div>
+                                                
+                                            </v-flex>
+                                        </v-layout>
+                                </v-container>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
 
                 
 
@@ -537,7 +537,8 @@
     .mostrar{
         display: list-item !important;
         padding-top: 5rem;
-        /* height: 100vh; */
+        /* height: 100vh !important; */
+overflow: hidden;
         opacity: 1 !important;
         position: absolute !important;
         background-color: rgba(0, 0, 0, 0.671) !important;

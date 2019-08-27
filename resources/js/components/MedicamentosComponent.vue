@@ -73,6 +73,7 @@
                                                 <th>Presentacion</th>
                                                 <th>Laboratorio</th>
                                                 <th>Descripcion</th>
+                                                <th>Stock</th>
                                                 <th>Precio Venta</th>
                                                 <th>Estado</th>
                                                 <th>Opciones</th>
@@ -89,6 +90,7 @@
                                                 <td v-text="medicamento.presentacion"></td>
                                                 <td v-text="medicamento.laboratorio"></td>
                                                 <td v-text="medicamento.descripcion"></td>
+                                                <td class="f-high font-weight-bold blue--text" v-text="medicamento.stock"></td>
                                                 <td class="f-high font-weight-bold teal--text" v-text="'S/'+medicamento.precio_venta"></td>
                                                 <td class="text-center">
                                                     <div v-if="medicamento.condicion == 1">
@@ -684,7 +686,8 @@
     .mostrar{
         display: list-item !important;
         padding-top: 5rem;
-        /* height: 100vh; */
+        /* height: 100vh !important; */
+overflow: hidden;
         opacity: 1 !important;
         position: absolute !important;
         background-color: rgba(0, 0, 0, 0.671) !important;

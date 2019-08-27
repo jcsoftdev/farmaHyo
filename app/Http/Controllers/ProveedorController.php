@@ -41,7 +41,7 @@ class ProveedorController extends Controller
         ];
     }
     public function selectProveedor(Request $request){
-        if (!$request->ajax()) return redirect('/');
+        // if (!$request->ajax()) return redirect('/');
         $filtro = $request->filtro;
         $proveedores = Proveedor::join('personas','proveedores.id','=','personas.id')
         ->where('personas.nombre', 'like', '%'. $filtro . '%')

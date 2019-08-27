@@ -12,9 +12,13 @@
     <meta content="Themesdesign" name="author" />
     <link rel="shortcut icon" href="./assets/img/icon.png">
     <link rel="stylesheet" href="./assets/css/plantilla.css">
+    {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script> --}}
+    <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
     <script src="./js/plantillahead.js"></script>
     <style>
-        
+        body{
+            font-family: 'Oswald', sans-serif !important;
+        }
         *::-webkit-scrollbar {
             width: .75em;     /* Tamaño del scroll en vertical */
             height: .75em;    /* Tamaño del scroll en horizontal */

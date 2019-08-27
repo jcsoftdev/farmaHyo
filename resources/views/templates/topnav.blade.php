@@ -16,7 +16,7 @@
                     <!-- End Logo-->
 
                     <div class="menu-extras topbar-custom navbar p-0">
-                        <ul class="list-inline d-none d-lg-block mb-0">
+                        {{-- <ul class="list-inline d-none d-lg-block mb-0">
                             <li class="hide-phone app-search float-left">
                                 <form role="search" class="app-search">
                                     <div class="form-group mb-0">
@@ -25,22 +25,10 @@
                                     </div>
                                 </form>
                             </li>
-                        </ul>
+                        </ul> --}}
 
                         <ul class="navbar-right ml-auto list-inline float-right mb-0">
-                            <!-- language-->
-                            <li class="dropdown notification-list list-inline-item d-none d-md-inline-block">
-                                <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                                    <img src="" class="mr-2" height="12" alt="" /> English <span class="mdi mdi-chevron-down"></span>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated language-switch">
-                                    <a class="dropdown-item" href="#"><img src="" alt="" height="16" /><span> French </span></a>
-                                    <a class="dropdown-item" href="#"><img src="" alt="" height="16" /><span> Spanish </span></a>
-                                    <a class="dropdown-item" href="#"><img src="" alt="" height="16" /><span> Russian </span></a>
-                                    <a class="dropdown-item" href="#"><img src="" alt="" height="16" /><span> German </span></a>
-                                    <a class="dropdown-item" href="#"><img src="" alt="" height="16" /><span> Italian </span></a>
-                                </div>
-                            </li>
+                            
 
                             <!-- full screen -->
                             <li class="dropdown notification-list list-inline-item d-none d-md-inline-block">
@@ -101,17 +89,25 @@
 
                             <li class="dropdown notification-list list-inline-item">
                                 <div class="dropdown notification-list nav-pro-img">
-                                    <a class="dropdown-toggle nav-link arrow-none nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                    
+                                    <a class="dropdown-toggle nav-link arrow-none waves-effect nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                                         <img src="./assets/img/icon.png" alt="user" class="rounded-circle">
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
+                                    </a> 
+                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated dropdown-menu-lg px-1 profile-dropdown ">
                                         <!-- item-->
                                         <a class="dropdown-item" href="#"><i class="mdi mdi-account-circle"></i> Profile</a>
                                         <a class="dropdown-item" href="#"><i class="mdi mdi-wallet"></i> My Wallet</a>
                                         <a class="dropdown-item d-block" href="#"><span class="badge badge-success float-right">11</span><i class="mdi mdi-settings"></i> Settings</a>
                                         <a class="dropdown-item" href="#"><i class="mdi mdi-lock-open-outline"></i> Lock screen</a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item text-danger" href="#"><i class="mdi mdi-power text-danger"></i> Logout</a>
+                                        <a class="dropdown-item text-danger" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();"><i class="mdi mdi-power text-danger"></i> {{ __('Logout') }}</a>
+                                       
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
                                     </div>
                                 </div>
                             </li>

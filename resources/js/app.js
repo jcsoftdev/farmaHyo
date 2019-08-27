@@ -21,6 +21,7 @@ import VueSweetalert2 from 'vue-sweetalert2';
 Vue.use(VueSweetalert2);
 window.Vuetify = require('vuetify');
 Vue.use(Vuetify);
+// Vue.use(require('vue-moment'));
 import 'vuetify/dist/vuetify.min.css';
 import 'font-awesome/css/font-awesome.min.css'
 
@@ -41,6 +42,10 @@ Vue.component('laboratorio-component', require('./components/LaboratorioComponen
 Vue.component('user-component', require('./components/UserComponent.vue').default);
 Vue.component('cliente-component', require('./components/ClienteComponent.vue').default);
 Vue.component('proveedor-component', require('./components/ProveedorComponent.vue').default);
+Vue.component('ingreso-component', require('./components/IngresoComponent.vue').default);
+Vue.component('venta-component', require('./components/VentaComponent.vue').default);
+Vue.component('reporte-c', require('./components/ReportIngresoComponent.vue').default);
+Vue.component('reporte-v', require('./components/ReportVentaComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -67,7 +72,8 @@ const app = new Vue({
     }),
     el: '#app',
     data:{
-        menu:1
+        menu:1,
+        ruta: 'public'
     }
 });
 export default new Vuetify({ 

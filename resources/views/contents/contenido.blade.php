@@ -23,17 +23,20 @@
         <user-component></user-component>
     </template>
     <template v-if="menu==7">
-        <h1>Contenido 7</h1>
+        <reporte-c></reporte-c>
+    </template>
+    <template v-if="menu==17">
+        <reporte-v></reporte-v>
     </template>
     <template v-if="menu==8">
-        <h1>C 8</h1>
+        <venta-component></venta-component>
     </template>
     <template v-if="menu==9">
             <cliente-component></cliente-component>
         
     </template>
     <template v-if="menu==10">
-        <h1>C 10</h1>
+        <ingreso-component></ingreso-component>
     </template>
     <template v-if="menu==11">
          <proveedor-component></proveedor-component>

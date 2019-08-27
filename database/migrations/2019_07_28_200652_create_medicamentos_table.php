@@ -18,6 +18,7 @@ class CreateMedicamentosTable extends Migration
             $table->bigIncrements('id');
             $table->string('codigo')->unique();
             $table->double('precio_venta', 3);
+            $table->double('stock', 3);
             $table->string('descripcion')->nullable();
             $table->boolean('condicion');
             $table->bigInteger('producto_id')->unsigned();

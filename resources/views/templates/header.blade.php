@@ -51,9 +51,7 @@
                         <li @click="menu=6" class="deep-purple darken-4">
                            <a href="#"> Usuarios </a>
                         </li>
-                        <li @click="menu=7" class="deep-purple darken-4">
-                           <a href="#"> Algo </a>
-                        </li>
+                        
                     </ul>
                 </li>
 
@@ -78,6 +76,21 @@
                         </li>
                         <li @click="menu=11" class="deep-purple darken-4">
                            <a href="#"> Proveedores </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="has-submenu">
+                    <a href="#"><i class="icon-paper-sheet"></i> Reportes <i class="mdi mdi-chevron-down mdi-drop"></i></a>
+                    <ul class="submenu">
+
+                        <li @click="menu=7" class="deep-purple darken-4">
+                           <a href="#"> Ingreso </a>
+                        </li>
+                        <li @click="menu=17" class="deep-purple darken-4">
+                           <a href="#"> Venta </a>
+                        </li>
+                        <li  class="deep-purple darken-4">
+                           <a href="http://127.0.0.1:8000/excelIngreso"> Reporte </a>
                         </li>
                     </ul>
                 </li>
