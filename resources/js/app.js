@@ -46,6 +46,7 @@ Vue.component('ingreso-component', require('./components/IngresoComponent.vue').
 Vue.component('venta-component', require('./components/VentaComponent.vue').default);
 Vue.component('reporte-c', require('./components/ReportIngresoComponent.vue').default);
 Vue.component('reporte-v', require('./components/ReportVentaComponent.vue').default);
+Vue.component('escritorio-v', require('./components/Dashboard.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -56,15 +57,15 @@ Vue.component('reporte-v', require('./components/ReportVentaComponent.vue').defa
 const app = new Vue({
     vuetify: new Vuetify({
         theme: {
-            dark: {
-                primary: '#1a1c2a',
-                secondary: '#616f80',
-                accent: '#82B1FF',
-                error: '#FF5252',
-                info: '#2196F3',
-                success: '#4CAF50',
-                warning: '#FFC107',
-            },
+            // dark: {
+            //     primary: '#1a1c2a',
+            //     secondary: '#616f80',
+            //     accent: '#82B1FF',
+            //     error: '#FF5252',
+            //     info: '#2196F3',
+            //     success: '#4CAF50',
+            //     warning: '#FFC107',
+            // },
             
             
         
@@ -72,10 +73,10 @@ const app = new Vue({
     }),
     el: '#app',
     data:{
-        menu:1,
+        menu:0,
         ruta: 'public'
     }
 });
-export default new Vuetify({ 
+// export default new Vuetify({ 
 
-});
+// });

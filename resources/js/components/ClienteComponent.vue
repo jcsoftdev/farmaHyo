@@ -35,7 +35,7 @@
                     
                     <div class="col-12">
                         <div class="card m-b-30">
-                            <div class="card-body ">
+                            <div class="card-body grey lighten-4 black--text ">
                                 <div class="form-group row container-fluid">
                                     <div class="input-group">
                                         <v-container fluid grid-list-xl>
@@ -66,7 +66,7 @@
                                 
 
                                 <div class="table-responsive-md ">
-                                        <table id="datatable" class="table table-bordered  table-striped " >
+                                        <table id="datatable" class="table table-bordered  black--text" >
                                         <thead>
                                             <tr>
                                                 <th>Nombre</th>
@@ -79,7 +79,7 @@
                                         </thead>
 
 
-                                        <tbody>
+                                        <tbody class="black--text">
                                         
                                             <tr class="table-dar" v-for="persona in arrayPersona" :key="persona.id">
                                                 <td v-text="persona.nombre"></td>

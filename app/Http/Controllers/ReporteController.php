@@ -6,9 +6,10 @@ use App\Models\DetalleIngreso;
 use App\Models\DetalleVenta;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-
+use Carbon\Carbon;
 
 use App\Exports\IngresoExport;
+use App\Exports\VentaExport;
 use Maatwebsite\Excel\Facades\Excel; // as QExcel;
 // use Maatwebsite\Excel\Excel;
 
@@ -27,8 +28,8 @@ class ReporteController extends Controller
             'detalle_ingresos.cantidad',
             'detalle_ingresos.precio',
             'detalle_ingresos.fecha_vencimiento',
-            DB::raw("CONCAT(productos.nombre,' ', concentraciones.nombre ,' ',presentaciones.nombre) as medicamento"),
-
+            DB::raw("cantidad * precio as total"),
+             DB::raw("CONCAT(productos.nombre,' ', concentraciones.nombre ,' ',presentaciones.nombre) as medicamento"),
             )
         ->orderBy('detalle_ingresos.id','desc')
         ->get();
@@ -50,11 +51,12 @@ class ReporteController extends Controller
         // ->join('ventas','ventas.id','=','detalle_ventas.idingreso')
         ->select(
             'detalle_ventas.id as miIdVenta',
-            'detalle_ventas.idventa as lote',
+            'ventas.num_comprobante as num_com',
             'detalle_ventas.cantidad',
             'detalle_ventas.precio',
             'detalle_ventas.descuento',
             DB::raw("CONCAT(productos.nombre,' ', concentraciones.nombre ,' ',presentaciones.nombre) as medicamento"),
+            DB::raw("cantidad * precio as total"),
 
             )
         ->orderBy('detalle_ventas.id','desc')
@@ -84,4 +86,44 @@ class ReporteController extends Controller
         
         // ((new IngresoExport)->queue('reporte.xlsx'));
     }
+    public function exportExcelVenta() 
+    {
+        // return (new VentaExport);
+        // return new VentaExport;
+        return Excel::download(new VentaExport, 'Ventas.xlsx');
+        
+        // ((new IngresoExport)->queue('reporte.xlsx'));
+    }
+    public function vencimiento(){
+        $ingresos = DetalleIngreso::join('medicamentos','detalle_ingresos.idmedicamento','=','medicamentos.id')
+        ->join('productos','productos.id','=','medicamentos.producto_id')
+        ->join('presentaciones','presentaciones.id','=','medicamentos.presentacion_id')
+        ->join('concentraciones','concentraciones.id','=','medicamentos.concentracion_id')
+        // ->join('ingresos','ingresos.id','=','detalle_ingresos.idingreso')
+        ->select(
+            'detalle_ingresos.id as miIdIngreso',
+            'detalle_ingresos.idingreso as lote',
+            'detalle_ingresos.cantidad',
+            'detalle_ingresos.precio',
+            'detalle_ingresos.fecha_vencimiento',
+            DB::raw("cantidad * precio as total"),
+             DB::raw("CONCAT(productos.nombre,' ', concentraciones.nombre ,' ',presentaciones.nombre) as medicamento"),
+            )
+        ->whereMonth('fecha_vencimiento','<', Carbon::now()->addDays(60))
+        ->orderBy('detalle_ingresos.id','desc')
+        ->paginate(10);
+
+        return [
+            'pagination' => [
+                'total'        => $ingresos->total(),
+                'current_page' => $ingresos->currentPage(),
+                'per_page'     => $ingresos->perPage(),
+                'last_page'    => $ingresos->lastPage(),
+                'from'         => $ingresos->firstItem(),
+                'to'           => $ingresos->lastItem(),
+            ],
+            'ingresos' => $ingresos
+        ];
+    }
+
 }

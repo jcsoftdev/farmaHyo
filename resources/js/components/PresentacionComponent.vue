@@ -32,7 +32,7 @@
                     
                     <div class="col-12">
                         <div class="card m-b-30">
-                            <div class="card-body">
+                            <div class="card-body grey lighten-4 black--text">
                                 <div class="form-group  container-fluid">
                                     <div class="input-group ">
                                         <v-container fluid grid-list-xl>
@@ -63,7 +63,7 @@
                                 
 
                                 <div class="table-responsive-md ">
-                                        <table id="datatable" class="table table-bordered  table-striped " >
+                                        <table id="datatable" class="table table-bordered  " >
                                         <thead>
                                             <tr>
                                                 <th>Nombre</th>

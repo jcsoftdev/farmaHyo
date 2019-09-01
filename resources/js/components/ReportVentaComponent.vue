@@ -1,6 +1,6 @@
 <template>
-        <main class="main">
-            <div class="ventas-hoy">
+        <main class="main mt-3 mb-5" mb-5>
+            <!-- <div class="ventas-hoy">
                 <div class="card">
                     <div class="card-heading p-4">
                         <div class="mini-stat-icon text-center">
@@ -9,8 +9,23 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row" >
+            </div> -->
+            <div class="report text-center ">
+                        <a href="/excelVenta" class="btn black--text bold btn-warning">Descargar Excel</a>
+                    </div>
+                    <span style="font-size:2rem">Ventas</span>
+                <template >
+                    <v-data-table class="elevation-1 test"
+                        
+                        :headers="headers"
+                        :items="arrayVenta"
+                        :items-per-page="10"
+                        :footer-props="{
+                            'items-per-page-options': [5, 10]
+                        }"
+                    ></v-data-table>
+                </template>
+            <!-- <div class="row" >
                 <div class="col-6 col-sm-4 col-md-3 col-xl-2" v-for="Venta in arrayVenta" :key="Venta.miIdVenta"> 
                     <div class="card">
                         <div class="card-heading p-4">
@@ -28,8 +43,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </main>
+            </div> -->
+        </main >
 </template>
 
 <script>
@@ -37,16 +52,53 @@
         props : ['ruta'],
         data (){
             return {
+                loading: false,
                 arrayVenta:[],
                 // arrayventa:[],
-                ventaPrecioTotal: 0
+                ventaPrecioTotal: 0,
+                headers: [
+                    { text: 'id', value: 'miIdVenta' },
+                    {
+                        text: 'Descripcion',
+                        align: 'left',
+                        sortable: false,
+                        value: 'medicamento',
+                    },
+                    { text: 'Comprobante', value: 'num_com' },
+                    { text: 'Cantidad', value: 'cantidad' },
+                    { text: 'Precio', value: 'precio' },
+                    { text: 'Descuento', value: 'descuento' },
+                    { text: 'Total', value: 'total' },
+                ]
             }
+        },
+        watch: {
+            // pagination: {
+            // handler () {
+            //     this.loading = true
+            //     this.$store.dispatch('queryItems')
+            //     .then(result => {
+            //         this.loading = false
+            //     })
+            // },
+            // deep: true
+            // }
         },
         components: {
             
         },
         computed:{
-
+            // pagination: {
+            //     get: function () {
+            //         return this.$store.getters.pagination
+            //     },
+            //     set: function (value) {
+            //         this.$store.commit('setPagination', value)
+            //     }
+            //     },
+            //     items () {
+            //     return this.$store.getters.items
+            // }
         },
         methods : {
            
@@ -91,5 +143,16 @@
     }
 </script>
 <style>
-
+    .theme--dark.v-data-table {
+        background-color: #222437 !important;
+        color: #fff;
+    }
+</style>
+<style lang="scss" scoped>
+    .table-header {
+        thead {
+            background-color: black;
+        }
+    }
+    .test .theme--dark.v-table { background-color: #00f !important; }
 </style>

@@ -18,7 +18,7 @@
                     </div>
                     <!-- Listado-->
                     <template v-if="listado==1">
-                    <div class="card-body">
+                    <div class="card-body grey lighten-4 black--text">
                         <div class="form-group row">
                             <div class="col-md-6">
                                 <div class="input-group">
@@ -101,7 +101,7 @@
                     <!--Fin Listado-->
                     <!-- Detalle-->
                     <template v-else-if="listado==0">
-                    <div class="card-body">
+                    <div class="card-body grey lighten-4 black--text">
                         <div class="form-group row border">
                                     <v-container fluid grid-list-xl>
                                         <v-layout wrap align-center justify-space-around>
@@ -162,15 +162,7 @@
                                             
                                         </v-layout>
                                     </v-container>
-                            <div class="col-md-12">
-                                <div v-show="errorIngreso" class="form-group row div-error">
-                                    <div class="text-center text-error">
-                                        <div v-for="error in errorMostrarMsjIngreso" :key="error" v-text="error">
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            
                         </div>
                         <div class="form-group row border">
                             
@@ -215,7 +207,6 @@
                                             filled
                                             rounded
                                             type="number"
-                                            value="0"
                                         ></v-text-field>
                                     </v-flex>
                                     <v-flex xs12 sm2>
@@ -259,6 +250,15 @@
                                     </v-flex>
                                 </v-layout>
                             </v-container>
+                            <div class="col-md-12">
+                                <div v-show="errorIngreso" class="form-group row div-error">
+                                    <div class="text-center text-error">
+                                        <div v-for="error in errorMostrarMsjIngreso" :key="error" v-text="error">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <button @click="agregarDetalle()" class="btn btn-success form-control btnagregar"><i class="icon-plus"></i></button>
@@ -292,7 +292,6 @@
                                                 <input v-model="detalle.precio" type="number" class="form-control">
                                             </td>
                                             <td>
-                                                <span style="color:red;" v-show="detalle.cantidad>detalle.stock">Stock: {{detalle.stock}}</span>
                                                 <input v-model="detalle.cantidad" type="number" class="form-control">
                                             </td>
                                             <td>
@@ -340,7 +339,7 @@
                     <!-- Fin Detalle-->
                     <!-- Ver ingreso -->
                     <template v-else-if="listado==2">
-                    <div class="card-body">
+                    <div class="card-body grey lighten-4 black--text">
                         <div class="form-group row border">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -566,7 +565,7 @@
                 codigo: '',
                 medicamento: '',
                 precio: 0,
-                cantidad:0,
+                cantidad:1,
                 descuento: 0,
                 stock:0,
                 tipo: ['BOLETA','FACTURA','TICKET'],
@@ -715,14 +714,6 @@
                             text: 'Ese artículo ya se encuentra agregado!',
                             })
                     }
-                    else{
-                       if(me.cantidad>me.stock){
-                           me.$swal({
-                            type: 'error',
-                            title: 'Error...',
-                            text: 'NO hay stock disponible!',
-                            })
-                       } 
                        else{
                            me.arrayDetalle.push({
                                 idmedicamento: me.idmedicamento,
@@ -741,7 +732,6 @@
                             me.descuento=0;
                             me.stock=0
                        }
-                    }
                     
                 }
 
@@ -919,6 +909,7 @@
                 this.tituloModal = 'Seleccione uno o varios artículos';
             },
             desactivarIngreso(id){
+                var me = this;
                me.$swal({
                 title: 'Esta seguro de anular esta ingreso?',
                 type: 'warning',

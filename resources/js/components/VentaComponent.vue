@@ -18,7 +18,7 @@
                     </div>
                     <!-- Listado-->
                     <template v-if="listado==1">
-                    <div class="card-body">
+                    <div class="card-body grey lighten-4 black--text">
                         <div class="form-group row">
                             <div class="col-md-6">
                                 <div class="input-group">
@@ -103,7 +103,7 @@
                     <!--Fin Listado-->
                     <!-- Detalle-->
                     <template v-else-if="listado==0">
-                    <div class="card-body">
+                    <div class="card-body grey lighten-4 black--text">
                         <div class="form-group row border pt-5 mt-5">
                                     <v-container fluid grid-list-xl>
                                         <v-layout wrap align-center justify-space-around>
@@ -337,7 +337,7 @@
                     <!-- Fin Detalle-->
                     <!-- Ver ingreso -->
                     <template v-else-if="listado==2">
-                    <div class="card-body">
+                    <div class="card-body grey lighten-4 black--text">
                         <div class="form-group row border">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -663,7 +663,7 @@
                 codigo: '',
                 medicamento: '',
                 precio: 0,
-                cantidad:0,
+                cantidad:1,
                 descuento: 0,
                 stock:0,
                 tipo: ['BOLETA','FACTURA','TICKET'],

@@ -31,7 +31,7 @@
                     
                     <div class="col-12">
                         <div class="card m-b-30">
-                            <div class="card-body">
+                            <div class="card-body grey lighten-4 black--text">
                                 <div class="form-group row container-fluid">
                                     <div class="input-group">
                                         
@@ -63,84 +63,137 @@
                                 </div>
                                 
 
-                                <div class="table-responsive-md table-responsive">
-                                        <table id="datatable" class="table table-bordered  table-striped " >
-                                        <thead>
-                                            <tr>
-                                                <th>Codigo</th>
-                                                <th>Nombre</th>
-                                                <th>Concentracion</th>
-                                                <th>Presentacion</th>
-                                                <th>Laboratorio</th>
-                                                <th>Descripcion</th>
-                                                <th>Stock</th>
-                                                <th>Precio Venta</th>
-                                                <th>Estado</th>
-                                                <th>Opciones</th>
-                                            </tr>
-                                        </thead>
+                                    
+                                        <div class="table-responsive-md table-responsive">
+                                                <table id="datatable" class="table table-bordered  " >
+                                                <thead>
+                                                    <tr>
+                                                        <th>Codigo</th>
+                                                        <th>Nombre</th>
+                                                        <th>Concentracion</th>
+                                                        <th>Presentacion</th>
+                                                        <th>Laboratorio</th>
+                                                        <th>Stock</th>
+                                                        <th>Precio Venta</th>
+                                                        <th>Estado</th>
+                                                        <th>Accion</th>
+                                                    </tr>
+                                                </thead>
 
 
-                                        <tbody>
-                                        
-                                            <tr class="table-dar" v-for="medicamento in arrayMedicamento" :key="medicamento.id">
-                                                <td v-text="medicamento.codigo"></td>
-                                                <td v-text="medicamento.nombre"></td>
-                                                <td v-text="medicamento.concentracion"></td>
-                                                <td v-text="medicamento.presentacion"></td>
-                                                <td v-text="medicamento.laboratorio"></td>
-                                                <td v-text="medicamento.descripcion"></td>
-                                                <td class="f-high font-weight-bold blue--text" v-text="medicamento.stock"></td>
-                                                <td class="f-high font-weight-bold teal--text" v-text="'S/'+medicamento.precio_venta"></td>
-                                                <td class="text-center">
-                                                    <div v-if="medicamento.condicion == 1">
-                                                        <span class="badge badge-success">Activo</span>
-                                                    </div>
-                                                    <div v-else>
-                                                        <span class="badge badge-danger">Desactivo</span>
-                                                    </div>
+                                                <tbody>
+                                                
+                                                    <tr class="table-dar" v-for="medicamento in arrayMedicamento" :key="medicamento.id">
+                                                        <td v-text="medicamento.codigo"></td>
+                                                        <td v-text="medicamento.nombre"></td>
+                                                        <td v-text="medicamento.concentracion"></td>
+                                                        <td v-text="medicamento.presentacion"></td>
+                                                        <td v-text="medicamento.laboratorio"></td>
+                                                        <td class="f-high font-weight-bold blue--text" v-text="medicamento.stock"></td>
+                                                        <td class="f-high font-weight-bold teal--text" v-text="'S/'+medicamento.precio_venta"></td>
+                                                        <td class="text-center">
+                                                            <div v-if="medicamento.condicion == 1">
+                                                                <span class="badge badge-success">Activo</span>
+                                                            </div>
+                                                            <div v-else>
+                                                                <span class="badge badge-danger">Desactivo</span>
+                                                            </div>
 
-                                                </td>
-                                                <td class="btn-block">
-                                                    
-                                                    <button @click="abrirModal('medicamento','actualizar',medicamento)" type="button" class="btn btn-warning waves-effect waves-light"><i class="icon-pencil "></i></button>
-                                                    <template v-if="medicamento.condicion">
-                                                        <button type="button" class="btn btn-danger waves-effect waves-light" @click="alertaConfirm('Desactivar','¿Seguro que desea Desactivar?','Desactivado', 'desactivar',medicamento.id)">
-                                                            <i class="icon-trash-bin"></i>
-                                                        </button>
-                                                    </template>
-                                                    <template v-else>
-                                                        <button type="button" class="btn btn-primary waves-effect waves-light" @click="alertaConfirm('Activar','¿Seguro que desea Activar?','Activado', 'activar',medicamento.id)">
-                                                            <i class="icon-check"></i>
-                                                        </button>
-                                                    </template>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-12 col-md-5">
-                                        Mostrando
+                                                        </td>
+                                                        <td class="btn-block">
+                                                            
+                                                            <button @click="abrirModal('medicamento','actualizar',medicamento)" type="button" class="btn btn-warning waves-effect waves-light"><i class="icon-pencil "></i></button>
+                                                            <template v-if="medicamento.condicion">
+                                                                <button type="button" class="btn btn-danger waves-effect waves-light" @click="alertaConfirm('Desactivar','¿Seguro que desea Desactivar?','Desactivado', 'desactivar',medicamento.id)">
+                                                                    <i class="icon-trash-bin"></i>
+                                                                </button>
+                                                            </template>
+                                                            <template v-else>
+                                                                <button type="button" class="btn btn-primary waves-effect waves-light" @click="alertaConfirm('Activar','¿Seguro que desea Activar?','Activado', 'activar',medicamento.id)">
+                                                                    <i class="icon-check"></i>
+                                                                </button>
+                                                            </template>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-5">
+                                                Mostrando
+                                            </div>
+                                            <div class="col-sm-12 col-md-7 dataTables_paginate paging_simple_numbers" >
+                                                <ul class="pagination">
+                                                    <li class="paginate_button page-item previous" v-if="pagination.current_page > 1" >
+                                                        <a href="#" class="page-link" @click.prevent="cambiarPagina(pagination.current_page - 1, buscar, criterio)">
+                                                            Anterior
+                                                        </a>
+                                                    </li>
+                                                    <li class="paginate_button page-item active" v-for="page in pagesNumber" :key="page" :class="[page == isActived ? 'active':'']">
+                                                        <a href="#" class="page-link" @click.prevent="cambiarPagina(page, buscar, criterio)" v-text="page"></a>
+                                                    </li>
+                                                    <li class="paginate_button page-item " v-if="pagination.current_page < pagination.last_page">
+                                                        <a href="#" class="page-link" @click.prevent="cambiarPagina(pagination.current_page + 1, buscar, criterio)">
+                                                            Siguiente
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    <div class="col-12">
+                                        <div class="table-responsive-md table-responsive">
+                                                <table id="datatable" class="table table-bordered  " >
+                                                <thead>
+                                                    <tr>
+                                                        <th>Lote</th>
+                                                        <th>Codigo</th>
+                                                        <th>Nombre</th>
+                                                        <th>Stock</th>
+                                                        <th>Precio</th>
+                                                        <th>Vencimiento</th>
+                                                    </tr>
+                                                </thead>
+
+
+                                                <tbody>
+                                                
+                                                    <tr class="table-dar" v-for="medicamento in arrayMedicamentoStock" :key="medicamento.miID">
+                                                        <td v-text="medicamento.id"></td>
+                                                        <td v-text="medicamento.codigo"></td>
+                                                        <td v-text="medicamento.nombre + ' ' + medicamento.concentracion + ' ' + medicamento.presentacion"></td>
+                                                        <td v-text="medicamento.stock"></td>
+                                                        <td v-text="medicamento.precio"></td>
+                                                        <td v-text="medicamento.fecha_vencimiento"></td>
+                                                        
+                                                        
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-5">
+                                                Mostrando
+                                            </div>
+                                            <div class="col-sm-12 col-md-7 dataTables_paginate paging_simple_numbers" >
+                                                <ul class="pagination">
+                                                    <li class="paginate_button page-item previous" v-if="pagination2.current_page > 1" >
+                                                        <a href="#" class="page-link" @click.prevent="cambiarPagina(pagination2.current_page - 1, buscar, criterio)">
+                                                            Anterior
+                                                        </a>
+                                                    </li>
+                                                    <li class="paginate_button page-item active" v-for="page in pagesNumber" :key="page" :class="[page == isActived ? 'active':'']">
+                                                        <a href="#" class="page-link" @click.prevent="cambiarPagina(page, buscar, criterio)" v-text="page"></a>
+                                                    </li>
+                                                    <li class="paginate_button page-item " v-if="pagination2.current_page < pagination2.last_page">
+                                                        <a href="#" class="page-link" @click.prevent="cambiarPagina(pagination2.current_page + 1, buscar, criterio)">
+                                                            Siguiente
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="col-sm-12 col-md-7 dataTables_paginate paging_simple_numbers" >
-                                        <ul class="pagination">
-                                            <li class="paginate_button page-item previous" v-if="pagination.current_page > 1" >
-                                                <a href="#" class="page-link" @click.prevent="cambiarPagina(pagination.current_page - 1, buscar, criterio)">
-                                                    Anterior
-                                                </a>
-                                            </li>
-                                            <li class="paginate_button page-item active" v-for="page in pagesNumber" :key="page" :class="[page == isActived ? 'active':'']">
-                                                <a href="#" class="page-link" @click.prevent="cambiarPagina(page, buscar, criterio)" v-text="page"></a>
-                                            </li>
-                                            <li class="paginate_button page-item " v-if="pagination.current_page < pagination.last_page">
-                                                <a href="#" class="page-link" @click.prevent="cambiarPagina(pagination.current_page + 1, buscar, criterio)">
-                                                    Siguiente
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
+                                    
                             </div>
                         </div>
                     </div> <!-- end col -->
@@ -311,6 +364,7 @@
                 laboratorio: {},
                 descripcion: {},
                 arrayMedicamento:[],
+                arrayMedicamentoStock:[],
                 arrayPresentacion:[],
                 arrayConcentracion:[],
                 arrayLaboratorio:[],
@@ -322,6 +376,14 @@
                 errorMostrarMsjMedicamento : [],
                 arrayCodigo : [],
                 pagination: {
+                    'total':0,
+                    'current_page':0,
+                    'per_page':0,
+                    'last_page':0,
+                    'from':0,
+                    'to':0
+                },
+                pagination2: {
                     'total':0,
                     'current_page':0,
                     'per_page':0,
@@ -374,6 +436,27 @@
                     me.arrayMedicamento=respuesta.medicamentos.data;
                     me.pagination=respuesta.pagination
                     console.log(me.arrayMedicamento);
+                    
+                })
+                .catch(function (error) {
+                    // handle error
+                    console.log(error);
+                })
+                .finally(function () {
+                    // always executed
+                });
+
+            },
+            listarMedicamentoStock(page, buscar, criterio){
+                
+                let me = this;
+                var url = '/medicamento/indexStock?page='+page+'&buscar='+buscar+'&criterio='+criterio;
+                axios.get(url)
+                .then(function (response) {
+                    var respuesta = response.data;
+                    me.arrayMedicamentoStock=respuesta.medicamentos.data;
+                    me.pagination2=respuesta.pagination
+                    // console.log(me.arrayMedicamento);
                     
                 })
                 .catch(function (error) {
@@ -665,6 +748,7 @@
         },
         mounted() {
             this.listarMedicamento(1,this.buscar,this.criterio);
+            this.listarMedicamentoStock(1,this.buscar,this.criterio)
             // $().DataTable();
         }
     }

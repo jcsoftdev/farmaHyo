@@ -2856,7 +2856,7 @@ label {
 .table td, .table th {
   vertical-align: middle;
   border-color: rgba(255, 255, 255, 0.05) !important;
-  color: #a5a6ad;
+  /* color: #a5a6ad; */
 }
 
 .table-bordered {
@@ -2864,7 +2864,7 @@ label {
 }
 
 .table-hover tbody tr:hover {
-  color: #a5a6ad;
+  /* color: #a5a6ad; */
 }
 
 /************** datatables ***************/

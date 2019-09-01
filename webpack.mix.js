@@ -11,5 +11,24 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-   .sass('resources/sass/app.scss', 'public/css');
+mix.styles([
+   'resources/assets/css/bootstrap.min.css',
+   'resources/assets/css/metismenu.min.css',
+   'resources/assets/css/icons.css',
+   'resources/assets/css/style.css'
+], 'public/assets/css/plantilla.css')
+   .scripts([
+      'resources/assets/js/jquery.min.js',
+      'resources/assets/js/bootstrap.bundle.min.js',
+      'resources/assets/js/jquery.slimscroll.js',
+      'resources/assets/js/waves.min.js',
+      'resources/assets/js/app.js',
+   ], 'public/js/plantillahead.js')
+   .scripts([
+      'resources/assets/js/jquery.min.js',
+      'resources/assets/js/bootstrap.bundle.min.js',
+      'resources/assets/js/jquery.slimscroll.js',
+      'resources/assets/js/app.js',
+   ], 'public/js/plantilla.js')
+
+   .js(['resources/js/app.js'], 'public/js/app.js');

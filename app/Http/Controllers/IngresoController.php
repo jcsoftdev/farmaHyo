@@ -206,6 +206,10 @@ class IngresoController extends Controller
             }
             
             DB::commit();
+            // return [
+            //     'id' => $ingreso->id
+                
+            // ];
         } catch (Exception $e){
             DB::rollBack();
         }

@@ -2,7 +2,8 @@
 
 @section('contenido')
     <template v-if="menu==0">
-        <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates blanditiis adipisci, recusandae, amet quam asperiores quis laudantium voluptate itaque, sunt sequi. Atque expedita enim, odit ab corporis itaque veniam recusandae? 0</h1>
+        
+        <escritorio-v></escritorio-v>
     </template>
     <template v-if="menu==1">
         <producto-component></producto-component>

@@ -2,16 +2,29 @@
         <main class="main">
             <div class="card">
                 <div class="card-heading p-4">
-                    <div class="mini-stat-icon text-center">
+                    
+                    <!-- <div class="mini-stat-icon text-center">
                         <i class="far fa-money-bill-alt bg-success text-white"></i>
                         <h5 class="font-20 text-center" v-text="'Total: '+compraIngresoTotal"></h5>
-                    </div>
+                    </div> -->
                     <div class="report text-center ">
                         <a href="/excelIngreso" class="btn black--text bold btn-warning">Descargar Excel</a>
                     </div>
+                    <span style="font-size:2rem">Ingresos</span>
+                    <template >
+                    <v-data-table class="elevation-1 test"
+                        
+                        :headers="headers"
+                        :items="arrayIngreso"
+                        :items-per-page="10"
+                        :footer-props="{
+                            'items-per-page-options': [5, 10]
+                        }"
+                    ></v-data-table>
+                </template>
                 </div>
             </div>
-            <div class="row" >
+            <!-- <div class="row" >
                 <div class="col-6 col-sm-4 col-md-3 col-xl-2" v-for="Ingreso in arrayIngreso" :key="Ingreso.miIdIngreso"> 
                     <div class="card">
                         <div class="card-heading p-4">
@@ -32,7 +45,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </main>
 </template>
 
@@ -43,6 +56,20 @@
             return {
                 arrayIngreso:[],
                 arrayventa:[],
+                headers: [
+                    { text: 'id', value: 'miIdIngreso' },
+                    {
+                        text: 'Descripcion',
+                        align: 'left',
+                        sortable: false,
+                        value: 'medicamento',
+                    },
+                    { text: 'Lote', value: 'lote' },
+                    { text: 'Vencimiento', value: 'fecha_vencimiento' },
+                    { text: 'Cantidad', value: 'cantidad' },
+                    { text: 'Precio', value: 'precio' },
+                    { text: 'Total', value: 'total'},
+                ],
                 compraIngresoTotal: 0
             }
         },
@@ -66,7 +93,6 @@
                     console.log(error);
                 })
                 .finally(function () {
-                    // always executed
                 });
             },
             ingresoTotal(){

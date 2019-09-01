@@ -39,6 +39,7 @@ Route::group(['middleware'=>['auth']],function(){
         Route::put('/medicamento/activar',      'MedicamentoController@activar');
         Route::put('/medicamento/desactivar',   'MedicamentoController@desactivar');
         Route::get('/medicamento/getAll',       'MedicamentoController@getAll');
+        Route::get('/medicamento/indexStock',       'MedicamentoController@indexStock');
         // Parte de PRESENTACIONES
         Route::get('/presentacion',             'PresentacionController@index');
         Route::post('/presentacion/registrar',  'PresentacionController@store');
@@ -114,9 +115,15 @@ Route::group(['middleware'=>['auth']],function(){
         Route::get('/reporte/ingresos/cantidad','ReporteController@ingresoMount');
         Route::get('/reporte/ventas','ReporteController@reporteVenta');
         Route::get('/reporte/ventas/cantidad','ReporteController@ventaMount');
+        
+        Route::get('/reporte/vencimiento','ReporteController@vencimiento');
 
 
         Route::get('/excelIngreso','ReporteController@exportExcelIngreso');
+        Route::get('/excelVenta','ReporteController@exportExcelVenta');
         Route::delete('/eliminarVenta','VentaController@eliminar');
+
+
+        Route::get('/dashboard','DashboardController');
     });
 });
