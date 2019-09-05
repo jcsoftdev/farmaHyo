@@ -30,7 +30,7 @@
                             </div>
                         </div>
                         <div class="table-responsive">
-                            <table class="table table-bordered table-striped table-sm">
+                            <table class="table table-bordered  table-sm">
                                 <thead>
                                     <tr>
                                         <th>Opciones</th>
@@ -172,7 +172,7 @@
                         </div>
                         <div class="form-group row border">
                             <div class="table-responsive col-md-12">
-                                <table class="table table-bordered table-striped table-sm">
+                                <table class="table table-bordered  table-sm">
                                     <thead>
                                         <tr>
                                             <th>Opciones</th>
@@ -268,7 +268,7 @@
                         </div>
                         <div class="form-group row border">
                             <div class="table-responsive col-md-12">
-                                <table class="table table-bordered table-striped table-sm">
+                                <table class="table table-bordered  table-sm">
                                     <thead>
                                         <tr>
                                             <th>Artículo</th>
@@ -334,7 +334,7 @@
                               <span aria-hidden="true">×</span>
                             </button>
                         </div>
-                        <div class="modal-body">
+                        <div class="modal-body purple lighten-5">
                             <div class="form-group row">
                                 <div class="col-md-6">
                                     <div class="input-group">
@@ -349,7 +349,7 @@
                                 </div>
                             </div>
                             <div class="table-responsive">
-                                <table class="table table-bordered table-striped table-sm">
+                                <table class="table table-bordered  table-sm">
                                     <thead>
                                         <tr>
                                             <th>Opciones</th>
@@ -488,7 +488,7 @@
         methods : {
             listarIngreso (page,buscar,criterio){
                 let me=this;
-                var url= '/ingreso?page=' + page + '&buscar='+ buscar + '&criterio='+ criterio;
+                let url = this.ruta + '/ingreso?page=' + page + '&buscar='+ buscar + '&criterio='+ criterio;
                 axios.get(url).then(function (response) {
                     var respuesta= response.data;
                     me.arrayIngreso = respuesta.ingresos.data;
@@ -502,7 +502,7 @@
                 let me=this;
                 loading(true)
 
-                var url= '/proveedor/selectProveedor?filtro='+search;
+                let url = this.ruta + '/proveedor/selectProveedor?filtro='+search;
                 axios.get(url).then(function (response) {
                     let respuesta = response.data;
                     q: search
@@ -520,7 +520,7 @@
             },
             buscarArticulo(){
                 let me=this;
-                var url= '/articulo/buscarArticulo?filtro=' + me.codigo;
+                let url = this.ruta + '/articulo/buscarArticulo?filtro=' + me.codigo;
 
                 axios.get(url).then(function (response) {
                     var respuesta= response.data;
@@ -611,7 +611,7 @@
             },
             listarArticulo (buscar,criterio){
                 let me=this;
-                var url= '/articulo/listarArticulo?buscar='+ buscar + '&criterio='+ criterio;
+                let url = this.ruta + '/articulo/listarArticulo?buscar='+ buscar + '&criterio='+ criterio;
                 axios.get(url).then(function (response) {
                     var respuesta= response.data;
                     me.arrayArticulo = respuesta.articulos.data;
@@ -694,7 +694,7 @@
                 
                 //Obtener los datos del ingreso
                 var arrayIngresoT=[];
-                var url= '/ingreso/obtenerCabecera?id=' + id;
+                let url = this.ruta + '/ingreso/obtenerCabecera?id=' + id;
                 
                 axios.get(url).then(function (response) {
                     var respuesta= response.data;

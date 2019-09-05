@@ -4,65 +4,10 @@
     
     <div class="container-fluid mb-12">
         <div class="contenido">
-            <!-- <div class="form-group row container-fluid">
-                <div class="input-group">
-                    
-                    <v-container fluid grid-list-xl>
-                    <v-layout wrap align-center justify-space-around>
-                        <v-flex xs12 sm2 >
-                            <v-select
-                            v-model="criterio"
-                            :items="busqueda"
-                            label="Criterio"
-                            @keyup="listarVencimiento(1,buscar,criterio)"
-                            ></v-select>
-                        </v-flex>
-                        <v-flex xs12 sm8>
-                            <v-text-field
-                                @keyup="listarVencimiento(1,buscar,criterio)"
-                                v-model="buscar"
-                                label="Buscar"
-                                clearable
-                            ></v-text-field>
-                        </v-flex>
-                        <v-flex xs12 sm1 >
-                            <v-btn @click="listarVencimiento(1,buscar,criterio)" depressed large color="primary"><i class="fa fa-search ml-1"></i></v-btn>
-                        </v-flex>
-                    </v-layout>
-                    </v-container>
-                    
-                </div>
-            </div> -->
-            <!-- <div class="table-responsive">
-                <table class="table table-bordered table-striped table-sm grey lighten-4 black--text">
-                    <thead>
-                        <tr>
-                            <th>Lote</th>
-                            <th>Descripcion</th>
-                            <th>Cantidad</th>
-                            <th>Precio</th>
-                            <th>Fecha Vencimiento</th>
-                            <th>Total</th>
-                            
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="venta in arrayVencimineto" :key="venta.id">
-                            
-                            <td class="text-danger subtitle-2" v-text="venta.lote"></td>
-                            <td class="text-danger subtitle-2" v-text="venta.medicamento"></td>
-                            <td class="text-danger subtitle-2" v-text="venta.cantidad"></td>
-                            <td class="text-danger subtitle-2" v-text="venta.precio"></td>
-                            <td class="text-danger subtitle-2" v-text="venta.fecha_vencimiento"></td>
-                            <td class="text-danger subtitle-2" v-text="venta.total"></td>
-                        </tr>                                
-                    </tbody>
-                </table>
-            </div> -->
             <div class="table-bordered mt-12 ">
                 <template c>
                     <v-card class="grey lighten-4 red--text">
-                        <v-layout wrap align-center justify-space-around class="grey darken-4 white--text">
+                        <v-layout wrap align-center justify-space-around class="pink darken-4 white--text">
                             <v-flex xs6>
                                 <v-card-title>
                                  Alerta De Vencimiento
@@ -90,20 +35,6 @@
                     </v-card>
                 </template>
             </div>
-            <!-- Paginacion -->
-            <!-- <nav>
-                <ul class="pagination">
-                    <li class="page-item" v-if="pagination.current_page > 1">
-                        <a class="page-link" href="#" @click.prevent="cambiarPagina(pagination.current_page - 1,buscar,criterio)">Ant</a>
-                    </li>
-                    <li class="page-item" v-for="page in pagesNumber" :key="page" :class="[page == isActived ? 'active' : '']">
-                        <a class="page-link" href="#" @click.prevent="cambiarPagina(page,buscar,criterio)" v-text="page"></a>
-                    </li>
-                    <li class="page-item" v-if="pagination.current_page < pagination.last_page">
-                        <a class="page-link" href="#" @click.prevent="cambiarPagina(pagination.current_page + 1,buscar,criterio)">Sig</a>
-                    </li>
-                </ul>
-            </nav> -->
         </div>
 
         <!-- Los graficos  -->
@@ -112,8 +43,8 @@
                 <div class="row px-4">
                     <div class="col-md-6 ">
                         <div class="card card-chart grey lighten-4 black--text ">
-                            <div class="card-header grey darken-4 white--text ">
-                                <h4>Ingresos <span ></span></h4>
+                            <div class="card-header pink darken-4 white--text ">
+                                <h4>Ingresos - Mes<span ></span></h4>
                             </div>
                             <div class="card-content">
                                 <div class="ct-chart">
@@ -128,8 +59,8 @@
                     </div>
                     <div class="col-md-6">
                         <div class="card card-chart grey lighten-4 black--text">
-                            <div class="card-header grey darken-4 white--text">
-                                <h4>Ventas</h4>
+                            <div class="card-header pink darken-4 white--text">
+                                <h4>Ventas - Mes</h4>
                             </div>
                             <div class="card-content">
                                 <div class="ct-chart">
@@ -146,8 +77,8 @@
                 <div class="row px-4">
                     <div class="col-md-6">
                         <div class="card card-chart grey lighten-4 black--text">
-                            <div class="card-header grey darken-4 white--text">
-                                <h4>Ingresos</h4>
+                            <div class="card-header pink darken-4 white--text">
+                                <h4>Ingresos Diarios</h4>
                             </div>
                             <div class="card-content">
                                 <div class="ct-chart">
@@ -156,14 +87,14 @@
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <p>Compras de los últimos meses.</p>
+                                <p>Compras de los últimos días.</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="card card-chart grey lighten-4 black--text">
-                            <div class="card-header grey darken-4 white--text">
-                                <h4>Ventas</h4>
+                            <div class="card-header pink darken-4 white--text">
+                                <h4>Ventas Diarias</h4>
                             </div>
                             <div class="card-content">
                                 <div class="ct-chart">
@@ -172,7 +103,7 @@
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <p>Ventas de los últimos meses.</p>
+                                <p>Ventas de los últimos días.</p>
                             </div>
                         </div>
                     </div>
@@ -193,20 +124,26 @@
                 ingresos:[],
                 varTotalIngreso:[],
                 varMesIngreso:[], 
-                
+
                 varVenta:null,
                 charVenta:null,
                 ventas:[],
                 varTotalVenta:[],
                 varMesVenta:[],
-                // pagination : {
-                //     'total' : 0,
-                //     'current_page' : 0,
-                //     'per_page' : 0,
-                //     'last_page' : 0,
-                //     'from' : 0,
-                //     'to' : 0,
-                // },
+                
+                
+                varIngresoDay:null,
+                charIngresoDay:null,
+                varTotalDayIngreso:[],
+                varDayIngreso:[], 
+                ingresosDay:[],
+
+                varVentaDay:null,
+                charVentaDay:null,
+                varTotalDayVenta:[],
+                varDayVenta:[],
+                ventasDay:[],
+
                 offset:3,
                 headers: [
                 {
@@ -265,7 +202,7 @@
         methods : {
             listarVencimiento (page,buscar,criterio){
                 let me=this;
-                var url=  '/reporte/vencimiento?page=' + page + '&buscar='+ buscar + '&criterio='+ criterio;
+                let url = this.ruta +  '/reporte/vencimiento?page=' + page + '&buscar='+ buscar + '&criterio='+ criterio;
                 axios.get(url).then(function (response) {
                     var respuesta= response.data;
                     console.log(ingresos);
@@ -278,12 +215,22 @@
             },
             getIngresos(){
                 let me=this;
-                var url= '/dashboard';
+                let url = this.ruta + '/dashboard';
                 axios.get(url).then(function (response) {
                     var respuesta= response.data;
                     me.ingresos = respuesta.ingresos;
                     //cargamos los datos del chart
                     me.loadIngresosBar();
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+                var url2= '/dashboardDay';
+                axios.get(url2).then(function (response) {
+                    var respuesta= response.data;
+                    me.ingresosDay = respuesta.ingresosD;
+                    //cargamos los datos del chart
+                    
                     me.loadIngresosLine();
                 })
                 .catch(function (error) {
@@ -292,12 +239,20 @@
             },
             getVentas(){
                 let me=this;
-                var url= '/dashboard';
+                let url = this.ruta + '/dashboard';
                 axios.get(url).then(function (response) {
                     var respuesta= response.data;
                     me.ventas = respuesta.ventas;
                     //cargamos los datos del chart
-                    me.loadVentasBar();
+                     me.loadVentasBar();
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+                var urld= '/dashboardDay';
+                axios.get(urld).then(function (response) {
+                    var respuesta= response.data;
+                    me.ventasDay = respuesta.ventasD;
                     me.loadVentasLine();
                 })
                 .catch(function (error) {
@@ -368,17 +323,21 @@
             },
             loadIngresosLine(){
                 let me=this;
-                me.varIngreso=document.getElementById('ingresosLine').getContext('2d');
+                me.ingresosDay.map(function(x){
+                    me.varDayIngreso.push(x.dia);
+                    me.varTotalDayIngreso.push(x.total);
+                });
+                me.varIngresoDay=document.getElementById('ingresosLine').getContext('2d');
 
-                me.charIngreso = new Chart(me.varIngreso, {
+                me.charIngresoDay = new Chart(me.varIngresoDay, {
                     type: 'line',
                     data: {
-                        labels: me.varMesIngreso,
+                        labels: me.varDayIngreso,
                         datasets: [{
                             label: 'Ingresos',
-                            data: me.varTotalIngreso,
-                            backgroundColor: 'rgba(0, 189, 82, 0.6)',
-                            borderColor: 'rgba(0, 189, 82, 0.6)',
+                            data: me.varTotalDayIngreso,
+                            backgroundColor: 'rgba(220, 19, 82, 0.6)',
+                            borderColor: 'rgba(220, 19, 82, 0.6)',
                             borderWidth: 1
                         }]
                     },
@@ -395,17 +354,21 @@
             },
             loadVentasLine(){
                 let me=this;
-                me.varVenta=document.getElementById('ventasLine').getContext('2d');
+                me.ventasDay.map(function(x){
+                    me.varDayVenta.push(x.dia);
+                    me.varTotalDayVenta.push(x.total);
+                });
+                me.varVentaDay=document.getElementById('ventasLine').getContext('2d');
 
-                me.charVenta = new Chart(me.varVenta, {
+                me.charVentaDay = new Chart(me.varVentaDay, {
                     type: 'line',
                     data: {
-                        labels: me.varMesVenta,
+                        labels: me.varDayVenta,
                         datasets: [{
                             label: 'Ventas',
-                            data: me.varTotalVenta,
-                            backgroundColor: 'rgba(54, 162, 235, 0.6)',
-                            borderColor: 'rgba(54, 162, 235, 0.6)',
+                            data: me.varTotalDayVenta,
+                            backgroundColor: 'rgba(224, 162, 5, 0.6)',
+                            borderColor: 'rgba(224, 162, 5, 0.6)',
                             borderWidth: 1
                         }]
                     },

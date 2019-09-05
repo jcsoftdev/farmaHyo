@@ -156,7 +156,7 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <div class="modal-body">
+                                <div class="modal-body purple lighten-5">
                                     <!-- Cuerpo de mdal -->
                                     <v-container grid-list-xl>
                                             <v-layout wrap>
@@ -265,7 +265,7 @@
             listarProducto(page, buscar, criterio){
                 
                 let me = this;
-                var url = '/producto?page='+page+'&buscar='+buscar+'&criterio='+criterio;
+                let url = this.ruta + '/producto?page='+page+'&buscar='+buscar+'&criterio='+criterio;
                 axios.get(url)
                 .then(function (response) {
                     var respuesta = response.data;
@@ -292,7 +292,8 @@
                 if (me.validarProducto()) {
                     return
                 }else{
-                    axios.post('/producto/registrar', {
+                    let url = this.ruta + '/producto/registrar';
+                    axios.post(url, {
                         nombre: me.nombre,
                         descripcion: me.descripcion
                     })
@@ -316,7 +317,8 @@
                 if (me.validarProducto()) {
                     return
                 }else{
-                    axios.put('/producto/actualizar', {
+                    let url = this.ruta +'/producto/actualizar';
+                    axios.put(url, {
                         id:me.producto_id,
                         nombre: me.nombre,
                         descripcion: me.descripcion

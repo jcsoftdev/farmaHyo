@@ -143,7 +143,7 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <div class="modal-body">
+                            <div class="modal-body purple lighten-5">
                                 <!-- Cuerpo de mdal -->
                                 <v-container grid-list-xl>
                                         <v-layout wrap>
@@ -302,7 +302,7 @@
             listarPersona(page, buscar, criterio){
                 
                 let me = this;
-                var url = '/cliente?page='+page+'&buscar='+buscar+'&criterio='+criterio;
+                let url = this.ruta + '/cliente?page='+page+'&buscar='+buscar+'&criterio='+criterio;
                 axios.get(url)
                 .then(function (response) {
                     var respuesta = response.data;
@@ -326,10 +326,11 @@
             },
             registrarPersona(){
                 let me = this;
-                if (me.validarPersona()) {
+                let url = this.ruta + '/cliente/registrar';
+                if (me.validarPersona(url)) {
                     return
                 }else{
-                    axios.post('/cliente/registrar', {
+                    axios.post(url, {
                         nombre: me.nombre,
                         tipo_documento : me.tipo_documento,
                         num_documento : me.num_documento,
@@ -360,10 +361,11 @@
             actualizarPersona(){
 
                 let me = this;
+                let url = this.ruta + '/cliente/actualizar';
                 if (me.validarPersona()) {
                     return
                 }else{
-                    axios.put('/cliente/actualizar', {
+                    axios.put(url, {
                         id:me.persona_id,
                         nombre: me.nombre,
                         tipo_documento : me.tipo_documento,
@@ -468,10 +470,11 @@
                     cancelButtonColor: '#d33',
                     confirmButtonText: 'Si, '+titulo
                     }).then((result) => {
+                        let url = this.ruta + '/cliente/activar';
                         if (result.value) {
                             switch (accion) {
                                 case 'activar':
-                                    axios.put('/cliente/activar', {
+                                    axios.put(url, {
                                         'id' : id
                                     })
                                     .then(function (response) {

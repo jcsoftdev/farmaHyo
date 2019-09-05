@@ -219,7 +219,7 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <div class="modal-body">
+                                <div class="modal-body purple lighten-5 purple lighten-5">
                                     <!-- Cuerpo de mdal -->
                                     <v-form>
                                         <v-container grid-list-xl>
@@ -429,7 +429,7 @@
             listarMedicamento(page, buscar, criterio){
                 
                 let me = this;
-                var url = '/medicamento?page='+page+'&buscar='+buscar+'&criterio='+criterio;
+                let url = this.ruta + '/medicamento?page='+page+'&buscar='+buscar+'&criterio='+criterio;
                 axios.get(url)
                 .then(function (response) {
                     var respuesta = response.data;
@@ -450,7 +450,7 @@
             listarMedicamentoStock(page, buscar, criterio){
                 
                 let me = this;
-                var url = '/medicamento/indexStock?page='+page+'&buscar='+buscar+'&criterio='+criterio;
+                let url = this.ruta + '/medicamento/indexStock?page='+page+'&buscar='+buscar+'&criterio='+criterio;
                 axios.get(url)
                 .then(function (response) {
                     var respuesta = response.data;
@@ -479,11 +479,12 @@
                 if (me.validarMedicamento()) {
                     return
                 }else{
+                    let url = this.ruta + '/medicamento/registrar';
                     console.log(me.producto.id,
                         me.presentacion.id,
                         me.concentracion.id,
                         me.laboratorio.id,);
-                    axios.post('/medicamento/registrar', {
+                    axios.post(url, {
                         codigo: me.codigo,
                         precio: parseFloat(me.precio_venta),
                         descripcion: me.descripcion,
@@ -512,7 +513,8 @@
                 if (me.validarMedicamento()) {
                     return
                 }else{
-                    axios.put('/medicamento/actualizar', {
+                    let url = this.ruta + '/medicamento/actualizar';
+                    axios.put(url, {
                         id:me.medicamento_id,
                         codigo: me.codigo,
                         precio: parseFloat(me.precio_venta),
@@ -570,7 +572,7 @@
                             case "actualizar":
                                 {
                                     me.modal = 1;
-                                    me.tituloModal =  'Actualziar Medicamento';
+                                    me.tituloModal =  'Actualizar Medicamento';
                                     me.medicamento_id = data.id;
                                     me.nombre = data.nombre;
                                     me.tipoAccion = 2;
@@ -625,7 +627,7 @@
                         if (result.value) {
                             switch (accion) {
                                 case 'activar':
-                                    axios.put('/medicamento/activar', {
+                                    axios.put( this.route+'/medicamento/activar', {
                                         'id' : id
                                     })
                                     .then(function (response) {
@@ -639,7 +641,7 @@
                                     break;
                             
                                 case 'desactivar':
-                                    axios.put('/medicamento/desactivar', {
+                                    axios.put( this.route+'/medicamento/desactivar', {
                                         'id' : id
                                     })
                                     .then(function (response) {
@@ -675,7 +677,7 @@
             selectPresentacion(){
                 let me=this;
                 me.arrayPresentacion = [];
-                var url= '/presentacion/getAll';
+                let url = this.ruta + '/presentacion/getAll';
                 axios.get(url).then(function (response) {
                     var respuesta= response.data;
                     console.log('aqui abajo');
@@ -692,7 +694,7 @@
             selectProducto(){
                 let me=this;
                 me.arrayProducto = [];
-                var url= '/producto/getAll';
+                let url = this.ruta + '/producto/getAll';
                 axios.get(url).then(function (response) {
                     var respuesta= response.data;
                     for (let i = 0; i < respuesta.length; i++) {
@@ -707,7 +709,7 @@
             selectConcentracion(){
                 let me=this;
                 me.arrayConcentracion=[];
-                var url= '/concentracion/getAll';
+                let url = this.ruta + '/concentracion/getAll';
                 axios.get(url).then(function (response) {
                     var respuesta= response.data;
                     for (let i = 0; i < respuesta.length; i++) {
@@ -722,7 +724,7 @@
             selectLaboratorio(){
                 let me=this;
                 me.arrayLaboratorio=[];
-                var url= '/laboratorio/getAll';
+                let url = this.ruta + '/laboratorio/getAll';
                 axios.get(url).then(function (response) {
                     var respuesta= response.data;
                     for (let i = 0; i < respuesta.length; i++) {
@@ -736,7 +738,7 @@
             selectMedic(){
                 let me=this;
                 me.arrayMedic = [];
-                var url= '/producto/getAll';
+                let url = this.ruta + '/producto/getAll';
                 axios.get(url).then(function (response) {
                     var respuesta = response.data;
                     me.arrayMedic=respuesta.medicamentos.data;

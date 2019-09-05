@@ -11,8 +11,11 @@
                 </div>
             </div> -->
             <div class="report text-center ">
-                        <a href="/excelVenta" class="btn black--text bold btn-warning">Descargar Excel</a>
-                    </div>
+                <a href="/excelVenta" class="btn black--text bold btn-warning">Descargar Excel</a>
+                <template>
+                    <button type="primary" @click="exportExcel" class="btn black--text bold btn-warning">export</button>
+                </template>
+            </div>
                     <span style="font-size:2rem">Ventas</span>
                 <template >
                     <v-data-table class="elevation-1 test"
@@ -48,7 +51,10 @@
 </template>
 
 <script>
+import XLSX from 'xlsx'
+
     export default {
+        
         props : ['ruta'],
         data (){
             return {
@@ -57,19 +63,22 @@
                 // arrayventa:[],
                 ventaPrecioTotal: 0,
                 headers: [
-                    { text: 'id', value: 'miIdVenta' },
+                    { text: 'id', value: 'id' },
                     {
                         text: 'Descripcion',
                         align: 'left',
                         sortable: false,
-                        value: 'medicamento',
+                        value: 'descripcion',
                     },
                     { text: 'Comprobante', value: 'num_com' },
                     { text: 'Cantidad', value: 'cantidad' },
                     { text: 'Precio', value: 'precio' },
                     { text: 'Descuento', value: 'descuento' },
                     { text: 'Total', value: 'total' },
-                ]
+                ],
+                header: {
+                    header: ['id', 'descripcion','comprobante','vantidad','precio','descuento','total']
+                }
             }
         },
         watch: {
@@ -104,7 +113,8 @@
            
             listarReporteVentas(){
                 var me = this;
-                axios.get('/reporte/ventas')
+                let url = this.ruta + '/reporte/ventas';
+                axios.get(url)
                 .then(function (response) {
                     // handle success
                     console.log(response);
@@ -120,7 +130,8 @@
             },
             getVentaTotal(){
                 var me = this;
-                axios.get('/reporte/ventas/cantidad')
+                let url = this.ruta + '/reporte/ventas/cantidad';
+                axios.get(url)
                 .then(function (response) {
                     // handle success
                     console.log(response);
@@ -134,11 +145,47 @@
                 .finally(function () {
                     // always executed
                 });
-            }
+            },
+            //   Export excel data
+            handleDownload() {
+            
+                    
+                        //     const tHeader = this.header
+                        //     const data = this.arrayVenta // all list data
+                        
+                        //     this.xportExcel.export_json_to_excel({
+                        //     header: tHeader, //Header Required
+                        //     data, //Specific data Required
+                        //     filename: 'excel-list', //Optional
+                        //     autoWidth: true, //Optional
+                        //     bookType: 'xlsx' //Optional
+                        // })
+                        
+            },
+            exportExcel: function () {
+                let data = XLSX.utils.json_to_sheet(this.arrayVenta, this.header)
+                const workbook = XLSX.utils.book_new()
+                const filename = 'ReporteVentas'
+                XLSX.utils.book_append_sheet(workbook, data, filename)
+                XLSX.writeFile(workbook, `${filename}.xlsx`)
+            },
+            // excel(){
+            //     const tHeader = this.headers
+            //     const data = this.arrayVenta
+            //     XLSX.utils.export_json_to_excel({
+            //         header: tHeader, //Header Required
+            //         data, //Specific data Required
+            //         filename: 'excel-list', //Optional
+            //         autoWidth: true, //Optional
+            //         bookType: 'xlsx' //Optional
+            //     })
+            // }
         },
         mounted() {
             this.listarReporteVentas();
+            this.excel();
             this.getVentaTotal();
+            
         }
     }
 </script>

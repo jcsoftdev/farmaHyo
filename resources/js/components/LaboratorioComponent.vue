@@ -153,7 +153,7 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <div class="modal-body">
+                                <div class="modal-body purple lighten-5">
                                     <!-- Cuerpo de mdal -->
                                     <v-container grid-list-xl>
                                             <v-layout wrap>
@@ -291,7 +291,7 @@
             listarLaboratorio(page, buscar, criterio){
                 
                 let me = this;
-                var url = '/laboratorio?page='+page+'&buscar='+buscar+'&criterio='+criterio;
+                let url = this.ruta + '/laboratorio?page='+page+'&buscar='+buscar+'&criterio='+criterio;
                 axios.get(url)
                 .then(function (response) {
                     var respuesta = response.data;
@@ -315,10 +315,11 @@
             },
             registrarLaboratorio(){
                 let me = this;
+                let url = this.ruta + '/laboratorio/registrar';
                 if (me.validarLaboratorio()) {
                     return
                 }else{
-                    axios.post('/laboratorio/registrar', {
+                    axios.post(url, {
                         nombre: me.nombre,
                         descripcion: me.descripcion
                     })
@@ -339,10 +340,11 @@
             actualizarLaboratorio(){
 
                 let me = this;
+                let url = this.ruta + '/laboratorio/actualizar';
                 if (me.validarLaboratorio()) {
                     return
                 }else{
-                    axios.put('/laboratorio/actualizar', {
+                    axios.put(url, {
                         id:me.laboratorio_id,
                         nombre: me.nombre,
                         descripcion: me.descripcion

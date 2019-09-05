@@ -33,7 +33,7 @@
                             </div>
                         </div>
                         <div class="table-responsive">
-                            <table class="table table-bordered table-striped table-sm">
+                            <table class="table table-bordered  table-sm">
                                 <thead>
                                     <tr>
                                         <th>Opciones</th>
@@ -268,7 +268,7 @@
                         </div>
                         <div class="form-group row border">
                             <div class="table-responsive col-md-12">
-                                <table class="table table-bordered table-striped table-sm">
+                                <table class="table table-bordered  table-sm">
                                     <thead>
                                         <tr>
                                             <th>Opciones</th>
@@ -376,7 +376,7 @@
                         </div>
                         <div class="form-group row border">
                             <div class="table-responsive col-md-12">
-                                <table class="table table-bordered table-striped table-sm">
+                                <table class="table table-bordered  table-sm">
                                     <thead>
                                         <tr>
                                             <th>Artículo</th>
@@ -445,7 +445,7 @@
                               <span aria-hidden="true">×</span>
                             </button>
                         </div>
-                        <div class="modal-body">
+                        <div class="modal-body purple lighten-5">
                             <div class="form-group row">
                                 <div class="col-md-6">
                                     <div class="input-group">
@@ -460,7 +460,7 @@
                                 </div>
                             </div>
                             <div class="table-responsive">
-                                <table class="table table-bordered table-striped table-sm">
+                                <table class="table table-bordered  table-sm">
                                     <thead>
                                         <tr>
                                             <th>Opciones</th>
@@ -527,7 +527,7 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div class="modal-body">
+                        <div class="modal-body purple lighten-5">
                             <!-- Cuerpo de mdal -->
                             <v-container grid-list-xl>
                                     <v-layout wrap>
@@ -725,7 +725,7 @@
         methods : {
             listarVenta (page,buscar,criterio){
                 let me=this;
-                var url=  '/venta?page=' + page + '&buscar='+ buscar + '&criterio='+ criterio;
+                let url = this.ruta +  '/venta?page=' + page + '&buscar='+ buscar + '&criterio='+ criterio;
                 axios.get(url).then(function (response) {
                     var respuesta= response.data;
                     me.arrayVenta = respuesta.ventas.data;
@@ -742,7 +742,7 @@
                 let me=this;
                 // loading(true)
                 me.arrayCliente = [];
-                var url=  '/cliente/selectCliente?';
+                let url = this.ruta +  '/cliente/selectCliente?';
                 axios.get(url).then(function (response) {
                     let respuesta = response.data;
                     // q: search
@@ -760,7 +760,7 @@
             },
             buscarmedicamento(){
                 let me=this;
-                var url=  '/medicamento?criterio=codigo&buscar=' + me.codigo;
+                let url = this.ruta +  '/medicamento?criterio=codigo&buscar=' + me.codigo;
 
                 axios.get(url).then(function (response) {
                     var respuesta= response.data;
@@ -873,7 +873,7 @@
             },
             listarmedicamento (buscar,criterio){
                 let me=this;
-                var url=  '/medicamento?buscar='+ buscar + '&criterio='+ criterio;
+                let url = this.ruta +  '/medicamento?buscar='+ buscar + '&criterio='+ criterio;
                 axios.get(url).then(function (response) {
                     var respuesta= response.data;
                     me.arraymedicamento = respuesta.medicamentos.data;
@@ -888,8 +888,8 @@
                 }
                 
                 let me = this;
-
-                axios.post( '/venta/registrar',{
+                let url = this.ruta + '/venta/registrar'
+                axios.post(url,{
                     'idcliente': this.cliente.id,
                     'tipo_comprobante': this.tipo_comprobante,
                     'serie_comprobante' : this.serie_comprobante,
@@ -969,7 +969,7 @@
                 
                 //Obtener los datos del ingreso
                 var arrayVentaT=[];
-                var url=  '/venta/obtenerCabecera?id=' + id;
+                let url = this.ruta +  '/venta/obtenerCabecera?id=' + id;
                 
                 axios.get(url).then(function (response) {
                     var respuesta= response.data;
@@ -1025,8 +1025,8 @@
                 }).then((result) => {
                 if (result.value) {
                     let me = this;
-
-                    axios.put( '/venta/desactivar',{
+                    let url = this.ruta + '/venta/desactivar';
+                    axios.put(url,{
                         'id': id
                     }).then(function (response) {
                         me.listarVenta(1,'','num_comprobante');
@@ -1098,7 +1098,8 @@
                 if (me.validarPersona()) {
                     return
                 }else{
-                    axios.post('/cliente/registrar', {
+                    let url = this.ruta + '/cliente/registrar';
+                    axios.post(url, {
                         nombre: me.nombre,
                         tipo_documento : me.tipo_documento,
                         num_documento : me.num_documento,

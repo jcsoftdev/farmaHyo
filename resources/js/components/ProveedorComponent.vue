@@ -145,7 +145,7 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <div class="modal-body">
+                                <div class="modal-body purple lighten-5">
                                     <!-- Cuerpo de mdal -->
                                     <v-container grid-list-xl>
                                             <v-layout wrap>
@@ -322,7 +322,7 @@
             listarPersona(page, buscar, criterio){
                 
                 let me = this;
-                var url = '/proveedor?page='+page+'&buscar='+buscar+'&criterio='+criterio;
+                let url = this.ruta + '/proveedor?page='+page+'&buscar='+buscar+'&criterio='+criterio;
                 axios.get(url)
                 .then(function (response) {
                     var respuesta = response.data;
@@ -349,7 +349,8 @@
                 if (me.validarPersona()) {
                     return
                 }else{
-                    axios.post('/proveedor/registrar', {
+                    let url = this.ruta + '/proveedor/registrar';
+                    axios.post(url, {
                         nombre: me.nombre,
                         tipo_documento : me.tipo_documento,
                         num_documento : me.num_documento,
@@ -387,7 +388,8 @@
                 if (me.validarPersona()) {
                     return
                 }else{
-                    axios.put('/proveedor/actualizar', {
+                    let url = this.ruta + '/proveedor/actualizar';
+                    axios.put(url, {
                         id:me.persona_id,
                         nombre: me.nombre,
                         tipo_documento : me.tipo_documento,

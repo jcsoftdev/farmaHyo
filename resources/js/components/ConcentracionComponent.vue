@@ -153,7 +153,7 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <div class="modal-body">
+                                <div class="modal-body purple lighten-5">
                                     <!-- Cuerpo de mdal -->
                                     <v-container grid-list-xl>
                                             <v-layout wrap>
@@ -291,7 +291,7 @@
             listarConcentracion(page, buscar, criterio){
                 
                 let me = this;
-                var url = '/concentracion?page='+page+'&buscar='+buscar+'&criterio='+criterio;
+                let url = this.ruta + '/concentracion?page='+page+'&buscar='+buscar+'&criterio='+criterio;
                 axios.get(url)
                 .then(function (response) {
                     var respuesta = response.data;
@@ -315,10 +315,11 @@
             },
             registrarConcentracion(){
                 let me = this;
+                let url = this.ruta + '/concentracion/registrar';
                 if (me.validarConcentracion()) {
                     return
                 }else{
-                    axios.post('/concentracion/registrar', {
+                    axios.post(url, {
                         nombre: me.nombre,
                         descripcion: me.descripcion
                     })
@@ -339,10 +340,11 @@
             actualizarConcentracion(){
 
                 let me = this;
+                let url = this.ruta + '/concentracion/actualizar'
                 if (me.validarConcentracion()) {
                     return
                 }else{
-                    axios.put('/concentracion/actualizar', {
+                    axios.put(url, {
                         id:me.concentracion_id,
                         nombre: me.nombre,
                         descripcion: me.descripcion
@@ -424,9 +426,10 @@
                     confirmButtonText: 'Si, '+titulo
                     }).then((result) => {
                         if (result.value) {
+                            let url = this.ruta + '/concentracion/activar';
                             switch (accion) {
                                 case 'activar':
-                                    axios.put('/concentracion/activar', {
+                                    axios.put(url, {
                                         'id' : id
                                     })
                                     .then(function (response) {

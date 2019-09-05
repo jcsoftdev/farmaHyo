@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" style="background:#0288D1 !important">
 
 <head>
     <meta charset="utf-8" />
@@ -60,8 +60,8 @@
 <body class="p-0 m-0">
 
     <div id="app">
-    <v-app id="inspire" >
-        <div class="header-bg light-blue darken-4 pb-5 mb-5">
+    <v-app id="inspire"  style="background:#0288D1 !important">
+        <div class="header-bg light-blue darken-2 pb-5 mb-5">
             <!-- Navigation Bar-->
             <header id="topnav">
                 @include('templates.topnav')

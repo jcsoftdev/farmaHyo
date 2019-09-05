@@ -153,7 +153,7 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <div class="modal-body">
+                                <div class="modal-body purple lighten-5">
                                     <!-- Cuerpo de mdal -->
                                     <v-container grid-list-xl>
                                             <v-layout wrap>
@@ -291,7 +291,7 @@
             listarPresentacion(page, buscar, criterio){
                 
                 let me = this;
-                var url = '/presentacion?page='+page+'&buscar='+buscar+'&criterio='+criterio;
+                let url = this.ruta + '/presentacion?page='+page+'&buscar='+buscar+'&criterio='+criterio;
                 axios.get(url)
                 .then(function (response) {
                     var respuesta = response.data;
@@ -318,7 +318,8 @@
                 if (me.validarPresentacion()) {
                     return
                 }else{
-                    axios.post('/presentacion/registrar', {
+                    let url = this.ruta + '/presentacion/registrar';
+                    axios.post(url, {
                         nombre: me.nombre,
                         descripcion: me.descripcion
                     })
@@ -342,7 +343,8 @@
                 if (me.validarPresentacion()) {
                     return
                 }else{
-                    axios.put('/presentacion/actualizar', {
+                    let url = this.ruta + '/presentacion/actualizar';
+                    axios.put(url, {
                         id:me.producto_id,
                         nombre: me.nombre,
                         descripcion: me.descripcion

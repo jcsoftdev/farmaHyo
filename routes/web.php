@@ -125,5 +125,6 @@ Route::group(['middleware'=>['auth']],function(){
 
 
         Route::get('/dashboard','DashboardController');
+        Route::get('/dashboardDay','DashboardController@day');
     });
 });

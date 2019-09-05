@@ -57,12 +57,12 @@
                 arrayIngreso:[],
                 arrayventa:[],
                 headers: [
-                    { text: 'id', value: 'miIdIngreso' },
+                    { text: 'id', value: 'id' },
                     {
                         text: 'Descripcion',
                         align: 'left',
                         sortable: false,
-                        value: 'medicamento',
+                        value: 'descripcion',
                     },
                     { text: 'Lote', value: 'lote' },
                     { text: 'Vencimiento', value: 'fecha_vencimiento' },
@@ -82,7 +82,8 @@
         methods : {
             listarReporteIngresos(){
                 var me = this;
-                axios.get('/reporte/ingresos')
+                let url = this.ruta + '/reporte/ingresos';
+                axios.get(url)
                 .then(function (response) {
                     // handle success
                     console.log(response);

@@ -5988,7 +5988,7 @@ a.close.disabled {
   flex-shrink: 0;
 }
 
-.modal-dialog-scrollable .modal-body {
+.modal-dialog-scrollable .modal-body purple lighten-5 {
   overflow-y: auto;
 }
 
@@ -6069,7 +6069,7 @@ a.close.disabled {
   line-height: 1.6;
 }
 
-.modal-body {
+.modal-body purple lighten-5 {
   position: relative;
   flex: 1 1 auto;
   padding: 1rem;

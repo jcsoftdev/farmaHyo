@@ -1,4 +1,4 @@
-<div class="topbar-main">
+<div class="topbar-main light-blue darken-2">
                 <div class="container-fluid">
 
                     <!-- Logo-->
@@ -6,7 +6,7 @@
                         <a href="/" class="logo">
                             
                             <span class="d-none d-sm-inline logo-light">
-                                    <i class="mdi mdi-camera-control"></i><span class="">Farmacia Hyo</span>
+                                   <img width="250px" src="./icon.png" alt="logo">
                             </span>
                             <span class="d-sm-none d-inline logo-light">
                                     <i class="mdi mdi-camera-control"></i><span class="">FH</span>

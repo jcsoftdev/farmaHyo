@@ -23,13 +23,13 @@ class ReporteController extends Controller
         ->join('concentraciones','concentraciones.id','=','medicamentos.concentracion_id')
         // ->join('ingresos','ingresos.id','=','detalle_ingresos.idingreso')
         ->select(
-            'detalle_ingresos.id as miIdIngreso',
+            'detalle_ingresos.id as id',
             'detalle_ingresos.idingreso as lote',
             'detalle_ingresos.cantidad',
             'detalle_ingresos.precio',
             'detalle_ingresos.fecha_vencimiento',
             DB::raw("cantidad * precio as total"),
-             DB::raw("CONCAT(productos.nombre,' ', concentraciones.nombre ,' ',presentaciones.nombre) as medicamento"),
+             DB::raw("CONCAT(productos.nombre,' ', concentraciones.nombre ,' ',presentaciones.nombre) as descripcion"),
             )
         ->orderBy('detalle_ingresos.id','desc')
         ->get();
@@ -50,12 +50,12 @@ class ReporteController extends Controller
         ->join('concentraciones','concentraciones.id','=','medicamentos.concentracion_id')
         // ->join('ventas','ventas.id','=','detalle_ventas.idingreso')
         ->select(
-            'detalle_ventas.id as miIdVenta',
+            'detalle_ventas.id as id',
             'ventas.num_comprobante as num_com',
             'detalle_ventas.cantidad',
             'detalle_ventas.precio',
             'detalle_ventas.descuento',
-            DB::raw("CONCAT(productos.nombre,' ', concentraciones.nombre ,' ',presentaciones.nombre) as medicamento"),
+            DB::raw("CONCAT(productos.nombre,' ', concentraciones.nombre ,' ',presentaciones.nombre) as descripcion"),
             DB::raw("cantidad * precio as total"),
 
             )
@@ -105,12 +105,12 @@ class ReporteController extends Controller
             'detalle_ingresos.idingreso as lote',
             'detalle_ingresos.cantidad',
             'detalle_ingresos.precio',
-            'detalle_ingresos.fecha_vencimiento',
+            DB::raw("TO_CHAR(fecha_vencimiento,'DD-MON-YYYY') as fecha_vencimiento"),
             DB::raw("cantidad * precio as total"),
              DB::raw("CONCAT(productos.nombre,' ', concentraciones.nombre ,' ',presentaciones.nombre) as medicamento"),
             )
-        ->whereMonth('fecha_vencimiento','<', Carbon::now()->addDays(60))
-        ->orderBy('detalle_ingresos.id','desc')
+        ->whereDate('fecha_vencimiento','<', Carbon::now()->addDays(60))
+        ->orderBy(DB::raw("TO_CHAR(fecha_vencimiento,'DD-MON-YYYY')"),'asc')
         ->paginate(10);
 
         return [
