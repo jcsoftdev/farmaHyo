@@ -11,7 +11,10 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.styles([
+mix.setPublicPath(path.normalize('public'))
+   .options({
+      processCssUrls: true
+   }).styles([
    'resources/assets/css/bootstrap.min.css',
    'resources/assets/css/metismenu.min.css',
    'resources/assets/css/icons.css',

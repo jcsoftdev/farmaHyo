@@ -53,7 +53,7 @@
                                             </button> &nbsp;
                                             <template v-if="ingreso.estado=='Registrado'">
                                                 <button type="button" class="btn btn-danger btn-sm" @click="desactivarIngreso(ingreso.id)">
-                                                    <i class="icon-trash"></i>
+                                                    <i class="fas fa-trash"></i>
                                                 </button>
                                             </template>
                                         </td>
@@ -404,6 +404,7 @@
 <script>
     import vSelect from 'vue-select';
     export default {
+        props: ['ruta'],
         data (){
             return {
                 ingreso_id: 0,
@@ -488,7 +489,7 @@
         methods : {
             listarIngreso (page,buscar,criterio){
                 let me=this;
-                let url = this.ruta + '/ingreso?page=' + page + '&buscar='+ buscar + '&criterio='+ criterio;
+                let url = me.ruta + '/ingreso?page=' + page + '&buscar='+ buscar + '&criterio='+ criterio;
                 axios.get(url).then(function (response) {
                     var respuesta= response.data;
                     me.arrayIngreso = respuesta.ingresos.data;
@@ -502,7 +503,7 @@
                 let me=this;
                 loading(true)
 
-                let url = this.ruta + '/proveedor/selectProveedor?filtro='+search;
+                let url = me.ruta + '/proveedor/selectProveedor?filtro='+search;
                 axios.get(url).then(function (response) {
                     let respuesta = response.data;
                     q: search
@@ -520,7 +521,7 @@
             },
             buscarArticulo(){
                 let me=this;
-                let url = this.ruta + '/articulo/buscarArticulo?filtro=' + me.codigo;
+                let url = me.ruta + '/articulo/buscarArticulo?filtro=' + me.codigo;
 
                 axios.get(url).then(function (response) {
                     var respuesta= response.data;
@@ -611,7 +612,7 @@
             },
             listarArticulo (buscar,criterio){
                 let me=this;
-                let url = this.ruta + '/articulo/listarArticulo?buscar='+ buscar + '&criterio='+ criterio;
+                let url = me.ruta + '/articulo/listarArticulo?buscar='+ buscar + '&criterio='+ criterio;
                 axios.get(url).then(function (response) {
                     var respuesta= response.data;
                     me.arrayArticulo = respuesta.articulos.data;
@@ -694,7 +695,7 @@
                 
                 //Obtener los datos del ingreso
                 var arrayIngresoT=[];
-                let url = this.ruta + '/ingreso/obtenerCabecera?id=' + id;
+                let url = me.ruta + '/ingreso/obtenerCabecera?id=' + id;
                 
                 axios.get(url).then(function (response) {
                     var respuesta= response.data;
@@ -749,7 +750,7 @@
                 if (result.value) {
                     let me = this;
 
-                    axios.put('/ingreso/desactivar',{
+                    axios.put(me.ruta + '/ingreso/desactivar',{
                         'id': id
                     }).then(function (response) {
                         me.listarIngreso(1,'','num_comprobante');

@@ -237,6 +237,7 @@
 
 <script>
     export default {
+        props: ['ruta'],
         data(){
             return {
                 producto_id : 0,
@@ -291,7 +292,7 @@
             listarPresentacion(page, buscar, criterio){
                 
                 let me = this;
-                let url = this.ruta + '/presentacion?page='+page+'&buscar='+buscar+'&criterio='+criterio;
+                let url = me.ruta + '/presentacion?page='+page+'&buscar='+buscar+'&criterio='+criterio;
                 axios.get(url)
                 .then(function (response) {
                     var respuesta = response.data;
@@ -318,7 +319,7 @@
                 if (me.validarPresentacion()) {
                     return
                 }else{
-                    let url = this.ruta + '/presentacion/registrar';
+                    let url = me.ruta + '/presentacion/registrar';
                     axios.post(url, {
                         nombre: me.nombre,
                         descripcion: me.descripcion
@@ -343,7 +344,7 @@
                 if (me.validarPresentacion()) {
                     return
                 }else{
-                    let url = this.ruta + '/presentacion/actualizar';
+                    let url = me.ruta + '/presentacion/actualizar';
                     axios.put(url, {
                         id:me.producto_id,
                         nombre: me.nombre,
@@ -428,7 +429,7 @@
                         if (result.value) {
                             switch (accion) {
                                 case 'activar':
-                                    axios.put('/presentacion/activar', {
+                                    axios.put(me.ruta + '/presentacion/activar', {
                                         'id' : id
                                     })
                                     .then(function (response) {
@@ -442,7 +443,7 @@
                                     break;
                             
                                 case 'desactivar':
-                                    axios.put('/presentacion/desactivar', {
+                                    axios.put(me.ruta + '/presentacion/desactivar', {
                                         'id' : id
                                     })
                                     .then(function (response) {

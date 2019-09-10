@@ -8,7 +8,7 @@
                         <h5 class="font-20 text-center" v-text="'Total: '+compraIngresoTotal"></h5>
                     </div> -->
                     <div class="report text-center ">
-                        <a href="/excelIngreso" class="btn black--text bold btn-warning">Descargar Excel</a>
+                        <a href="/farmaHyo/public/excelIngreso" class="btn black--text bold btn-warning">Descargar Excel</a>
                     </div>
                     <span style="font-size:2rem">Ingresos</span>
                     <template >
@@ -51,7 +51,7 @@
 
 <script>
     export default {
-        props : ['ruta'],
+        props: ['ruta'],
         data (){
             return {
                 arrayIngreso:[],
@@ -82,7 +82,7 @@
         methods : {
             listarReporteIngresos(){
                 var me = this;
-                let url = this.ruta + '/reporte/ingresos';
+                let url = me.ruta + '/reporte/ingresos';
                 axios.get(url)
                 .then(function (response) {
                     // handle success
@@ -98,7 +98,7 @@
             },
             ingresoTotal(){
                 var me = this;
-                axios.get('/reporte/ingresos/cantidad')
+                axios.get(me.ruta + '/reporte/ingresos/cantidad')
                 .then(function (response) {
                     // handle success
                     console.log(response);

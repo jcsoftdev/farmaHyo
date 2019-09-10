@@ -237,6 +237,7 @@
 
 <script>
     export default {
+        props: ['ruta'],
         data(){
             return {
                 concentracion_id : 0,
@@ -291,7 +292,7 @@
             listarConcentracion(page, buscar, criterio){
                 
                 let me = this;
-                let url = this.ruta + '/concentracion?page='+page+'&buscar='+buscar+'&criterio='+criterio;
+                let url = me.ruta + '/concentracion?page='+page+'&buscar='+buscar+'&criterio='+criterio;
                 axios.get(url)
                 .then(function (response) {
                     var respuesta = response.data;
@@ -315,7 +316,7 @@
             },
             registrarConcentracion(){
                 let me = this;
-                let url = this.ruta + '/concentracion/registrar';
+                let url = me.ruta + '/concentracion/registrar';
                 if (me.validarConcentracion()) {
                     return
                 }else{
@@ -340,7 +341,7 @@
             actualizarConcentracion(){
 
                 let me = this;
-                let url = this.ruta + '/concentracion/actualizar'
+                let url = me.ruta + '/concentracion/actualizar'
                 if (me.validarConcentracion()) {
                     return
                 }else{
@@ -426,7 +427,7 @@
                     confirmButtonText: 'Si, '+titulo
                     }).then((result) => {
                         if (result.value) {
-                            let url = this.ruta + '/concentracion/activar';
+                            let url = me.ruta + '/concentracion/activar';
                             switch (accion) {
                                 case 'activar':
                                     axios.put(url, {
@@ -443,7 +444,7 @@
                                     break;
                             
                                 case 'desactivar':
-                                    axios.put('/concentracion/desactivar', {
+                                    axios.put(me.ruta + '/concentracion/desactivar', {
                                         'id' : id
                                     })
                                     .then(function (response) {

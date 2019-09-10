@@ -349,6 +349,7 @@
     // import Vuetify from 'vuetify';
     // Vue.use(Vuetify);
     export default {
+        props: ['ruta'],
         
         data(){
             return {
@@ -429,7 +430,7 @@
             listarMedicamento(page, buscar, criterio){
                 
                 let me = this;
-                let url = this.ruta + '/medicamento?page='+page+'&buscar='+buscar+'&criterio='+criterio;
+                let url = me.ruta + '/medicamento?page='+page+'&buscar='+buscar+'&criterio='+criterio;
                 axios.get(url)
                 .then(function (response) {
                     var respuesta = response.data;
@@ -450,7 +451,7 @@
             listarMedicamentoStock(page, buscar, criterio){
                 
                 let me = this;
-                let url = this.ruta + '/medicamento/indexStock?page='+page+'&buscar='+buscar+'&criterio='+criterio;
+                let url = me.ruta + '/medicamento/indexStock?page='+page+'&buscar='+buscar+'&criterio='+criterio;
                 axios.get(url)
                 .then(function (response) {
                     var respuesta = response.data;
@@ -479,7 +480,7 @@
                 if (me.validarMedicamento()) {
                     return
                 }else{
-                    let url = this.ruta + '/medicamento/registrar';
+                    let url = me.ruta + '/medicamento/registrar';
                     console.log(me.producto.id,
                         me.presentacion.id,
                         me.concentracion.id,
@@ -513,7 +514,7 @@
                 if (me.validarMedicamento()) {
                     return
                 }else{
-                    let url = this.ruta + '/medicamento/actualizar';
+                    let url = me.ruta + '/medicamento/actualizar';
                     axios.put(url, {
                         id:me.medicamento_id,
                         codigo: me.codigo,
@@ -677,7 +678,7 @@
             selectPresentacion(){
                 let me=this;
                 me.arrayPresentacion = [];
-                let url = this.ruta + '/presentacion/getAll';
+                let url = me.ruta + '/presentacion/getAll';
                 axios.get(url).then(function (response) {
                     var respuesta= response.data;
                     console.log('aqui abajo');
@@ -694,7 +695,7 @@
             selectProducto(){
                 let me=this;
                 me.arrayProducto = [];
-                let url = this.ruta + '/producto/getAll';
+                let url = me.ruta + '/producto/getAll';
                 axios.get(url).then(function (response) {
                     var respuesta= response.data;
                     for (let i = 0; i < respuesta.length; i++) {
@@ -709,7 +710,7 @@
             selectConcentracion(){
                 let me=this;
                 me.arrayConcentracion=[];
-                let url = this.ruta + '/concentracion/getAll';
+                let url = me.ruta + '/concentracion/getAll';
                 axios.get(url).then(function (response) {
                     var respuesta= response.data;
                     for (let i = 0; i < respuesta.length; i++) {
@@ -724,7 +725,7 @@
             selectLaboratorio(){
                 let me=this;
                 me.arrayLaboratorio=[];
-                let url = this.ruta + '/laboratorio/getAll';
+                let url = me.ruta + '/laboratorio/getAll';
                 axios.get(url).then(function (response) {
                     var respuesta= response.data;
                     for (let i = 0; i < respuesta.length; i++) {
@@ -738,7 +739,7 @@
             selectMedic(){
                 let me=this;
                 me.arrayMedic = [];
-                let url = this.ruta + '/producto/getAll';
+                let url = me.ruta + '/producto/getAll';
                 axios.get(url).then(function (response) {
                     var respuesta = response.data;
                     me.arrayMedic=respuesta.medicamentos.data;

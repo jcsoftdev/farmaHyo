@@ -11,9 +11,9 @@
                 </div>
             </div> -->
             <div class="report text-center ">
-                <a href="/excelVenta" class="btn black--text bold btn-warning">Descargar Excel</a>
+                <!-- <a href="farmaHyo/public/excelVenta" class="btn black--text bold btn-warning">Descargar Excel</a> -->
                 <template>
-                    <button type="primary" @click="exportExcel" class="btn black--text bold btn-warning">export</button>
+                    <button type="primary" @click="exportExcel" class="btn black--text bold btn-warning">descargar Excel</button>
                 </template>
             </div>
                     <span style="font-size:2rem">Ventas</span>
@@ -54,6 +54,7 @@
 import XLSX from 'xlsx'
 
     export default {
+        props: ['ruta'],
         
         props : ['ruta'],
         data (){
@@ -77,7 +78,7 @@ import XLSX from 'xlsx'
                     { text: 'Total', value: 'total' },
                 ],
                 header: {
-                    header: ['id', 'descripcion','comprobante','vantidad','precio','descuento','total']
+                    header: ['id', 'descripcion','num_com','cantidad','precio','descuento','total']
                 }
             }
         },
@@ -113,7 +114,7 @@ import XLSX from 'xlsx'
            
             listarReporteVentas(){
                 var me = this;
-                let url = this.ruta + '/reporte/ventas';
+                let url = me.ruta + '/reporte/ventas';
                 axios.get(url)
                 .then(function (response) {
                     // handle success
@@ -130,7 +131,7 @@ import XLSX from 'xlsx'
             },
             getVentaTotal(){
                 var me = this;
-                let url = this.ruta + '/reporte/ventas/cantidad';
+                let url = me.ruta + '/reporte/ventas/cantidad';
                 axios.get(url)
                 .then(function (response) {
                     // handle success

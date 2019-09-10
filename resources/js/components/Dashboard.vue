@@ -116,6 +116,7 @@
 </template>
 <script>
     export default {
+        props: ["ruta"],
         data (){
             return {
                 search: '',
@@ -202,7 +203,7 @@
         methods : {
             listarVencimiento (page,buscar,criterio){
                 let me=this;
-                let url = this.ruta +  '/reporte/vencimiento?page=' + page + '&buscar='+ buscar + '&criterio='+ criterio;
+                let url = me.ruta +  '/reporte/vencimiento?page=' + page + '&buscar='+ buscar + '&criterio='+ criterio;
                 axios.get(url).then(function (response) {
                     var respuesta= response.data;
                     console.log(ingresos);
@@ -215,7 +216,8 @@
             },
             getIngresos(){
                 let me=this;
-                let url = this.ruta + '/dashboard';
+                let url = me.ruta + '/dashboard';
+                console.log('Aqui va l aurl ' + url);
                 axios.get(url).then(function (response) {
                     var respuesta= response.data;
                     me.ingresos = respuesta.ingresos;
@@ -225,7 +227,7 @@
                 .catch(function (error) {
                     console.log(error);
                 });
-                var url2= '/dashboardDay';
+                var url2= me.ruta + '/dashboardDay';
                 axios.get(url2).then(function (response) {
                     var respuesta= response.data;
                     me.ingresosDay = respuesta.ingresosD;
@@ -239,7 +241,7 @@
             },
             getVentas(){
                 let me=this;
-                let url = this.ruta + '/dashboard';
+                let url = me.ruta + '/dashboard';
                 axios.get(url).then(function (response) {
                     var respuesta= response.data;
                     me.ventas = respuesta.ventas;
@@ -249,7 +251,7 @@
                 .catch(function (error) {
                     console.log(error);
                 });
-                var urld= '/dashboardDay';
+                var urld= me.ruta + '/dashboardDay';
                 axios.get(urld).then(function (response) {
                     var respuesta= response.data;
                     me.ventasDay = respuesta.ventasD;

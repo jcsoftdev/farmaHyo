@@ -13,7 +13,7 @@
                             <i class="icon-plus"></i>&nbsp;Nuevo
                         </button>
                         <button type="button" @click="cargarPdf()" class="btn btn-info">
-                            <i class="icon-doc"></i>&nbsp;Reporte
+                            <i class="far fa-file-alt"></i>&nbsp;Reporte
                         </button>
                     </div>
                     <!-- Listado-->
@@ -621,6 +621,7 @@
 <script>
     import vSelect from 'vue-select';
     export default {
+        props: ['ruta'],
         props : ['ruta'],
         data (){
             return {
@@ -725,7 +726,7 @@
         methods : {
             listarVenta (page,buscar,criterio){
                 let me=this;
-                let url = this.ruta +  '/venta?page=' + page + '&buscar='+ buscar + '&criterio='+ criterio;
+                let url = me.ruta +  '/venta?page=' + page + '&buscar='+ buscar + '&criterio='+ criterio;
                 axios.get(url).then(function (response) {
                     var respuesta= response.data;
                     me.arrayVenta = respuesta.ventas.data;
@@ -742,7 +743,7 @@
                 let me=this;
                 // loading(true)
                 me.arrayCliente = [];
-                let url = this.ruta +  '/cliente/selectCliente?';
+                let url = me.ruta +  '/cliente/selectCliente?';
                 axios.get(url).then(function (response) {
                     let respuesta = response.data;
                     // q: search
@@ -760,7 +761,7 @@
             },
             buscarmedicamento(){
                 let me=this;
-                let url = this.ruta +  '/medicamento?criterio=codigo&buscar=' + me.codigo;
+                let url = me.ruta +  '/medicamento?criterio=codigo&buscar=' + me.codigo;
 
                 axios.get(url).then(function (response) {
                     var respuesta= response.data;
@@ -782,10 +783,10 @@
                 });
             },
             pdfVenta(id){
-                window.open( '/venta/pdf/'+ id );
+                window.open( '/farmaHyo/public/venta/pdf/'+ id );
             },
             pdfTicket(id){
-                window.open( '/venta/pdfTicket/'+ id );
+                window.open( '/farmaHyo/public/venta/pdfTicket/'+ id );
             },
             cambiarPagina(page,buscar,criterio){
                 let me = this;
@@ -873,7 +874,7 @@
             },
             listarmedicamento (buscar,criterio){
                 let me=this;
-                let url = this.ruta +  '/medicamento?buscar='+ buscar + '&criterio='+ criterio;
+                let url = me.ruta +  '/medicamento?buscar='+ buscar + '&criterio='+ criterio;
                 axios.get(url).then(function (response) {
                     var respuesta= response.data;
                     me.arraymedicamento = respuesta.medicamentos.data;
@@ -888,7 +889,7 @@
                 }
                 
                 let me = this;
-                let url = this.ruta + '/venta/registrar'
+                let url = me.ruta + '/venta/registrar'
                 axios.post(url,{
                     'idcliente': this.cliente.id,
                     'tipo_comprobante': this.tipo_comprobante,
@@ -915,7 +916,7 @@
                     me.codigo='';
                     me.descuento=0;
                     me.arrayDetalle=[];
-                    window.open( '/venta/pdf/'+ response.data.id);
+                    window.open( '/farmaHyo/public/venta/pdf/'+ response.data.id);
 
                 }).catch(function (error) {
                     console.log(error);
@@ -969,7 +970,7 @@
                 
                 //Obtener los datos del ingreso
                 var arrayVentaT=[];
-                let url = this.ruta +  '/venta/obtenerCabecera?id=' + id;
+                let url = me.ruta +  '/venta/obtenerCabecera?id=' + id;
                 
                 axios.get(url).then(function (response) {
                     var respuesta= response.data;
@@ -1025,7 +1026,7 @@
                 }).then((result) => {
                 if (result.value) {
                     let me = this;
-                    let url = this.ruta + '/venta/desactivar';
+                    let url = me.ruta + '/venta/desactivar';
                     axios.put(url,{
                         'id': id
                     }).then(function (response) {
@@ -1098,7 +1099,7 @@
                 if (me.validarPersona()) {
                     return
                 }else{
-                    let url = this.ruta + '/cliente/registrar';
+                    let url = me.ruta + '/cliente/registrar';
                     axios.post(url, {
                         nombre: me.nombre,
                         tipo_documento : me.tipo_documento,

@@ -237,6 +237,7 @@
 
 <script>
     export default {
+        props: ['ruta'],
         data(){
             return {
                 laboratorio_id : 0,
@@ -291,7 +292,7 @@
             listarLaboratorio(page, buscar, criterio){
                 
                 let me = this;
-                let url = this.ruta + '/laboratorio?page='+page+'&buscar='+buscar+'&criterio='+criterio;
+                let url = me.ruta + '/laboratorio?page='+page+'&buscar='+buscar+'&criterio='+criterio;
                 axios.get(url)
                 .then(function (response) {
                     var respuesta = response.data;
@@ -315,7 +316,7 @@
             },
             registrarLaboratorio(){
                 let me = this;
-                let url = this.ruta + '/laboratorio/registrar';
+                let url = me.ruta + '/laboratorio/registrar';
                 if (me.validarLaboratorio()) {
                     return
                 }else{
@@ -340,7 +341,7 @@
             actualizarLaboratorio(){
 
                 let me = this;
-                let url = this.ruta + '/laboratorio/actualizar';
+                let url = me.ruta + '/laboratorio/actualizar';
                 if (me.validarLaboratorio()) {
                     return
                 }else{
@@ -428,7 +429,7 @@
                         if (result.value) {
                             switch (accion) {
                                 case 'activar':
-                                    axios.put('/laboratorio/activar', {
+                                    axios.put(me.ruta + '/laboratorio/activar', {
                                         'id' : id
                                     })
                                     .then(function (response) {
@@ -442,7 +443,7 @@
                                     break;
                             
                                 case 'desactivar':
-                                    axios.put('/laboratorio/desactivar', {
+                                    axios.put(me.ruta + '/laboratorio/desactivar', {
                                         'id' : id
                                     })
                                     .then(function (response) {

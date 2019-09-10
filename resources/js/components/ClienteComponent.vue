@@ -91,6 +91,16 @@
                                                 <td class="btn-block">
                                                     
                                                     <button @click="abrirModal('persona','actualizar',persona)" type="button" class="btn btn-warning waves-effect waves-light"><i class="icon-pencil "></i></button>
+                                                    <!-- <template v-if="persona.condicion">
+                                                        <button type="button" class="btn btn-danger waves-effect waves-light" @click="alertaConfirm('Desactivar','¿Seguro que desea Desactivar?','Desactivado', 'desactivar',persona.id)">
+                                                            <i class="icon-trash-bin"></i>
+                                                        </button>
+                                                    </template>
+                                                    <template v-else>
+                                                        <button type="button" class="btn btn-primary waves-effect waves-light" @click="alertaConfirm('Activar','¿Seguro que desea Activar?','Activado', 'activar',persona.id)">
+                                                            <i class="icon-check"></i>
+                                                        </button>
+                                                    </template> -->
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -241,6 +251,7 @@
 
 <script>
     export default {
+        props: ['ruta'],
         data(){
             return {
                 persona_id : 0,
@@ -302,7 +313,7 @@
             listarPersona(page, buscar, criterio){
                 
                 let me = this;
-                let url = this.ruta + '/cliente?page='+page+'&buscar='+buscar+'&criterio='+criterio;
+                let url = me.ruta + '/cliente?page='+page+'&buscar='+buscar+'&criterio='+criterio;
                 axios.get(url)
                 .then(function (response) {
                     var respuesta = response.data;
@@ -326,7 +337,7 @@
             },
             registrarPersona(){
                 let me = this;
-                let url = this.ruta + '/cliente/registrar';
+                let url = me.ruta + '/cliente/registrar';
                 if (me.validarPersona(url)) {
                     return
                 }else{
@@ -361,7 +372,7 @@
             actualizarPersona(){
 
                 let me = this;
-                let url = this.ruta + '/cliente/actualizar';
+                let url = me.ruta + '/cliente/actualizar';
                 if (me.validarPersona()) {
                     return
                 }else{
@@ -470,7 +481,7 @@
                     cancelButtonColor: '#d33',
                     confirmButtonText: 'Si, '+titulo
                     }).then((result) => {
-                        let url = this.ruta + '/cliente/activar';
+                        let url = me.ruta + '/cliente/activar';
                         if (result.value) {
                             switch (accion) {
                                 case 'activar':
@@ -488,7 +499,7 @@
                                     break;
                             
                                 case 'desactivar':
-                                    axios.put('/cliente/desactivar', {
+                                    axios.put(me.ruta+'/cliente/desactivar', {
                                         'id' : id
                                     })
                                     .then(function (response) {

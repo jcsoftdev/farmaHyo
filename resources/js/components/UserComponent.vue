@@ -289,6 +289,7 @@
 
 <script>
     export default {
+        props: ['ruta'],
         data(){
             return {
                 user_id : 0,
@@ -357,7 +358,7 @@
             listarUser(page, buscar, criterio){
                 
                 let me = this;
-                let url = this.ruta + '/user?page='+page+'&buscar='+buscar+'&criterio='+criterio;
+                let url = me.ruta + '/user?page='+page+'&buscar='+buscar+'&criterio='+criterio;
                 axios.get(url)
                 .then(function (response) {
                     var respuesta = response.data;
@@ -384,7 +385,7 @@
                 if (me.validarUser()) {
                     return
                 }else{
-                    let url = this.ruta + '/user/registrar';
+                    let url = me.ruta + '/user/registrar';
                     axios.post(url, {
                         nombre: me.nombre,
                         tipo_documento: me.tipoDocumento,
@@ -413,7 +414,7 @@
             actualizarUser(){
 
                 let me = this;
-                let url = this.ruta + '/user/actualizar';
+                let url = me.ruta + '/user/actualizar';
                 if (me.validarUser()) {
                     return
                 }else{
@@ -525,7 +526,7 @@
                         if (result.value) {
                             switch (accion) {
                                 case 'activar':
-                                    axios.put('/user/activar', {
+                                    axios.put(me.ruta + '/user/activar', {
                                         'id' : id
                                     })
                                     .then(function (response) {
@@ -539,7 +540,7 @@
                                     break;
                             
                                 case 'desactivar':
-                                    axios.put('/user/desactivar', {
+                                    axios.put(me.ruta + '/user/desactivar', {
                                         'id' : id
                                     })
                                     .then(function (response) {

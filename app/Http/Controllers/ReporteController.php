@@ -21,16 +21,18 @@ class ReporteController extends Controller
         ->join('productos','productos.id','=','medicamentos.producto_id')
         ->join('presentaciones','presentaciones.id','=','medicamentos.presentacion_id')
         ->join('concentraciones','concentraciones.id','=','medicamentos.concentracion_id')
-        // ->join('ingresos','ingresos.id','=','detalle_ingresos.idingreso')
+        ->join('ingresos','ingresos.id','=','detalle_ingresos.idingreso')
         ->select(
             'detalle_ingresos.id as id',
             'detalle_ingresos.idingreso as lote',
             'detalle_ingresos.cantidad',
             'detalle_ingresos.precio',
+            'ingresos.fecha_hora',
             'detalle_ingresos.fecha_vencimiento',
             DB::raw("cantidad * precio as total"),
              DB::raw("CONCAT(productos.nombre,' ', concentraciones.nombre ,' ',presentaciones.nombre) as descripcion"),
             )
+        ->whereMonth('ingresos.fecha_hora',Carbon::now()->isoFormat('M'))
         ->orderBy('detalle_ingresos.id','desc')
         ->get();
         return $ingreso;
@@ -54,11 +56,13 @@ class ReporteController extends Controller
             'ventas.num_comprobante as num_com',
             'detalle_ventas.cantidad',
             'detalle_ventas.precio',
+            'ventas.fecha_hora',
             'detalle_ventas.descuento',
             DB::raw("CONCAT(productos.nombre,' ', concentraciones.nombre ,' ',presentaciones.nombre) as descripcion"),
             DB::raw("cantidad * precio as total"),
 
             )
+        ->whereMonth('ventas.fecha_hora',Carbon::now()->isoFormat('M'))
         ->orderBy('detalle_ventas.id','desc')
         ->get();
         return $venta;

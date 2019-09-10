@@ -13,7 +13,7 @@
                             <i class="icon-plus"></i>&nbsp;Nuevo
                         </button>
                         <button type="button" @click="cargarPdf()" class="btn btn-info">
-                            <i class="icon-doc"></i>&nbsp;Reporte
+                            <i class="far fa-file-alt"></i>&nbsp;Reporte
                         </button>
                     </div>
                     <!-- Listado-->
@@ -56,17 +56,17 @@
                                             </button> &nbsp;
                                             <template v-if="ingreso.tipo_comprobante=='TICKET'">
                                                 <button type="button" @click="pdfTicket(ingreso.id)" class="btn btn-warning btn-sm">
-                                                <i class="icon-doc"></i>
+                                                <i class="far fa-file-alt"></i>
                                                 </button> &nbsp;
                                             </template>
                                             <template v-else>
                                                 <button type="button" @click="pdfIngreso(ingreso.id)" class="btn btn-info btn-sm">
-                                                <i class="icon-doc"></i>
+                                                <i class="far fa-file-alt"></i>
                                                 </button> &nbsp;
                                             </template>                                           
                                             <template v-if="ingreso.estado=='Registrado'">
                                                 <button type="button" class="btn btn-danger btn-sm" @click="desactivarIngreso(ingreso.id)">
-                                                    <i class="icon-trash"></i>
+                                                    <i class="fas fa-trash"></i>
                                                 </button>
                                             </template>
                                         </td>
@@ -520,6 +520,7 @@
      import { format, formatDistance, formatRelative, subDays } from 'date-fns'
 
     export default {
+        props: ['ruta'],
         props : ['ruta'],
         data (){
             return {
@@ -620,7 +621,7 @@
         methods : {
             listarIngreso (page,buscar,criterio){
                 let me=this;
-                let url = this.ruta +  '/ingreso?page=' + page + '&buscar='+ buscar + '&criterio='+ criterio;
+                let url = me.ruta +  '/ingreso?page=' + page + '&buscar='+ buscar + '&criterio='+ criterio;
                 axios.get(url).then(function (response) {
                     var respuesta= response.data;
                     me.arrayIngreso = respuesta.ingresos.data;
@@ -637,7 +638,7 @@
                 let me=this;
                 // loading(true)
                 
-                let url = this.ruta + '/proveedor/selectProveedor';
+                let url = me.ruta + '/proveedor/selectProveedor';
                 axios.get(url).then(function (response) {
                     let respuesta = response.data;
                     // q: search
@@ -655,7 +656,7 @@
             },
             buscarmedicamento(){
                 let me=this;
-                let url = this.ruta +  '/medicamento?criterio=codigo&buscar=' + me.codigo;
+                let url = me.ruta +  '/medicamento?criterio=codigo&buscar=' + me.codigo;
 
                 axios.get(url).then(function (response) {
                     var respuesta= response.data;
@@ -677,10 +678,10 @@
                 });
             },
             pdfIngreso(id){
-                window.open( '/ingreso/pdf/'+ id );
+                window.open( '/farmaHyo/public/ingreso/pdf/'+ id );
             },
             pdfTicket(id){
-                window.open( '/ingreso/pdfTicket/'+ id );
+                window.open( '/farmaHyo/public/ingreso/pdfTicket/'+ id );
             },
             cambiarPagina(page,buscar,criterio){
                 let me = this;
@@ -761,7 +762,7 @@
             },
             listarmedicamento (buscar,criterio){
                 let me=this;
-                let url = this.ruta +  '/medicamento?buscar='+ buscar + '&criterio='+ criterio;
+                let url = me.ruta +  '/medicamento?buscar='+ buscar + '&criterio='+ criterio;
                 axios.get(url).then(function (response) {
                     var respuesta= response.data;
                     me.arraymedicamento = respuesta.medicamentos.data;
@@ -776,7 +777,7 @@
                 }
                 
                 let me = this;
-                let url = this.ruta + '/ingreso/registrar';
+                let url = me.ruta + '/ingreso/registrar';
                 axios.post( url ,{
                     
                     'idproveedor': this.proveedor.id,
@@ -869,7 +870,7 @@
                 
                 //Obtener los datos del ingreso
                 var arrayIngresoT=[];
-                let url = this.ruta +  '/ingreso/obtenerCabecera?id=' + id;
+                let url = me.ruta +  '/ingreso/obtenerCabecera?id=' + id;
                 
                 axios.get(url).then(function (response) {
                     var respuesta= response.data;
@@ -925,7 +926,7 @@
                 }).then((result) => {
                 if (result.value) {
                     let me = this;
-                    let url = this.ruta + '/ingreso/desactivar';
+                    let url = me.ruta + '/ingreso/desactivar';
                     axios.put( url,{
                         'id': id
                     }).then(function (response) {

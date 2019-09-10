@@ -89,9 +89,9 @@
                         <li @click="menu=17" class="blue-pink darken-4">
                            <a href="#"> Venta </a>
                         </li>
-                        <li  class="blue-pink darken-4">
+                        {{-- <li  class="blue-pink darken-4">
                            <a href="http://127.0.0.1:8000/excelIngreso"> Reporte </a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </li>
 
