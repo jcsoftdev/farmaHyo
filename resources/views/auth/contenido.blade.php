@@ -10,7 +10,12 @@
         <link rel="shortcut icon" href="./assets/img/icon.png">
         <link rel="stylesheet" href="./assets/css/plantilla.css">
         <script src="./js/plantillahead.js"></script>
-
+        <style>
+            *{
+                color: black !important;
+            }
+            *::placeholder { color: black !important; }
+        </style>
     </head>
 
     <body>

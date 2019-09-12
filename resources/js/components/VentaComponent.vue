@@ -19,7 +19,7 @@
                     <!-- Listado-->
                     <template v-if="listado==1">
                     <div class="card-body grey lighten-4 black--text">
-                        <div class="form-group row">
+                        <!-- <div class="form-group row">
                             <div class="col-md-6">
                                 <div class="input-group">
                                     <select class="form-control " v-model="criterio">
@@ -31,7 +31,34 @@
                                     <button type="submit" @click="listarVenta(1,buscar,criterio)" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
+                        <div class="form-group row container-fluid">
+                                    <div class="input-group">
+                                        <v-container fluid grid-list-xl>
+                                        <v-layout wrap align-center justify-space-around>
+                                            <v-flex xs12 sm2 >
+                                                <v-select
+                                                v-model="criterio"
+                                                :items="busqueda"
+                                                label="Criterio"
+                                                @keyup="listarVenta(1,buscar,criterio)"
+                                                ></v-select>
+                                            </v-flex>
+                                            <v-flex xs12 sm8>
+                                                <v-text-field
+                                                    @keyup="listarVenta(1,buscar,criterio)"
+                                                    v-model="buscar"
+                                                    label="Buscar"
+                                                    clearable
+                                                ></v-text-field>
+                                            </v-flex>
+                                            <v-flex xs12 sm1 >
+                                                <v-btn @click="listarVenta(1,buscar,criterio)" depressed large color="primary"><i class="fa fa-search ml-1"></i></v-btn>
+                                            </v-flex>
+                                        </v-layout>
+                                        </v-container>
+                                    </div>
+                                </div> 
                         <div class="table-responsive">
                             <table class="table table-bordered  table-sm">
                                 <thead>
@@ -100,6 +127,9 @@
                         </nav>
                     </div>
                     </template>
+
+
+                    
                     <!--Fin Listado-->
                     <!-- Detalle-->
                     <template v-else-if="listado==0">
@@ -166,6 +196,7 @@
                                                     filled
                                                      outlined
                                                     rounded
+                                                    value="0001"
                                                     type="text"
                                                 ></v-text-field>
                                             </v-flex>
@@ -232,8 +263,7 @@
                                     
                                     <v-flex xs12 sm2>
                                         <v-text-field
-                                            v-model="cantidad"
-                                             @click="abrirModal()" color="primary">
+                                            v-model="cantidad" color="primary"
                                             label="Cantidad(*)"
                                             placeholder="cantidad"
                                             filled
@@ -241,7 +271,9 @@
                                             rounded
                                             type="number"
                                             value="0"
+                                            
                                         ></v-text-field>
+                                        
                                     </v-flex>
                                     <v-flex xs12 sm2>
                                         <v-text-field
@@ -255,9 +287,9 @@
                                             value="0"
                                         ></v-text-field>
                                     </v-flex>
-                                    <v-flex>
-                                        <button @click="agregarDetalle()" class="btn btn-success form-control btnagregar"><i class="icon-plus"></i></button>
-                                    </v-flex>
+                                    <!-- <v-flex xs12 sm2>
+                                        
+                                    </v-flex> -->
                                 </v-layout>
                             </v-container>
                             <div class="col-md-2">
@@ -283,7 +315,7 @@
                                         <tr v-for="(detalle,index) in arrayDetalle" :key="detalle.id">
                                             <td>
                                                 <button @click="eliminarDetalle(index)" type="button" class="btn btn-danger btn-sm">
-                                                    <i class="icon-close"></i>
+                                                    <i class="fas fa-times-circle"></i>
                                                 </button>
                                             </td>
                                             <td v-text="detalle.medicamento">
@@ -303,15 +335,15 @@
                                                 {{detalle.precio*detalle.cantidad-detalle.descuento}}
                                             </td>
                                         </tr>
-                                        <tr style="background-color: #011f24;">
+                                        <tr style="background-color: #ddd">
                                             <td colspan="5" align="right"><strong>Total Parcial:</strong></td>
                                             <td>$ {{totalParcial=(total-totalImpuesto).toFixed(2)}}</td>
                                         </tr>
-                                        <tr style="background-color: #011f24;">
+                                        <tr style="background-color: #ddd">
                                             <td colspan="5" align="right"><strong>Total Impuesto:</strong></td>
                                             <td>$ {{totalImpuesto=((total*impuesto)/(1+impuesto)).toFixed(2)}}</td>
                                         </tr>
-                                        <tr style="background-color: #011f24;">
+                                        <tr style="background-color: #ddd">
                                             <td colspan="5" align="right"><strong>Total Neto:</strong></td>
                                             <td>$ {{total=calcularTotal}}</td>
                                         </tr>
@@ -400,15 +432,15 @@
                                                 {{detalle.precio*detalle.cantidad-detalle.descuento}}
                                             </td>
                                         </tr>
-                                        <tr style="background-color: #011f24;">
+                                        <tr style="background-color: #ddd">
                                             <td colspan="4" align="right"><strong>Total Parcial:</strong></td>
                                             <td>$ {{totalParcial=(total-totalImpuesto).toFixed(2)}}</td>
                                         </tr>
-                                        <tr style="background-color: #011f24;">
+                                        <tr style="background-color: #ddd">
                                             <td colspan="4" align="right"><strong>Total Impuesto:</strong></td>
                                             <td>$ {{totalImpuesto=((total*impuesto)).toFixed(2)}}</td>
                                         </tr>
-                                        <tr style="background-color: #011f24;">
+                                        <tr style="background-color: #ddd">
                                             <td colspan="4" align="right"><strong>Total Neto:</strong></td>
                                             <td>$ {{total}}</td>
                                         </tr>
@@ -655,7 +687,9 @@
                     'to' : 0,
                 },
                 offset : 3,
-                criterio : 'num_comprobante',
+                criterio : '',
+
+                busqueda: ['tipo_comprobante','num_comprobante','fecha_hora'],
                 buscar : '',
                 criterioA:'nombre',
                 buscarA: '',
@@ -737,7 +771,7 @@
                 });
             },
             cargarPdf(){
-                window.open( '/venta/listarPdf','_blank');
+                window.open( '/farmaHyo/public/venta/listarPdf','_blank');
             },
             selectCliente(){
                 let me=this;

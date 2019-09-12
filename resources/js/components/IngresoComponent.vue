@@ -159,6 +159,16 @@
                                                     type="text"
                                                 ></v-text-field>
                                             </v-flex>
+                                            <!-- <v-flex xs12 sm4>
+                                                <v-text-field
+                                                    v-model="lote"
+                                                    label="Lote(*)"
+                                                    placeholder="000xx"
+                                                    filled
+                                                    rounded
+                                                    type="text"
+                                                ></v-text-field>
+                                            </v-flex> -->
                                             
                                         </v-layout>
                                     </v-container>
@@ -271,9 +281,10 @@
                                     <thead>
                                         <tr>
                                             <th>Opciones</th>
-                                            <th>Artículo</th>
+                                            <th>Medicamento</th>
                                             <th>Precio</th>
                                             <th>Cantidad</th>
+                                            <th>Lote</th>
                                             <th>Vencimiento</th>
                                             <th>Descuento</th>
                                             <th>Subtotal</th>
@@ -283,7 +294,7 @@
                                         <tr v-for="(detalle,index) in arrayDetalle" :key="detalle.id">
                                             <td>
                                                 <button @click="eliminarDetalle(index)" type="button" class="btn btn-danger btn-sm">
-                                                    <i class="icon-close"></i>
+                                                   <i class="fas fa-times-circle"></i>
                                                 </button>
                                             </td>
                                             <td v-text="detalle.medicamento">
@@ -293,6 +304,9 @@
                                             </td>
                                             <td>
                                                 <input v-model="detalle.cantidad" type="number" class="form-control">
+                                            </td>
+                                            <td>
+                                                <input v-model="detalle.lote" type="text" class="form-control">
                                             </td>
                                             <td>
                                                 <input v-model="detalle.fecha_vencimiento" type="date" class="form-control">
@@ -305,15 +319,15 @@
                                                 {{detalle.precio*detalle.cantidad-detalle.descuento}}
                                             </td>
                                         </tr>
-                                        <tr style="background-color: #002432;">
+                                        <tr style="background-color: #ddd;">
                                             <td colspan="6" align="right"><strong>Total Parcial:</strong></td>
                                             <td>$ {{totalParcial=(total-totalImpuesto).toFixed(2)}}</td>
                                         </tr>
-                                        <tr style="background-color: #002432;">
+                                        <tr style="background-color: #ddd;">
                                             <td colspan="6" align="right"><strong>Total Impuesto:</strong></td>
                                             <td>$ {{totalImpuesto=((total*impuesto)/(1+impuesto)).toFixed(2)}}</td>
                                         </tr>
-                                        <tr style="background-color: #002432;">
+                                        <tr style="background-color: #ddd;">
                                             <td colspan="6" align="right"><strong>Total Neto:</strong></td>
                                             <td>$ {{total=calcularTotal}}</td>
                                         </tr>
@@ -571,6 +585,7 @@
                 stock:0,
                 tipo: ['BOLETA','FACTURA','TICKET'],
                 vencimiento: '',
+                lote: ''
             }
         },
         components: {
@@ -632,7 +647,7 @@
                 });
             },
             cargarPdf(){
-                window.open( '/ingreso/listarPdf','_blank');
+                window.open( '/farmaHyo/public/ingreso/listarPdf','_blank');
             },
             selectProveedor(){
                 let me=this;
@@ -723,7 +738,8 @@
                                 precio: me.precio,
                                 descuento: me.descuento,
                                 stock: me.stock,
-                                fecha_vencimiento: me.date
+                                fecha_vencimiento: me.date,
+                                lote: me.lote
                             });
                             me.codigo="";
                             me.idmedicamento=0;
@@ -731,7 +747,8 @@
                             me.cantidad=0;
                             me.precio=0;
                             me.descuento=0;
-                            me.stock=0
+                            me.stock=0;
+                            me.lote='';
                        }
                     
                 }

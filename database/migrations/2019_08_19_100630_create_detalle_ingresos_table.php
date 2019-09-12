@@ -20,6 +20,7 @@ class CreateDetalleIngresosTable extends Migration
             $table->integer('idmedicamento')->unsigned();
             $table->foreign('idmedicamento')->references('id')->on('medicamentos');
             $table->integer('cantidad');
+            $table->string('lote');
             $table->decimal('precio', 11, 2);
             $table->date('fecha_vencimiento');
         });

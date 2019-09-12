@@ -37,7 +37,7 @@
               data: data,
               resize: true,
               labelColor: '#a5a6ad',
-            backgroundColor: '#222437',
+            backgroundColor: '#e65100',
               colors: colors
           });
       },
@@ -73,7 +73,7 @@
               {y: '2018', a: 75, b: 240, c:120},
               {y: '2019', a: 30, b: 30, c:30}
           ];
-          this.createAreaChart('morris-area-example', 0, 0, $areaData, 'y', ['a', 'b', 'c'], ['Series A', 'Series B', 'Series C'], ['#fcbe2d', '#02c58d', '#005D9A']);
+          this.createAreaChart('morris-area-example', 0, 0, $areaData, 'y', ['a', 'b', 'c'], ['Series A', 'Series B', 'Series C'], ['#fcbe2d', '#02c58d', '#ffccbc']);
 
           //creating donut chart
           var $donutData = [
@@ -81,7 +81,7 @@
               {label: "In-Store Sales", value: 30},
               {label: "Mail-Order Sales", value: 20}
           ];
-          this.createDonutChart('morris-donut-example', $donutData, ['#fcbe2d', '#005D9A', '#02c58d']);
+          this.createDonutChart('morris-donut-example', $donutData, ['#fcbe2d', '#ffccbc', '#02c58d']);
 
                   //create line chart Dark
         var $data1  = [
@@ -93,7 +93,7 @@
           { y: '2014', a: 75,  b: 65 },
           { y: '2015', a: 100, b: 90 }
       ];
-      this.createLineChart1('morris-line-example', $data1, 'y', ['a', 'b'], ['Series A', 'Series B'], ['#005D9A', '#02c58d']);
+      this.createLineChart1('morris-line-example', $data1, 'y', ['a', 'b'], ['Series A', 'Series B'], ['#ffccbc', '#02c58d']);
 
 
 

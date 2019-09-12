@@ -7,7 +7,7 @@
             <div class="table-bordered mt-12 ">
                 <template c>
                     <v-card class="grey lighten-4 red--text">
-                        <v-layout wrap align-center justify-space-around class="pink darken-4 white--text">
+                        <v-layout wrap align-center justify-space-around class="orange darken-3 white--text">
                             <v-flex xs6>
                                 <v-card-title>
                                  Alerta De Vencimiento
@@ -43,7 +43,7 @@
                 <div class="row px-4">
                     <div class="col-md-6 ">
                         <div class="card card-chart grey lighten-4 black--text ">
-                            <div class="card-header pink darken-4 white--text ">
+                            <div class="card-header orange darken-3 white--text ">
                                 <h4>Ingresos - Mes<span ></span></h4>
                             </div>
                             <div class="card-content">
@@ -59,7 +59,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="card card-chart grey lighten-4 black--text">
-                            <div class="card-header pink darken-4 white--text">
+                            <div class="card-header orange darken-3 white--text">
                                 <h4>Ventas - Mes</h4>
                             </div>
                             <div class="card-content">
@@ -77,7 +77,7 @@
                 <div class="row px-4">
                     <div class="col-md-6">
                         <div class="card card-chart grey lighten-4 black--text">
-                            <div class="card-header pink darken-4 white--text">
+                            <div class="card-header orange darken-3 white--text">
                                 <h4>Ingresos Diarios</h4>
                             </div>
                             <div class="card-content">
@@ -93,7 +93,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="card card-chart grey lighten-4 black--text">
-                            <div class="card-header pink darken-4 white--text">
+                            <div class="card-header orange darken-3 white--text">
                                 <h4>Ventas Diarias</h4>
                             </div>
                             <div class="card-content">

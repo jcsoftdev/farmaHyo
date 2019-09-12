@@ -192,7 +192,7 @@ import XLSX from 'xlsx'
 </script>
 <style>
     .theme--dark.v-data-table {
-        background-color: #222437 !important;
+        background-color: #e65100 !important;
         color: #fff;
     }
 </style>

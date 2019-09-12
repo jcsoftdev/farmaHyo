@@ -202,6 +202,7 @@ class IngresoController extends Controller
                 $detalle->cantidad = $det['cantidad'];
                 $detalle->precio = $det['precio'];          
                 $detalle->fecha_vencimiento =  $det['fecha_vencimiento'];          
+                $detalle->lote = $det['lote'];
                 $detalle->save();
             }
             

@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="es" style="background:#0288D1 !important">
+<html lang="es" style="background:#e65100 !important">
 
 <head>
     <meta charset="utf-8" />
@@ -20,6 +20,7 @@
     <style>
         body{
             font-family: 'Oswald', sans-serif !important;
+            font-weight: 600 !important;
         }
         *::-webkit-scrollbar {
             width: .75em;     /* Tamaño del scroll en vertical */
@@ -54,14 +55,23 @@
         background: #bbb;
         cursor: pointer;
         }
+         *::placeholder { color: #000000d !important; }
+         .form-control{
+             font-weight: 600;
+             color: black !important;
+         }
+         .btn{
+             color: #000 !important;
+             font-weight: 600;
+         }
     </style>
 </head>
 
 <body class="p-0 m-0">
 
     <div id="app">
-    <v-app id="inspire"  style="background:#0288D1 !important">
-        <div class="header-bg light-blue darken-2 pb-5 mb-5">
+    <v-app id="inspire"  style="background:#e65100 !important">
+        <div class="header-bg deep-orange lighten-4 pb-5 mb-5">
             <!-- Navigation Bar-->
             <header id="topnav">
                 @include('templates.topnav')

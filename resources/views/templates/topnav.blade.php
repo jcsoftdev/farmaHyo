@@ -1,4 +1,4 @@
-<div class="topbar-main light-blue darken-2">
+<div class="topbar-main deep-orange lighten-4">
                 <div class="container-fluid">
 
                     <!-- Logo-->
@@ -38,7 +38,7 @@
                             </li>
 
                             <!-- notification -->
-                            <li class="dropdown notification-list list-inline-item">
+                            {{-- <li class="dropdown notification-list list-inline-item">
                                 <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                                     <i class="mdi mdi-bell-outline noti-icon"></i>
                                     <span class="badge badge-pill badge-danger noti-icon-badge">3</span>
@@ -85,7 +85,7 @@
                                             View all <i class="fi-arrow-right"></i>
                                         </a>
                                 </div>
-                            </li>
+                            </li> --}}
 
                             <li class="dropdown notification-list list-inline-item">
                                 <div class="dropdown notification-list nav-pro-img">
@@ -112,7 +112,7 @@
                                 </div>
                             </li>
 
-                            <li class="menu-item dropdown notification-list list-inline-item">
+                            {{-- <li class="menu-item dropdown notification-list list-inline-item">
                                 <!-- Mobile menu toggle-->
                                 <a class="navbar-toggle nav-link">
                                     <div class="lines">
@@ -122,7 +122,7 @@
                                     </div>
                                 </a>
                                 <!-- End mobile menu toggle-->
-                            </li>
+                            </li> --}}
 
                         </ul>
 

@@ -24,7 +24,7 @@ class ReporteController extends Controller
         ->join('ingresos','ingresos.id','=','detalle_ingresos.idingreso')
         ->select(
             'detalle_ingresos.id as id',
-            'detalle_ingresos.idingreso as lote',
+            'detalle_ingresos.lote as lote',
             'detalle_ingresos.cantidad',
             'detalle_ingresos.precio',
             'ingresos.fecha_hora',
@@ -106,7 +106,7 @@ class ReporteController extends Controller
         // ->join('ingresos','ingresos.id','=','detalle_ingresos.idingreso')
         ->select(
             'detalle_ingresos.id as miIdIngreso',
-            'detalle_ingresos.idingreso as lote',
+            'detalle_ingresos.lote as lote',
             'detalle_ingresos.cantidad',
             'detalle_ingresos.precio',
             DB::raw("TO_CHAR(fecha_vencimiento,'DD-MON-YYYY') as fecha_vencimiento"),
