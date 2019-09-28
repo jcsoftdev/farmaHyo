@@ -12,35 +12,114 @@ class LaboratorioSeeder extends Seeder
      */
     public function run()
     {
-        Laboratorio::create([
-            'nombre'	=>  "FARMINDUSTRIA",
-            'descripcion' => strtoupper('descripcion de Laboratorio '),
-            'condicion' => 1
+        $lab = [
+            '3M',
+            'A Y B MEDIC',
+            'ALESSI',
+            'ALKOFARMA',
+            'ALKOFHAR',
+            'AMERICA',
+            'ARO',
+            'AVAL',
+            'BESI',
+            'BPM',
+            'BRAUN',
+            'BUFALO',
+            'CIRUJIA PERUANA',
+            'CKF',
+            'COLGATE',
+            'COMIWA',
+            'CONTINENTAL',
+            'COPPON',
+            'D Y R',
+            'DAGO',
+            'DENSPLY',
+            'DENTAURUM',
+            'DENTITO',
+            'DENTO',
+            'DENTORIUM',
+            'DENTS',
+            'DIAMOND',
+            'DIMEDA GERMANY',
+            'ENDOMEDIC',
+            'EUFAR',
+            'FIRTS CLASS',
+            'GALENO',
+            'GAMED',
+            'GERMANY',
+            'GUILLETTE',
+            'HANDLE 59',
+            'HI-MED',
+            'IMPORTADO',
+            'INDIRAL',
+            'INDUSTRIA ARGENTINA',
+            'INTRAVEN',
+            'IVOCLAR',
+            'JPS',
+            'JUMILSAN',
+            'KD-JECT',
+            'KIT',
+            'LABON',
+            'LOYLA',
+            'LUSA',
+            'MAQUIRA',
+            'MEDESY',
+            'MEDIANCE',
+            'MEDICAL',
+            'MENZHER',
+            'MICRODONT',
+            'MORELLI',
+            'NACIONAL',
+            'NALLONDI',
+            'NIPRO',
+            'NORDENT',
+            'OLYMPIC',
+            'OLYMPIC PLUS',
+            'ONE-JECT',
+            'ORION',
+            'PHAKM',
+            'PLENITUD',
+            'PORTUGAL',
+            'PORUCRYL',
+            'PROMED',
+            'Q-MEDIC',
+            'QUIROFANO',
+            'REESMILE',
+            'REGURIMAXX',
+            'RIMER-DENT',
+            'RYNCO',
+            'SAONA',
+            'SEGURIMAX',
+            'SEPLYSI',
+            'SHERFARMA',
+            'SHICK',
+            'SIGMA',
+            'STAR ROLLS',
+            'STERIMAXX',
+            'SUCTION CLEAN',
+            'SWE DENT',
+            'TAGUM',
+            'TDM',
+            'TOPWAX',
+            'UNILENE',
+            'UNILEVER',
+            'UNIVERSAL',
+            'URITEL',
+            'VITACRYL',
+            'VITAFOIL',
+            'VITALIS'
+
+        ];
+        foreach ($lab as $key => $value) {
+            # code...
+        }
+        for ($i=0; $i <  count($lab); $i++) { 
+            Laboratorio::create([
+           'nombre'	=>  $lab[$i],
+           'descripcion' => strtoupper('descripcion de Laboratorio'),
+           'condicion' => 1
         ]);
-        Laboratorio::create([
-            'nombre'	=>  "TEVA",
-            'descripcion' => strtoupper('descripcion de Laboratorio '),
-            'condicion' => 1
-        ]);
-        Laboratorio::create([
-            'nombre'	=>  "INDUQUIMICA",
-            'descripcion' => strtoupper('descripcion de Laboratorio '),
-            'condicion' => 1
-        ]);
-        Laboratorio::create([
-            'nombre'  =>  "NOVARTIS",
-            'descripcion' => strtoupper('descripcion de Laboratorio '),
-            'condicion' => 1
-        ]);
-        Laboratorio::create([
-            'nombre'	=>  "BAGO",
-            'descripcion' => strtoupper('descripcion de Laboratorio '),
-            'condicion' => 1
-        ]);
-        Laboratorio::create([
-            'nombre'	=>  "ROCHE",
-            'descripcion' => strtoupper('descripcion de Laboratorio '),
-            'condicion' => 1
-        ]);
+        }
+        
     }
 }

@@ -12,35 +12,73 @@ class PresentacionSeeder extends Seeder
      */
     public function run()
     {
-        Presentacion::create([
-            'nombre'	=>  strtoupper("Tableta"),
+        $presentacion = [
+            'BLISTER',
+            'AMPOLLA',
+            'BARRA',
+            'BOLSA',
+            'BOLSA  X 50 UN',
+            'BOTELLA',
+            'CAJA',
+            'CAJA',
+            'CAPSULAS',
+            'CARTUCHO',
+            'CASSETTE',
+            'CJA',
+            'CJA  X 100',
+            'CJA  X 150',
+            'CJA  X 200GRS',
+            'CJA  X25',
+            'CJA X 8 UND',
+            'CJA X100',
+            'CREMA',
+            'EMPAQUE',
+            'FRASCO',
+            'FRASCO X 12',
+            'GALON',
+            'GEL',
+            'GOTAS',
+            'GOTAS  OFTALMICAS',
+            'GRAGEAS',
+            'GRASCO',
+            'JARABE',
+            'JERINGA',
+            'KIT',
+            'LAMINA',
+            'LIBRA',
+            'METRO',
+            'PAQUETE',
+            'PARES',
+            'PLACAS',
+            'POMADA',
+            'PORCION',
+            'POTE',
+            'ROLLO',
+            'SACHET',
+            'SOBRE',
+            'SOLUCION',
+            'SPRAY',
+            'SUSPENSIÓN',
+            'TABLETA',
+            'TABLETA COMPRIMIDO',
+            'TABLETAS',
+            'TAPOR',
+            'TIRA',
+            'TUBO',
+            'TUBOS',
+            'UND',
+            'UND',
+            'UND  X 100',
+            'UND X 100',
+            'UNGÜENTO '
+        ];
+        for ($i=0; $i < count($presentacion); $i++) { 
+            Presentacion::create([
+            'nombre'	=>  $presentacion[$i],
             'descripcion' => strtoupper('descripcion de Presentacion '),
             'condicion' => 1
         ]);
-        Presentacion::create([
-            'nombre'	=>  strtoupper("Inyectable"),
-            'descripcion' => strtoupper('descripcion de Presentacion '),
-            'condicion' => 1
-        ]);
-        Presentacion::create([
-            'nombre'	=>  strtoupper("Capsula Blanda"),
-            'descripcion' => strtoupper('descripcion de Presentacion '),
-            'condicion' => 1
-        ]);
-        Presentacion::create([
-            'nombre'  =>  strtoupper("Suspension Oral"),
-            'descripcion' => strtoupper('descripcion de Presentacion '),
-            'condicion' => 1
-        ]);
-        Presentacion::create([
-            'nombre'	=>  strtoupper("Comprimido Masticable"),
-            'descripcion' => strtoupper('descripcion de Presentacion '),
-            'condicion' => 1
-        ]);
-        Presentacion::create([
-            'nombre'	=>  strtoupper("Solución Oftálmica"),
-            'descripcion' => strtoupper('descripcion de Presentacion '),
-            'condicion' => 1
-        ]);
+        }
+        
     }
 }
