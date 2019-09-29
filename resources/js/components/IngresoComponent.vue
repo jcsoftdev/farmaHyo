@@ -176,7 +176,7 @@
                         </div>
                         <div class="form-group row border">
                             
-                            <v-container fluid grid-list-xl>
+                            <!--v-container fluid grid-list-xl>
                                 <v-layout wrap align-center justify-space-around>
                                     <v-flex xs12 sm12>
                                         <v-row align="center">
@@ -194,8 +194,8 @@
                                                 ></v-text-field>
                                                 
                                             </v-flex>
-                                            <v-flex xs12 sm3>
-                                                <v-btn @click="abrirModal()" color="primary">...</v-btn>
+                                            <v-flex xs12 sm6>
+                                                <v-btn @click="abrirModal()" color="primary">Buscar...</v-btn>
                                             </v-flex>
                                         </v-row>
                                         
@@ -259,7 +259,7 @@
                                         </v-row>
                                     </v-flex>
                                 </v-layout>
-                            </v-container>
+                            </v-container-->
                             <div class="col-md-12">
                                 <div v-show="errorIngreso" class="form-group row div-error">
                                     <div class="text-center text-error">
@@ -269,11 +269,101 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-2">
+                            <!--div class="col-md-2">
                                 <div class="form-group">
                                     <button @click="agregarDetalle()" class="btn btn-success form-control btnagregar"><i class="icon-plus"></i></button>
                                 </div>
+                            </div-->
+                            <div class="ingreso">
+                                <div class="">
+                                    <h4 class="modal-title" v-text="tituloModal"></h4>
+                                    <!--button type="button" class="close" @click="cerrarModal()" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                    </button-->
+                                </div>
+                                <div class="modal-body purple lighten-5">
+                                    <div class="form-group row container-fluid">
+                                        <div class="input-group">
+                                            
+                                            <v-container fluid grid-list-xl>
+                                            <v-layout wrap align-center justify-space-around>
+                                                <v-flex xs12 sm2 >
+                                                    <v-select
+                                                    v-model="criterioA"
+                                                    :items="busqueda"
+                                                    label="Criterio"
+                                                    @keyup="listarmedicamento(buscarA,criterioA)"
+                                                    ></v-select>
+                                                </v-flex>
+                                                <v-flex xs12 sm8>
+                                                    <v-text-field
+                                                        @keyup="listarmedicamento(buscarA,criterioA)"
+                                                        v-model="buscarA"
+                                                        label="Buscar"
+                                                        clearable
+                                                    ></v-text-field>
+                                                </v-flex>
+                                                <v-flex xs12 sm1 >
+                                                    <v-btn @click="listarmedicamento(buscarA,criterioA)" depressed large color="primary"><i class="fa fa-search ml-1"></i></v-btn>
+                                                </v-flex>
+                                            </v-layout>
+                                        </v-container>
+                                    
+                                    </div>
+                                </div>
+                            <!--div class="form-group row">
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                        <select class="form-control " v-model="criterioA">
+                                        <option value="nombre">Nombre</option>
+                                        <option value="descripcion">Descripción</option>
+                                        <option value="codigo">Código</option>
+                                        </select>
+                                        <input type="text" v-model="buscarA" @keyup.enter="listarmedicamento(buscarA,criterioA)" class="form-control" placeholder="Texto a buscar">
+                                        <button type="submit" @click="listarmedicamento(buscarA,criterioA)" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
+                                    </div>
+                                </div>
+                            </div-->
+                                <div class="table-responsive">
+                                    <table class="table table-bordered  table-sm">
+                                        <thead>
+                                            <tr>
+                                                <th>Opciones</th>
+                                                <th>Código</th>
+                                                <th>Nombre</th>
+                                                <th>Categoría</th>
+                                                <th>Precio Ingreso</th>
+                                                <th>Stock</th>
+                                                <th>Estado</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr v-for="med in arraymedicamento" :key="med.id">
+                                                <td>
+                                                    <button type="button" @click="agregarDetalleModal(med)" class="btn btn-success btn-sm">
+                                                    <i class="icon-check"></i>
+                                                    </button>
+                                                </td>
+                                                <td v-text="med.codigo"></td>
+                                                <td v-text="med.nombre + ' '+ med.concentracion + ' '+med.presentacion"></td>
+                                                <td v-text="med.nombre_categoria"></td>
+                                                <td v-text="med.precio_ingreso"></td>
+                                                <td v-text="med.stock"></td>
+                                                <td>
+                                                    <div v-if="med.condicion">
+                                                        <span class="badge badge-success">Activo</span>
+                                                    </div>
+                                                    <div v-else>
+                                                        <span class="badge badge-danger">Desactivado</span>
+                                                    </div>
+                                                    
+                                                </td>
+                                            </tr>                                
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
+                        </div>
                         </div>
                         <div class="form-group row border">
                             <div class="table-responsive col-md-12">
@@ -300,23 +390,23 @@
                                             <td v-text="detalle.medicamento">
                                             </td>
                                             <td>
-                                                <input v-model="detalle.precio" type="number" class="form-control">
+                                                <input v-model="detalle.precio" type="number" style="width: 4.5rem;"  class="form-control">
                                             </td>
                                             <td>
-                                                <input v-model="detalle.cantidad" type="number" class="form-control">
+                                                <input v-model="detalle.cantidad" type="number" style="width: 4.5rem;" class="form-control">
                                             </td>
                                             <td >
-                                                <input v-model="detalle.lote" type="text" style="width: 3rem;" class="form-control">
+                                                <input v-model="detalle.lote" type="text" style="width: 9rem;" class="form-control">
                                             </td>
                                             <td>
                                                 <input v-model="detalle.fecha_vencimiento" type="date" class="form-control">
                                             </td>
                                             <td>
                                                 <span style="color:red;" v-show="detalle.descuento>(detalle.precio*detalle.cantidad)">Descuento superior</span>
-                                                <input v-model="detalle.descuento" type="number" class="form-control">
+                                                <input v-model="detalle.descuento" type="number" style="width: 8rem;" class="form-control">
                                             </td>
                                             <td>
-                                                {{detalle.precio*detalle.cantidad-detalle.descuento}}
+                                                {{(detalle.precio*detalle.cantidad-detalle.descuento).toFixed(2)}}
                                             </td>
                                         </tr>
                                         <tr style="background-color: #ddd;">
@@ -329,7 +419,7 @@
                                         </tr>
                                         <tr style="background-color: #ddd;">
                                             <td colspan="6" align="right"><strong>Total Neto:</strong></td>
-                                            <td>$ {{total=calcularTotal}}</td>
+                                            <td>$ {{total=calcularTotal.toFixed(2)}}</td>
                                         </tr>
                                     </tbody>
                                     <tbody v-else>
@@ -412,8 +502,8 @@
                                             </td>
                                             <td v-text="detalle.descuento">
                                             </td>
-                                            <td>
-                                                {{detalle.precio*detalle.cantidad-detalle.descuento}}
+                                            <td v-text="total">
+                                                {{total=calcularTotal.toFixed(2)}}
                                             </td>
                                         </tr>
                                         <tr style="background-color: #CEECF5;">
@@ -426,7 +516,7 @@
                                         </tr>
                                         <tr style="background-color: #CEECF5;">
                                             <td colspan="4" align="right"><strong>Total Neto:</strong></td>
-                                            <td>$ {{total}}</td>
+                                            <td >{{total=calcularTotal.toFixed(2)}}</td>
                                         </tr>
                                     </tbody>
                                     <tbody v-else>
@@ -454,7 +544,7 @@
             <!--Inicio del modal agregar/actualizar-->
             <div class="modal fade" tabindex="-1" :class="{'mostrar' : modal}" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
                 <div class="modal-dialog modal-primary modal-lg" role="document">
-                    <div class="modal-content">
+                    <div class="">
                         <div class="modal-header">
                             <h4 class="modal-title" v-text="tituloModal"></h4>
                             <button type="button" class="close" @click="cerrarModal()" aria-label="Close">
@@ -585,7 +675,9 @@
                 stock:0,
                 tipo: ['BOLETA','FACTURA','TICKET'],
                 vencimiento: '',
-                lote: ''
+                lote: '',
+                busqueda: ['codigo','nombre'
+                ],
             }
         },
         components: {
@@ -974,9 +1066,9 @@
     }
 </script>
 <style>    
-    .modal-content{
+    .ingreso{
         width: 100% !important;
-        position: absolute !important;
+        /*position: relative !important;*/
     }
     .mostrar{
         display: list-item !important;

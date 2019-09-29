@@ -42,19 +42,19 @@
                                                 v-model="criterio"
                                                 :items="busqueda"
                                                 label="Criterio"
-                                                @keyup="listarMedicamento(1,buscar,criterio)"
+                                                @keyup="listarMedicamento(1,buscar,criterio);listarMedicamentoStock(1,buscar,criterio)"
                                                 ></v-select>
                                             </v-flex>
                                             <v-flex xs12 sm8>
                                                 <v-text-field
-                                                    @keyup="listarMedicamento(1,buscar,criterio)"
+                                                    @keyup="listarMedicamento(1,buscar,criterio);listarMedicamentoStock(1,buscar,criterio)"
                                                     v-model="buscar"
                                                     label="Buscar"
                                                     clearable
                                                 ></v-text-field>
                                             </v-flex>
                                             <v-flex xs12 sm1 >
-                                                <v-btn @click="listarMedicamento(1,buscar,criterio)" depressed large color="primary"><i class="fa fa-search ml-1"></i></v-btn>
+                                                <v-btn @click="listarMedicamento(1,buscar,criterio);listarMedicamentoStock(1,buscar,criterio)" depressed large color="primary"><i class="fa fa-search ml-1"></i></v-btn>
                                             </v-flex>
                                         </v-layout>
                                         </v-container>
@@ -141,7 +141,7 @@
                                             </div>
                                         </div>
                                     <div class="col-12">
-                                        <div class="form-group row container-fluid">
+                                        <!--div class="form-group row container-fluid">
                                             <div class="input-group">
                                                 
                                                 <v-container fluid grid-list-xl>
@@ -151,25 +151,25 @@
                                                         v-model="criterio"
                                                         :items="busqueda"
                                                         label="Criterio"
-                                                        @keyup="listarMedicamentoStock(1,buscarStock,criterio)"
+                                                        @keyup="listarMedicamentoStock(1,buscar,criterio)"
                                                         ></v-select>
                                                     </v-flex>
                                                     <v-flex xs12 sm8>
                                                         <v-text-field
-                                                            @keyup="listarMedicamentoStock(1,buscarStock,criterio)"
-                                                            v-model="buscarStock"
+                                                            @keyup="listarMedicamentoStock(1,buscar,criterio)"
+                                                            v-model="buscar"
                                                             label="Buscar"
                                                             clearable
                                                         ></v-text-field>
                                                     </v-flex>
                                                     <v-flex xs12 sm1 >
-                                                        <v-btn @click="listarMedicamentoStock(1,buscarStock,criterio)" depressed large color="primary"><i class="fa fa-search ml-1"></i></v-btn>
+                                                        <v-btn @click="listarMedicamentoStock(1,buscar,criterio)" depressed large color="primary"><i class="fa fa-search ml-1"></i></v-btn>
                                                     </v-flex>
                                                 </v-layout>
                                                 </v-container>
                                                 
                                             </div>
-                                        </div>
+                                        </div-->
                                         <div class="table-responsive-md table-responsive">
                                                 <table id="datatable" class="table table-bordered  " >
                                                 <thead>
@@ -188,7 +188,7 @@
                                                 <tbody>
                                                 
                                                     <tr class="table-dar" v-for="medicamento in arrayMedicamentoStock" :key="medicamento.miID">
-                                                        <td v-text="medicamento.id"></td>
+                                                        <td v-text="medicamento.lote"></td>
                                                         <td v-text="medicamento.codigo"></td>
                                                         <td v-text="medicamento.nombre + ' ' + medicamento.presentacion"></td>
                                                         <td v-text="medicamento.cantidad"></td>

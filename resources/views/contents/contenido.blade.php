@@ -37,7 +37,7 @@
         
     </template>
     <template v-if="menu==10">
-        <ingreso-component :ruta="ruta"></ingreso-component>
+        <ingresos-component :ruta="ruta"></ingresos-component>
     </template>
     <template v-if="menu==11">
          <proveedor-component :ruta="ruta"></proveedor-component>
