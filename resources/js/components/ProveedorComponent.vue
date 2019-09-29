@@ -141,7 +141,7 @@
                                         <v-icon left >mdi-arrow-right-thick</v-icon>
                                         <span v-text="tituloModal"></span>
                                     </v-chip>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="cerrarModal">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
@@ -164,6 +164,7 @@
                                                             <v-text-field 
                                                                 v-model="num_documento"
                                                                 label="Número de documento"
+                                                                type="number"
                                                                 filled
                                                                 rounded
                                                             ></v-text-field>
@@ -546,6 +547,10 @@
                 this.errorPersona = 0;
                 this.errorMostrarMsjPersona = [];
                 if(!this.nombre) this.errorMostrarMsjPersona.push("El nombre del proveedor no puede estar vacio");
+                if(this.tipo_documento == "") this.errorMostrarMsjPersona.push("Seleccione Documento");
+
+                if(this.tipo_documento == "DNI" && this.num_documento.length != 8) this.errorMostrarMsjPersona.push("El DNI debe tener 8 digitos");
+                if(this.tipo_documento == "RUC" && this.num_documento.length != 11) this.errorMostrarMsjPersona.push("El RUC debe tener 11 digitos");
                 if(this.errorMostrarMsjPersona.length) this.errorPersona = 1;
                 return this.errorPersona;
             }
@@ -574,7 +579,7 @@
         display: list-item !important;
         padding-top: 5rem;
         /* height: 100vh !important; */
-overflow: hidden;
+overflow-y: scroll !important;
         opacity: 1 !important;
         position: absolute !important;
         background-color: rgba(0, 0, 0, 0.671) !important;

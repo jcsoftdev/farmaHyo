@@ -688,7 +688,7 @@
         display: list-item !important;
         padding-top: 5rem;
         /* height: 100vh !important; */
-overflow: hidden;
+overflow-y: scroll !important;
         opacity: 1 !important;
         position: absolute !important;
         background-color: rgba(0, 0, 0, 0.671) !important;
