@@ -134,7 +134,6 @@ class MedicamentoController extends Controller
             ->join('presentaciones','presentaciones.id','=','medicamentos.presentacion_id')
             ->join('concentraciones','concentraciones.id','=','medicamentos.concentracion_id')
             ->join('laboratorios','laboratorios.id','=','medicamentos.laboratorio_id')
-            ->join('laboratorios','laboratorios.id','=','medicamentos.laboratorio_id')
             ->join('detalle_ingresos','medicamentos.id','=','detalle_ingresos.idmedicamento')
             ->select(
                 'detalle_ingresos.id as miID',
@@ -153,6 +152,7 @@ class MedicamentoController extends Controller
                 'medicamentos.laboratorio_id',
                 'detalle_ingresos.fecha_vencimiento',
                 'detalle_ingresos.precio',
+                'detalle_ingresos.cantidad',
                 'laboratorios.nombre as laboratorio'
                 )
             ->where($criterio, 'like', '%'.$buscar.'%')->orderBy('medicamentos.id','desc')->paginate(10);

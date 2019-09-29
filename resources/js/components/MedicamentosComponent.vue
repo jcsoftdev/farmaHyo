@@ -140,7 +140,36 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                    <!--div class="col-12">
+                                    <div class="col-12">
+                                        <div class="form-group row container-fluid">
+                                            <div class="input-group">
+                                                
+                                                <v-container fluid grid-list-xl>
+                                                <v-layout wrap align-center justify-space-around>
+                                                    <v-flex xs12 sm2 >
+                                                        <v-select
+                                                        v-model="criterio"
+                                                        :items="busqueda"
+                                                        label="Criterio"
+                                                        @keyup="listarMedicamentoStock(1,buscarStock,criterio)"
+                                                        ></v-select>
+                                                    </v-flex>
+                                                    <v-flex xs12 sm8>
+                                                        <v-text-field
+                                                            @keyup="listarMedicamentoStock(1,buscarStock,criterio)"
+                                                            v-model="buscarStock"
+                                                            label="Buscar"
+                                                            clearable
+                                                        ></v-text-field>
+                                                    </v-flex>
+                                                    <v-flex xs12 sm1 >
+                                                        <v-btn @click="listarMedicamentoStock(1,buscarStock,criterio)" depressed large color="primary"><i class="fa fa-search ml-1"></i></v-btn>
+                                                    </v-flex>
+                                                </v-layout>
+                                                </v-container>
+                                                
+                                            </div>
+                                        </div>
                                         <div class="table-responsive-md table-responsive">
                                                 <table id="datatable" class="table table-bordered  " >
                                                 <thead>
@@ -150,6 +179,7 @@
                                                         <th>Nombre</th>
                                                         <th>Stock</th>
                                                         <th>Precio</th>
+                                                        <th>Laboratorio</th>
                                                         <th>Vencimiento</th>
                                                     </tr>
                                                 </thead>
@@ -160,9 +190,10 @@
                                                     <tr class="table-dar" v-for="medicamento in arrayMedicamentoStock" :key="medicamento.miID">
                                                         <td v-text="medicamento.id"></td>
                                                         <td v-text="medicamento.codigo"></td>
-                                                        <td v-text="medicamento.nombre + ' ' + medicamento.concentracion + ' ' + medicamento.presentacion"></td>
-                                                        <td v-text="medicamento.stock"></td>
+                                                        <td v-text="medicamento.nombre + ' ' + medicamento.presentacion"></td>
+                                                        <td v-text="medicamento.cantidad"></td>
                                                         <td v-text="medicamento.precio"></td>
+                                                        <td v-text="medicamento.laboratorio"></td>
                                                         <td v-text="medicamento.fecha_vencimiento"></td>
                                                         
                                                         
@@ -177,22 +208,22 @@
                                             <div class="col-sm-12 col-md-7 dataTables_paginate paging_simple_numbers" >
                                                 <ul class="pagination">
                                                     <li class="paginate_button page-item previous" v-if="pagination2.current_page > 1" >
-                                                        <a href="#" class="page-link" @click.prevent="cambiarPagina(pagination2.current_page - 1, buscar, criterio)">
+                                                        <a href="#" class="page-link" @click.prevent="cambiarPagina2(pagination2.current_page - 1, buscar, criterio)">
                                                             Anterior
                                                         </a>
                                                     </li>
                                                     <li class="paginate_button page-item active" v-for="page in pagesNumber" :key="page" :class="[page == isActived ? 'active':'']">
-                                                        <a href="#" class="page-link" @click.prevent="cambiarPagina(page, buscar, criterio)" v-text="page"></a>
+                                                        <a href="#" class="page-link" @click.prevent="cambiarPagina2(page, buscar, criterio)" v-text="page"></a>
                                                     </li>
                                                     <li class="paginate_button page-item " v-if="pagination2.current_page < pagination2.last_page">
-                                                        <a href="#" class="page-link" @click.prevent="cambiarPagina(pagination2.current_page + 1, buscar, criterio)">
+                                                        <a href="#" class="page-link" @click.prevent="cambiarPagina2(pagination2.current_page + 1, buscar, criterio)">
                                                             Siguiente
                                                         </a>
                                                     </li>
                                                 </ul>
                                             </div>
                                         </div>
-                                    </div-->
+                                    </div>
                                     
                             </div>
                         </div>
@@ -394,7 +425,8 @@
                 },
                 offset:3,
                 criterio:'nombre',
-                buscar: ''
+                buscar: '',
+                buscarStock: ''
             }
         },
         computed:{
@@ -473,6 +505,11 @@
                 let me = this;
                 me.pagination.current_page = page;
                 me.listarMedicamento(page, buscar , criterio);
+            },
+            cambiarPagina2(page, buscar , criterio){
+                let me = this;
+                me.pagination2.current_page = page;
+                me.listarMedicamentoStock(page, buscar , criterio);
             },
             registrarMedicamento(){
                 let me = this;

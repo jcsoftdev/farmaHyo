@@ -523,7 +523,10 @@
             validarPersona(){
                 this.errorPersona = 0;
                 this.errorMostrarMsjPersona = [];
-                if(!this.nombre) this.errorMostrarMsjPersona.push("El nombre del cliente no puede estar vacio");
+                if(!this.nombre) this.errorMostrarMsjPersona.push("El nombre del proveedor no puede estar vacio");
+                if(this.tipo_documento == "") this.errorMostrarMsjPersona.push("Seleccione Documento");
+                if(this.tipo_documento == "DNI" && this.num_documento.length != 8) this.errorMostrarMsjPersona.push("El DNI debe tener 8 digitos");
+                if(this.tipo_documento == "RUC" && this.num_documento.length != 11) this.errorMostrarMsjPersona.push("El RUC debe tener 11 digitos");
                 if(this.errorMostrarMsjPersona.length) this.errorPersona = 1;
                 return this.errorPersona;
             }
