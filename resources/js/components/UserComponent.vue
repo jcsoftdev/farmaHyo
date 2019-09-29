@@ -564,7 +564,12 @@
             validarUser(){
                 this.errorUser = 0;
                 this.errorMostrarMsjUser = [];
-                if(!this.nombre) this.errorMostrarMsjUser.push("El nombre del User no puede estar vacio");
+                if(!this.nombre) this.errorMostrarMsjUser.push("El nombre no puede estar vacio");
+                if(this.tipoDocumento == "DNI" && this.numeroDocumento.length != 8) this.errorMostrarMsjUser.push("El DNI DEBE CONTENER 8 DIGITOS");
+                if(this.tipoDocumento == "RUC" && this.numeroDocumento.length != 11) this.errorMostrarMsjUser.push("EL RUC DEBE TENER 11 DIGITOS");
+                if(!this.id_rol) this.errorMostrarMsjUser.push("El rol no puede estar vacio");
+                if(!this.usuario) this.errorMostrarMsjUser.push("El usuario no puede estar vacio");
+                if(!this.password) this.errorMostrarMsjUser.push("El password no puede estar vacio");
                 if(this.errorMostrarMsjUser.length) this.errorUser = 1;
                 return this.errorUser;
             }

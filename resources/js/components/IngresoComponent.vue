@@ -305,8 +305,8 @@
                                             <td>
                                                 <input v-model="detalle.cantidad" type="number" class="form-control">
                                             </td>
-                                            <td>
-                                                <input v-model="detalle.lote" type="text" class="form-control">
+                                            <td >
+                                                <input v-model="detalle.lote" type="text" style="width: 3rem;" class="form-control">
                                             </td>
                                             <td>
                                                 <input v-model="detalle.fecha_vencimiento" type="date" class="form-control">

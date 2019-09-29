@@ -11,35 +11,31 @@ class ConcentracionSeeder extends Seeder
      */
     public function run()
     {
+        
         Concentracion::create([
-            'nombre'	=>  strtoupper("0.5 mg"),
-            'descripcion' => strtoupper('descripcion de concentracion '),
+            'nombre'	=>  strtoupper("SinCon"),
+            'descripcion' => strtoupper('descripcion de concentracion'),
             'condicion' => 1
         ]);
-        Concentracion::create([
-            'nombre'	=>  strtoupper("300 mg"),
-            'descripcion' => strtoupper('descripcion de concentracion '),
-            'condicion' => 1
-        ]);
-        Concentracion::create([
-            'nombre'	=>  strtoupper("600 mg"),
-            'descripcion' => strtoupper('descripcion de concentracion '),
-            'condicion' => 1
-        ]);
-        Concentracion::create([
-            'nombre'  =>  strtoupper("1200 mg"),
-            'descripcion' => strtoupper('descripcion de concentracion '),
-            'condicion' => 1
-        ]);
-        Concentracion::create([
-            'nombre'	=>  strtoupper("1.5 mg"),
-            'descripcion' => strtoupper('descripcion de concentracion '),
-            'condicion' => 1
-        ]);
-        Concentracion::create([
-            'nombre'	=>  strtoupper("10 mg"),
-            'descripcion' => strtoupper('descripcion de concentracion '),
-            'condicion' => 1
-        ]);
+        //Concentracion::create([
+        //    'nombre'	=>  strtoupper("600 mg"),
+        //    'descripcion' => strtoupper('descripcion de concentracion '),
+        //    'condicion' => 1
+        //]);
+        //Concentracion::create([
+        //    'nombre'  =>  strtoupper("1200 mg"),
+        //    'descripcion' => strtoupper('descripcion de concentracion '),
+        //    'condicion' => 1
+        //]);
+        //Concentracion::create([
+        //    'nombre'	=>  strtoupper("1.5 mg"),
+        //    'descripcion' => strtoupper('descripcion de concentracion '),
+        //    'condicion' => 1
+        //]);
+        //Concentracion::create([
+        //    'nombre'	=>  strtoupper("10 mg"),
+        //    'descripcion' => strtoupper('descripcion de concentracion '),
+        //    'condicion' => 1
+        //]);
     }
 }

@@ -12,35 +12,82 @@ class PresentacionSeeder extends Seeder
      */
     public function run()
     {
-        Presentacion::create([
-            'nombre'	=>  strtoupper("Tableta"),
-            'descripcion' => strtoupper('descripcion de Presentacion '),
-            'condicion' => 1
-        ]);
-        Presentacion::create([
-            'nombre'	=>  strtoupper("Inyectable"),
-            'descripcion' => strtoupper('descripcion de Presentacion '),
-            'condicion' => 1
-        ]);
-        Presentacion::create([
-            'nombre'	=>  strtoupper("Capsula Blanda"),
-            'descripcion' => strtoupper('descripcion de Presentacion '),
-            'condicion' => 1
-        ]);
-        Presentacion::create([
-            'nombre'  =>  strtoupper("Suspension Oral"),
-            'descripcion' => strtoupper('descripcion de Presentacion '),
-            'condicion' => 1
-        ]);
-        Presentacion::create([
-            'nombre'	=>  strtoupper("Comprimido Masticable"),
-            'descripcion' => strtoupper('descripcion de Presentacion '),
-            'condicion' => 1
-        ]);
-        Presentacion::create([
-            'nombre'	=>  strtoupper("Solución Oftálmica"),
-            'descripcion' => strtoupper('descripcion de Presentacion '),
-            'condicion' => 1
-        ]);
+        $Presentacion = [
+           " BLISTER ",
+           " BOLSA  X 50 UN ",
+           " ROLLO ",
+           "AMPOLLA",
+           "BARRA ",
+           "BOLSA",
+           "BOTELLA ",
+           "CAJA",
+           "CAJA ",
+           "CAPSULA",
+           "CAPSULA ",
+           "CAPSULAS",
+           "CARTUCHO",
+           "CARTUCHO ",
+           "CASSETTE ",
+           "CJA ",
+           "CJA  X 200GRS ",
+           "CREMA ",
+           "FRASCO",
+           "FRASCO ",
+           "GALON ",
+           "GEL ",
+           "GOTAS ",
+           "GOTAS  ",
+           "GOTAS  OFTALMICAS ",
+           "GRAMOS ",
+           "JARABE ",
+           "JERINGA",
+           "JERINGA ",
+           "JUEGO ",
+           "KIT",
+           "KIT ",
+           "LAMINA",
+           "LIBRA",
+           "METRO",
+           "PAQUETE",
+           "PAQUETE ",
+           "PAR ",
+           "PARES ",
+           "POMADA",
+           "PORCION",
+           "PORCION ",
+           "POTE",
+           "POTE ",
+           "ROLLO ",
+           "SACHET",
+           "SACHET ",
+           "SET",
+           "SOBRE",
+           "SOBRE ",
+           "SOBRES ",
+           "SOLUCION ",
+           "SPRAY ",
+           "SUSPENSIÓN ",
+           "TABLETA",
+           "TABLETA ",
+           "TABLETA COMPRIMIDO",
+           "TABLETAS",
+           "TABLETAS ",
+           "TAPER ",
+           "TIRA ",
+           "TUBO ",
+           "TUBOS ",
+           "UND",
+           "UND ",
+           "UND  ",
+           "UNGÜENTO ",
+           "-"
+        ];
+        for ($i=0; $i < count($Presentacion); $i++) { 
+            Presentacion::create([
+                'nombre'=>strtoupper($Presentacion[$i]),
+                'descripcion'=>strtoupper(" $i"),
+                'condicion' => 1
+            ]);
+        }
     }
 }

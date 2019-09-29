@@ -140,7 +140,7 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                    <div class="col-12">
+                                    <!--div class="col-12">
                                         <div class="table-responsive-md table-responsive">
                                                 <table id="datatable" class="table table-bordered  " >
                                                 <thead>
@@ -192,7 +192,7 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div-->
                                     
                             </div>
                         </div>

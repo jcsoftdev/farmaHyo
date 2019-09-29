@@ -23,17 +23,27 @@ class PersonaSeeder extends Seeder
 	}
     public function run()
     {
-        for($i=1;$i<=100;$i++){
-            DB::table('personas')->insert([
-                'nombre'=>$this->getFullname(),
-                'tipo_documento'=>'DNI',
-                'num_documento'=>mt_rand(10000000, 99999999),
-                'direccion'=>str_random(10),
-                'telefono'=>mt_rand(900000000, 999999999),
-                'email'=>"usuario$i@gmail.com",
-                'created_at'=>now(),
-                'updated_at'=>now()
-            ]);
-        }
+        DB::table('personas')->insert([
+            'nombre'=>$this->getFullname(),
+            'tipo_documento'=>'DNI',
+            'num_documento'=>mt_rand(10000000, 99999999),
+            'direccion'=>str_random(10),
+            'telefono'=>mt_rand(900000000, 999999999),
+            'email'=>"usuario@gmail.com",
+            'created_at'=>now(),
+            'updated_at'=>now()
+        ]);
+        //for($i=1;$i<=100;$i++){
+        //    DB::table('personas')->insert([
+        //        'nombre'=>$this->getFullname(),
+        //        'tipo_documento'=>'DNI',
+        //        'num_documento'=>mt_rand(10000000, 99999999),
+        //        'direccion'=>str_random(10),
+        //        'telefono'=>mt_rand(900000000, 999999999),
+        //        'email'=>"usuario$i@gmail.com",
+        //        'created_at'=>now(),
+        //        'updated_at'=>now()
+        //    ]);
+        //}
     }
 }
