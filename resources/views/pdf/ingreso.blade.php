@@ -115,11 +115,11 @@
         @foreach ($ingreso as $i)
         <header>
         <div id="logo">
-                <img src="img/logo2.png" alt="Farma Hyo" id="imagen">
+                <img src="img/logo2.png" alt="Innova Dent" id="imagen">
             </div>
             <div id="datos">
                 <p id="encabezado">
-                    <b>Farma Hyo</b><br>Hyo - Perú<br>Telefono:(+51)931760744<br>Email:ajcarlos032@gmail.com
+                    <b>Innova Dent</b><br>Hyo - Perú<br>Telefono:(+51)931760744<br>Email:ajcarlos032@gmail.com
                 </p>
             </div>
             <div id="fact">

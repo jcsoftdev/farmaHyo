@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use App\Models\Ingreso;
 use App\Models\DetalleIngreso;
-
+Carbon::setLocale('es');
 class IngresoController extends Controller
 {
     public function index(Request $request)
@@ -176,7 +176,7 @@ class IngresoController extends Controller
 
         try{
             DB::beginTransaction();
-
+            
             $mytime= Carbon::now('America/Lima');
 
             $ingreso = new Ingreso();

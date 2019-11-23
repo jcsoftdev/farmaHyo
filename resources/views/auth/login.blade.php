@@ -9,7 +9,7 @@
     
                     <div class="card-body">
                         <div class="text-center m-t-0 m-b-15">
-                                <a href="#" class=""><span><h1><i class="fas fa-first-aid"></i> Farma Hyo</h1></span></a>
+                                <a href="#" class=""><span><h1><i class="fas fa-first-aid"></i> Innova Dent</h1></span></a>
                                 <a href="#">
                                     <span class="text-center mb-3" style="font-size:3.75rem; display:block; height:3.75rem !important" class=""><i class="mdi mdi-account-circle"></i></span>
                                 </a>

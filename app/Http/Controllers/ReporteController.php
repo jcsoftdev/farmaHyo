@@ -99,6 +99,7 @@ class ReporteController extends Controller
         // ((new IngresoExport)->queue('reporte.xlsx'));
     }
     public function vencimiento(){
+        
         $ingresos = DetalleIngreso::join('medicamentos','detalle_ingresos.idmedicamento','=','medicamentos.id')
         ->join('productos','productos.id','=','medicamentos.producto_id')
         ->join('presentaciones','presentaciones.id','=','medicamentos.presentacion_id')

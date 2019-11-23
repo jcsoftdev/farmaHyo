@@ -446,7 +446,7 @@
             <tr>
                 <td align="center">
                 <!-- Mostramos los datos de la empresa en el documento HTML -->
-                .::<strong> Farma Hyo </strong>::.<br>
+                .::<strong> Innova Dent </strong>::.<br>
                 RUC 10477157772<br>
                 Hyo - Perú - 931760744<br>
                 </td>
@@ -513,7 +513,7 @@
             <td colspan="3" align="center">¡Gracias por su compra!</td>
             </tr>
             <tr>
-            <td colspan="3" align="center">Farma Hyo</td>
+            <td colspan="3" align="center">Innova Dent</td>
             </tr>
             <tr>
             <td colspan="3" align="center">Chiclayo - Perú</td>
