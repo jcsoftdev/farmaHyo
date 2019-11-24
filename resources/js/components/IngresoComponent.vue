@@ -739,7 +739,7 @@
                 });
             },
             cargarPdf(){
-                window.open( '/farmaHyo/public/ingreso/listarPdf','_blank');
+                window.open( '/farmahyo/public/ingreso/listarPdf','_blank');
             },
             selectProveedor(){
                 let me=this;
@@ -785,10 +785,10 @@
                 });
             },
             pdfIngreso(id){
-                window.open( '/farmaHyo/public/ingreso/pdf/'+ id );
+                window.open( '/farmahyo/public/ingreso/pdf/'+ id );
             },
             pdfTicket(id){
-                window.open( '/farmaHyo/public/ingreso/pdfTicket/'+ id );
+                window.open( '/farmahyo/public/ingreso/pdfTicket/'+ id );
             },
             cambiarPagina(page,buscar,criterio){
                 let me = this;

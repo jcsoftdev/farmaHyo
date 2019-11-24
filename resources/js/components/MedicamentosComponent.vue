@@ -665,7 +665,7 @@
                         if (result.value) {
                             switch (accion) {
                                 case 'activar':
-                                    axios.put( this.route+'/medicamento/activar', {
+                                    axios.put( me.ruta+'/medicamento/activar', {
                                         'id' : id
                                     })
                                     .then(function (response) {
@@ -679,7 +679,7 @@
                                     break;
                             
                                 case 'desactivar':
-                                    axios.put( this.route+'/medicamento/desactivar', {
+                                    axios.put( me.ruta+'/medicamento/desactivar', {
                                         'id' : id
                                     })
                                     .then(function (response) {
@@ -687,6 +687,7 @@
                                         me.listarMedicamento(me.pagination.current_page,me.buscar,'nombre');
                                     })
                                     .catch(function (error) {
+                                        console.log(me.ruta);
                                         console.log(error);
                                         me.alerta('error','Falla al desactivar el medicamento');
                                     });

@@ -74,7 +74,7 @@ const app = new Vue({
     el: '#app',
     data:{
         menu:0,
-        ruta: '/farmaHyo/public'
+        ruta: '/farmahyo/public'
     }
 });
 // export default new Vuetify({ 

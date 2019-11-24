@@ -8,7 +8,7 @@
                         <h5 class="font-20 text-center" v-text="'Total: '+compraIngresoTotal"></h5>
                     </div> -->
                     <div class="report text-center ">
-                        <a href="/farmaHyo/public/excelIngreso" class="btn black--text bold btn-warning">Descargar Excel</a>
+                        <a href="/farmahyo/public/excelIngreso" class="btn black--text bold btn-warning">Descargar Excel</a>
                     </div>
                     <span style="font-size:2rem">Ingresos</span>
                     <template >

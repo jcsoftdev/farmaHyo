@@ -11,7 +11,7 @@
                 </div>
             </div> -->
             <div class="report text-center ">
-                <!-- <a href="farmaHyo/public/excelVenta" class="btn black--text bold btn-warning">Descargar Excel</a> -->
+                <!-- <a href="farmahyo/public/excelVenta" class="btn black--text bold btn-warning">Descargar Excel</a> -->
                 <template>
                     <button type="primary" @click="exportExcel" class="btn black--text bold btn-warning">descargar Excel</button>
                 </template>

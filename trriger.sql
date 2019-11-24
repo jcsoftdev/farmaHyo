@@ -1,3 +1,6 @@
+ALTER DATABASE farmahyo SET datestyle = 'iso, dmy';
+
+
 CREATE OR REPLACE FUNCTION ingresos() RETURNS trigger
 AS $$
 BEGIN
